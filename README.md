@@ -94,7 +94,7 @@ berkut-cyber-base/
 		├── questions.js
 		├── structureSecurity.js
 		├── training.js
-		└──	vulnerabilities.js	
+		└── vulnerabilities.js	
     └── fonts/
         ├── Poppins-Regular.ttf
         ├── Poppins-Medium.ttf
