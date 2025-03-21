@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Добавляем Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';">
+  <title>Berkut Cyber Base</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div id="window-container">
+    <div id="sidebar">
+      <div class="sidebar-header">
+        <h2>Berkut Cyber Base</h2>
+      </div>
+      <div class="sidebar-content">
+        <button class="sidebar-btn" data-section="home">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          Главная
+        </button>
+        <button class="sidebar-btn" data-section="osi">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="3" y1="15" x2="21" y2="15"></line>
+          </svg>
+          Модель OSI
+        </button>
+        <button class="sidebar-btn" data-section="vulnerabilities">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
+          Уязвимости
+        </button>
+        <button class="sidebar-btn" data-section="network-building">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="2"></circle>
+            <path d="M12 2v4"></path>
+            <path d="M12 18v4"></path>
+            <path d="M4.93 4.93l2.83 2.83"></path>
+            <path d="M16.24 16.24l2.83 2.83"></path>
+            <path d="M2 12h4"></path>
+            <path d="M18 12h4"></path>
+            <path d="M4.93 19.07l2.83-2.83"></path>
+            <path d="M16.24 7.76l2.83-2.83"></path>
+          </svg>
+          Построение сетей
+        </button>
+        <button class="sidebar-btn" data-section="cryptography">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="11" width="14" height="10" rx="2" ry="2"></rect>
+            <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+          </svg>
+          Криптография
+        </button>
+        <button class="sidebar-btn" data-section="ep-pki">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+            <path d="M12 11v4"></path>
+            <path d="M10 13h4"></path>
+          </svg>
+          ЭП и PKI
+        </button>
+        <button class="sidebar-btn" data-section="ib-tools">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 0 0-7 17.32M12 2a10 10 0 0 1 7 17.32M12 6v6l4 2"></path>
+          </svg>
+          Инструменты ИБ
+        </button>
+        <button class="sidebar-btn" data-section="structure-security">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+            <circle cx="12" cy="12" r="10"></circle>
+          </svg>
+          Защита структур
+        </button>
+        <button class="sidebar-btn" data-section="legal-regulations">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16v16H4z"></path>
+            <path d="M4 8h16M8 4v16"></path>
+          </svg>
+          Правовые нормы
+        </button>
+        <button class="sidebar-btn" data-section="training">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          Тестирование
+        </button>
+      </div>
+    </div>
+
+    <div class="drag-region"></div>
+    <div id="window-controls">
+      <button id="minimize-btn" class="control-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+        </svg>
+      </button>
+      <button id="maximize-btn" class="control-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+        </svg>
+      </button>
+      <button id="close-btn" class="control-btn close-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div id="main-screen" class="window">
+      <div id="tab-header">Главная</div>
+      <div id="content">
+        <div id="content-area">
+          <h1>Главная</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Подключаем скрипты -->
+  <script src="assets/pages/osi.js"></script>
+  <script src="assets/pages/networkBuilding.js"></script>
+  <script src="assets/pages/vulnerabilities.js"></script>
+  <script src="assets/pages/epPki.js"></script>
+  <script src="assets/pages/structureSecurity.js"></script>
+  <script src="assets/pages/legalRegulations.js"></script>
+  <script src="assets/pages/cryptography.js"></script>
+  <script src="assets/pages/ibTools.js"></script>
+  <script src="assets/pages/training.js"></script>
+  <script src="renderer.js"></script>
+</html>
