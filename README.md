@@ -95,10 +95,10 @@ berkut-cyber-base/
 		├── structureSecurity.js
 		├── training.js
 		└── vulnerabilities.js	
-    └── fonts/
-        ├── Poppins-Regular.ttf
-        ├── Poppins-Medium.ttf
-        └── Poppins-SemiBold.ttf
+	└── fonts/
+	        ├── Poppins-Regular.ttf
+	        ├── Poppins-Medium.ttf
+	        └── Poppins-SemiBold.ttf
 ```
 
 ---
