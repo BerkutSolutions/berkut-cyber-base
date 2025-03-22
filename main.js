@@ -5,10 +5,11 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    width: 1400,
+    height: 900,
     frame: false,
     transparent: true,
+    autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
@@ -18,9 +19,35 @@ function createWindow() {
   });
 
   mainWindow.loadFile('index.html');
+  mainWindow.setMenu(null);
+  mainWindow.webContents.openDevTools();
+  mainWindow.setBackgroundColor('#00000000');
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+  });
+
+  mainWindow.on('minimize', () => {
+    console.log('Window minimized');
+    mainWindow.setBackgroundColor('#00000000');
+  });
+
+  mainWindow.on('restore', () => {
+    console.log('Window restored');
+    mainWindow.setBackgroundColor('#00000000');
+    mainWindow.webContents.send('window-restored');
+  });
+
+  mainWindow.on('maximize', () => {
+    console.log('Window maximized');
+    mainWindow.setBackgroundColor('#00000000');
+    mainWindow.webContents.send('window-maximized');
+  });
+
+  mainWindow.on('unmaximize', () => {
+    console.log('Window unmaximized');
+    mainWindow.setBackgroundColor('#00000000');
+    mainWindow.webContents.send('window-unmaximized');
   });
 
   ipcMain.handle('minimize-window', () => {
@@ -37,10 +64,6 @@ function createWindow() {
 
   ipcMain.handle('close-window', () => {
     mainWindow.close();
-  });
-
-  mainWindow.on('restore', () => {
-    mainWindow.webContents.send('window-restored');
   });
 }
 
