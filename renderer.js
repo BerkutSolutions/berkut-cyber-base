@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOMContentLoaded event fired');
   const windowContainer = document.getElementById('window-container');
   const contentArea = document.getElementById('content-area');
 
   if (!windowContainer) {
     console.error('Element with id "window-container" not found. Check your index.html structure.');
-    console.log('Current DOM:', document.body.innerHTML);
     return;
   }
 
@@ -25,21 +23,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('maximize-btn').addEventListener('click', () => {
-    const isMaximized = windowContainer.classList.contains('maximized');
-    if (isMaximized) {
-      windowContainer.classList.add('unmaximize-animation');
-      setTimeout(() => {
-        window.electronAPI.maximizeWindow();
-        windowContainer.classList.remove('unmaximize-animation', 'maximized');
-      }, 500);
-    } else {
-      windowContainer.classList.add('maximize-animation');
-      setTimeout(() => {
-        window.electronAPI.maximizeWindow();
-        windowContainer.classList.remove('maximize-animation');
-        windowContainer.classList.add('maximized');
-      }, 500);
-    }
+    windowContainer.classList.add('maximize-animation');
+    setTimeout(() => {
+      window.electronAPI.maximizeWindow();
+      windowContainer.classList.remove('maximize-animation');
+    }, 350);
+  });
+
+  window.electronAPI.onWindowMaximized(() => {
+    windowContainer.classList.add('maximized');
+  });
+
+  window.electronAPI.onWindowUnmaximized(() => {
+    windowContainer.classList.remove('maximized');
   });
 
   document.getElementById('close-btn').addEventListener('click', () => {
@@ -88,6 +84,34 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('loadVulnerabilitiesContent is not defined. Check if vulnerabilities.js is loaded correctly.');
         contentArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Уязвимости".</p>`;
       }
+    } else if (section === 'malware-analysis') {
+      if (typeof loadMalwareAnalysisContent === 'function') {
+        loadMalwareAnalysisContent(contentArea);
+      } else {
+        console.error('loadMalwareAnalysisContent is not defined. Check if malwareAnalysis.js is loaded correctly.');
+        contentArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Анализ ВПО".</p>`;
+      }
+    } else if (section === 'pentesting') {
+      if (typeof loadPentestingContent === 'function') {
+        loadPentestingContent(contentArea);
+      } else {
+        console.error('loadPentestingContent is not defined. Check if pentesting.js is loaded correctly.');
+        contentArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Пентестинг".</p>`;
+      }
+    } else if (section === 'social-engineering') {
+      if (typeof loadSocialEngineeringContent === 'function') {
+        loadSocialEngineeringContent(contentArea);
+      } else {
+        console.error('loadSocialEngineeringContent is not defined. Check if socialEngineering.js is loaded correctly.');
+        contentArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Социальная инженерия".</p>`;
+      }
+    } else if (section === 'forensics') {
+      if (typeof loadForensicsContent === 'function') {
+        loadForensicsContent(contentArea);
+      } else {
+        console.error('loadForensicsContent is not defined. Check if forensics.js is loaded correctly.');
+        contentArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Форензика".</p>`;
+      }
     } else if (section === 'network-building') {
       if (typeof loadNetworkBuildingContent === 'function') {
         loadNetworkBuildingContent(contentArea);
@@ -130,6 +154,20 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('loadLegalRegulationsContent is not defined. Check if legalRegulations.js is loaded correctly.');
         contentArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Правовые нормы".</p>`;
       }
+    } else if (section === 'lna-lnd') {
+      if (typeof loadLnaLndContent === 'function') {
+        loadLnaLndContent(contentArea);
+      } else {
+        console.error('loadLnaLndContent is not defined. Check if lnaLnd.js is loaded correctly.');
+        contentArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "ЛНА и ЛНД".</p>`;
+      }
+    } else if (section === 'threat-model') {
+      if (typeof loadThreatModelContent === 'function') {
+        loadThreatModelContent(contentArea);
+      } else {
+        console.error('loadThreatModelContent is not defined. Check if threatModel.js is loaded correctly.');
+        contentArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Модель угроз".</p>`;
+      }
     } else if (section === 'training') {
       if (typeof loadTrainingContent === 'function') {
         loadTrainingContent(contentArea);
@@ -137,6 +175,22 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('loadTrainingContent is not defined. Check if training.js is loaded correctly.');
         contentArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Обучение и тестирование".</p>`;
       }
+    } else if (section === 'home') {
+      contentArea.innerHTML = `
+        <h1>Главная</h1>
+        <div class="description">
+          <p><strong>Berkut Cyber Base</strong> — это локальная библиотека знаний, разработанная специально для специалистов по информационной безопасности и защите информации. Программа представляет собой удобный инструмент для изучения, анализа и применения ключевых концепций в области кибербезопасности.</p>
+          <p>Приложение объединяет в себе обширный набор тем, включая модель OSI, уязвимости, построение сетей, криптографию, электронные подписи и инфраструктуру открытых ключей (PKI), инструменты информационной безопасности, защиту структур, правовые нормы, локальные нормативные акты, моделирование угроз, а также модули обучения и тестирования.</p>
+          <p><strong>Для чего нужна программа?</strong></p>
+          <ul>
+            <li><strong>Обучение и повышение квалификации:</strong> предоставляет структурированные материалы для освоения основ и углубленного изучения тем ИБ.</li>
+            <li><strong>Практическое применение:</strong> помогает специалистам быстро находить информацию и применять её в реальных задачах.</li>
+            <li><strong>Локальность и безопасность:</strong> работает оффлайн, обеспечивая конфиденциальность данных и независимость от интернета.</li>
+            <li><strong>Удобство:</strong> интуитивно понятный интерфейс и быстрый доступ к нужным разделам.</li>
+          </ul>
+          <p>Berkut Cyber Base — это ваш надёжный помощник в мире информационной безопасности, созданный для поддержки специалистов в их профессиональной деятельности.</p>
+        </div>
+      `;
     } else {
       const tabHeader = document.getElementById('tab-header');
       if (tabHeader) {
