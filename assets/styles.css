@@ -753,3 +753,52 @@ body,
 .back-to-main-btn:hover {
   background-color: #3a3f4b;
 }
+
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+ul li {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.level-column {
+  width: 100px;
+  overflow-wrap: break-word;
+}
+
+.purpose-column {
+  width: 200px;
+  overflow-wrap: break-word;
+}
+
+* {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.scheme-frame {
+  border: none !important;
+}
+
+.scheme-frame::-webkit-scrollbar {
+  height: 8px;
+}
+.scheme-frame::-webkit-scrollbar-track {
+  background: #05060a;
+  border-radius: 4px;
+}
+.scheme-frame::-webkit-scrollbar-thumb {
+  background: #2a2f3b;
+  border-radius: 4px;
+}
+.scheme-frame::-webkit-scrollbar-thumb:hover {
+  background: #3a3f4b;
+}
+
