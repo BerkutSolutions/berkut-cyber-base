@@ -20,7 +20,6 @@ function createWindow() {
 
   mainWindow.loadFile('index.html');
   mainWindow.setMenu(null);
-  mainWindow.webContents.openDevTools();
   mainWindow.setBackgroundColor('#00000000');
 
   mainWindow.on('closed', () => {
