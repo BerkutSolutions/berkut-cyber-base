@@ -20,6 +20,7 @@ function loadOsiContent(contentArea) {
       <div class="osi-buttons">
         <button class="osi-btn" id="faq-btn">Частые вопросы</button>
         <button class="osi-btn" id="model-btn">Модель</button>
+        <button class="osi-btn" id="tcpip-btn">Модель TCP/IP</button>
       </div>
     </div>
   `;
@@ -31,6 +32,10 @@ function loadOsiContent(contentArea) {
 
   document.getElementById('model-btn').addEventListener('click', () => {
     loadModelContent(contentArea);
+  });
+
+  document.getElementById('tcpip-btn').addEventListener('click', () => {
+    loadTcpIpContent(contentArea);
   });
 }
 
@@ -430,6 +435,189 @@ function loadModelContent(contentArea) {
     </div>
   `;
   contentArea.innerHTML = modelContent;
+
+  document.querySelector('.back-btn').addEventListener('click', () => {
+    loadOsiContent(contentArea);
+  });
+}
+
+function loadTcpIpContent(contentArea) {
+  const tcpIpContent = `
+    <div class="osi-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>Модель TCP/IP</h1>
+      <div class="osi-description">
+        <p><strong>Модель TCP/IP</strong> (Transmission Control Protocol/Internet Protocol) — это практическая модель, лежащая в основе работы интернета и большинства современных сетей. Разработанная в 1970-х годах Министерством обороны США (DoD), она представляет собой упрощённый набор протоколов и уровней по сравнению с моделью OSI. Модель TCP/IP ориентирована на реальное применение и включает четыре уровня, которые охватывают весь процесс передачи данных от физического подключения до взаимодействия приложений.</p>
+        <p>Основное отличие TCP/IP от OSI заключается в её практической направленности: она была создана для реализации конкретных протоколов (TCP, IP, UDP и др.), а не как универсальная теоретическая рамка. Модель TCP/IP активно используется в современных сетях, включая интернет, корпоративные сети и устройства IoT.</p>
+        
+        <h2>Уровни модели TCP/IP</h2>
+        <p>Модель TCP/IP состоит из четырёх уровней:</p>
+        <ul>
+          <li><strong>Уровень доступа к сети (Network Access Layer):</strong> Объединяет функции физического и канального уровней OSI. Отвечает за передачу данных через физическую среду и управление доступом к ней (например, Ethernet, Wi-Fi).</li>
+          <li><strong>Междусетевой уровень (Internet Layer):</strong> Соответствует сетевому уровню OSI. Управляет логической адресацией и маршрутизацией (например, IP, ICMP).</li>
+          <li><strong>Транспортный уровень (Transport Layer):</strong> Аналогичен транспортному уровню OSI. Обеспечивает передачу данных между узлами с различной степенью надёжности (TCP для надёжной доставки, UDP для скорости).</li>
+          <li><strong>Прикладной уровень (Application Layer):</strong> Объединяет функции сеансового, уровня представления и прикладного уровней OSI. Предоставляет интерфейс для приложений (HTTP, FTP, DNS).</li>
+        </ul>
+        
+        <h2>Отличия модели OSI от TCP/IP</h2>
+        <p>Модель OSI и TCP/IP имеют схожие цели, но различаются по структуре и применению:</p>
+        <ul>
+          <li><strong>Количество уровней:</strong> OSI имеет 7 уровней, TCP/IP — 4. TCP/IP объединяет некоторые функции OSI в более широкие слои (например, сеансовый и уровень представления включены в прикладной уровень TCP/IP).</li>
+          <li><strong>Теория vs Практика:</strong> OSI — это теоретическая модель, разработанная для стандартизации и обучения. TCP/IP — практическая модель, созданная для реальных сетей и протоколов.</li>
+          <li><strong>Разработка:</strong> OSI появилась позже (1984) как попытка обобщить сетевые процессы, тогда как TCP/IP была реализована раньше (1970-е) и стала основой интернета.</li>
+          <li><strong>Протоколы:</strong> В OSI протоколы не привязаны к уровням жёстко, модель абстрактна. В TCP/IP уровни напрямую связаны с конкретными протоколами (IP, TCP, HTTP).</li>
+          <li><strong>Гибкость:</strong> OSI более детализирована и подходит для анализа сложных систем. TCP/IP проще и эффективнее для реализации.</li>
+          <li><strong>Применение:</strong> OSI используется в основном в обучении и документации, TCP/IP — стандарт де-факто в реальных сетях.</li>
+        </ul>
+        
+        <h2>Таблица модели TCP/IP</h2>
+        <p>Ниже представлена таблица с уровнями TCP/IP, их функциями и примерами протоколов:</p>
+      </div>
+      <div class="osi-table-container">
+        <table class="osi-table">
+          <thead>
+            <tr>
+              <th class="level-column">Уровень</th>
+              <th class="purpose-column">Назначение</th>
+              <th>Протоколы</th>
+              <th>Особенности</th>
+              <th>Примеры использования</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Уровень 4: Прикладной (Application) -->
+            <tr class="layer-4">
+              <td rowspan="8">Прикладной<br>(Application)</td>
+              <td rowspan="8">Обеспечение взаимодействия приложений и пользователей с сетью</td>
+              <td>HTTP</td>
+              <td>Передача веб-страниц</td>
+              <td>Просмотр сайтов (браузеры)</td>
+            </tr>
+            <tr>
+              <td>HTTPS</td>
+              <td>Защищённая передача данных с SSL/TLS</td>
+              <td>Онлайн-банкинг, покупки</td>
+            </tr>
+            <tr>
+              <td>FTP</td>
+              <td>Передача файлов</td>
+              <td>Загрузка файлов на сервер</td>
+            </tr>
+            <tr>
+              <td>SMTP</td>
+              <td>Отправка электронной почты</td>
+              <td>Отправка email</td>
+            </tr>
+            <tr>
+              <td>POP3/IMAP</td>
+              <td>Получение и синхронизация почты</td>
+              <td>Чтение писем (Outlook, Gmail)</td>
+            </tr>
+            <tr>
+              <td>DNS</td>
+              <td>Преобразование доменных имён в IP</td>
+              <td>Доступ к сайтам по имени</td>
+            </tr>
+            <tr>
+              <td>Telnet</td>
+              <td>Удалённое управление устройствами</td>
+              <td>Администрирование серверов</td>
+            </tr>
+            <tr>
+              <td>SNMP</td>
+              <td>Управление сетевыми устройствами</td>
+              <td>Мониторинг роутеров</td>
+            </tr>
+            <!-- Уровень 3: Транспортный (Transport) -->
+            <tr class="layer-3">
+              <td rowspan="3">Транспортный<br>(Transport)</td>
+              <td rowspan="3">Обеспечение передачи данных между узлами</td>
+              <td>TCP</td>
+              <td>Надёжная доставка с контролем ошибок</td>
+              <td>Веб-сайты, FTP</td>
+            </tr>
+            <tr>
+              <td>UDP</td>
+              <td>Быстрая передача без гарантии доставки</td>
+              <td>Стриминг, игры, DNS</td>
+            </tr>
+            <tr>
+              <td>SCTP</td>
+              <td>Комбинация TCP и UDP с мультикастом</td>
+              <td>Телекоммуникации (4G/5G)</td>
+            </tr>
+            <!-- Уровень 2: Междусетевой (Internet) -->
+            <tr class="layer-2">
+              <td rowspan="4">Междусетевой<br>(Internet)</td>
+              <td rowspan="4">Логическая адресация и маршрутизация</td>
+              <td>IPv4</td>
+              <td>32-битная адресация</td>
+              <td>Большинство сетей</td>
+            </tr>
+            <tr>
+              <td>IPv6</td>
+              <td>128-битная адресация</td>
+              <td>IoT, современные сети</td>
+            </tr>
+            <tr>
+              <td>ICMP</td>
+              <td>Диагностика сети</td>
+              <td>Ping, traceroute</td>
+            </tr>
+            <tr>
+              <td>IPsec</td>
+              <td>Шифрование и аутентификация</td>
+              <td>VPN, безопасные соединения</td>
+            </tr>
+            <!-- Уровень 1: Доступ к сети (Network Access) -->
+            <tr class="layer-1">
+              <td rowspan="4">Доступ к сети<br>(Network Access)</td>
+              <td rowspan="4">Передача данных через физическую среду</td>
+              <td>Ethernet</td>
+              <td>Передача в локальных сетях</td>
+              <td>Офисные сети, дома</td>
+            </tr>
+            <tr>
+              <td>Wi-Fi (IEEE 802.11)</td>
+              <td>Беспроводная передача данных</td>
+              <td>Беспроводные сети</td>
+            </tr>
+            <tr>
+              <td>PPP</td>
+              <td>Точка-точка соединение</td>
+              <td>DSL, модемы</td>
+            </tr>
+            <tr>
+              <td>ARP</td>
+              <td>Связывание IP с MAC</td>
+              <td>Локальная маршрутизация</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="osi-description">
+        <h2>Преимущества и недостатки TCP/IP</h2>
+        <p><strong>Преимущества:</strong></p>
+        <ul>
+          <li>Простота и практичность: меньше уровней, легче реализовать.</li>
+          <li>Широкая поддержка: основа интернета и большинства сетей.</li>
+          <li>Гибкость: поддерживает разные физические среды и протоколы.</li>
+        </ul>
+        <p><strong>Недостатки:</strong></p>
+        <ul>
+          <li>Менее детализирована: нет явного разделения функций (например, шифрование может быть на разных уровнях).</li>
+          <li>Сложность анализа: объединение уровней затрудняет диагностику проблем.</li>
+        </ul>
+      </div>
+    </div>
+  `;
+  contentArea.innerHTML = tcpIpContent;
 
   document.querySelector('.back-btn').addEventListener('click', () => {
     loadOsiContent(contentArea);
