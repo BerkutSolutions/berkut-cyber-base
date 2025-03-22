@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Добавляем Content Security Policy -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';">
   <title>Berkut Cyber Base</title>
   <link rel="stylesheet" href="assets/styles.css">
@@ -38,6 +37,38 @@
           </svg>
           Уязвимости
         </button>
+        <button class="sidebar-btn" data-section="malware-analysis">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <path d="M11 7v4M9 9h4"></path>
+          </svg>
+          Анализ ВПО
+        </button>
+        <button class="sidebar-btn" data-section="pentesting">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="11" width="14" height="10" rx="2" ry="2"></rect>
+            <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+            <circle cx="19" cy="19" r="3"></circle>
+            <line x1="21" y1="21" x2="18.5" y2="18.5"></line>
+          </svg>
+          Пентестинг
+        </button>
+        <button class="sidebar-btn" data-section="social-engineering">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Соц. инженерия
+        </button>
+        <button class="sidebar-btn" data-section="forensics">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M15 9l-6 6"></path>
+            <path d="M9 9l6 6"></path>
+          </svg>
+          Форензика
+        </button>
         <button class="sidebar-btn" data-section="network-building">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="2"></circle>
@@ -70,7 +101,10 @@
         </button>
         <button class="sidebar-btn" data-section="ib-tools">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a10 10 0 0 0-7 17.32M12 2a10 10 0 0 1 7 17.32M12 6v6l4 2"></path>
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            <path d="M12 12l-2-2m2 2l2-2"></path>
           </svg>
           Инструменты ИБ
         </button>
@@ -83,10 +117,28 @@
         </button>
         <button class="sidebar-btn" data-section="legal-regulations">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16v16H4z"></path>
-            <path d="M4 8h16M8 4v16"></path>
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            <path d="M4 9.5A2.5 2.5 0 0 1 6.5 7H20"></path>
           </svg>
           Правовые нормы
+        </button>
+        <button class="sidebar-btn" data-section="lna-lnd">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          ЛНА и ЛНД
+        </button>
+        <button class="sidebar-btn" data-section="threat-model">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 20h20L12 2z"></path>
+            <line x1="12" y1="7" x2="12" y2="13"></line>
+            <circle cx="12" cy="17" r="1"></circle>
+          </svg>
+          Модель угроз
         </button>
         <button class="sidebar-btn" data-section="training">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -128,7 +180,6 @@
     </div>
   </div>
 
-  <!-- Подключаем скрипты -->
   <script src="assets/pages/osi.js"></script>
   <script src="assets/pages/networkBuilding.js"></script>
   <script src="assets/pages/vulnerabilities.js"></script>
@@ -138,5 +189,13 @@
   <script src="assets/pages/cryptography.js"></script>
   <script src="assets/pages/ibTools.js"></script>
   <script src="assets/pages/training.js"></script>
+  <script src="assets/pages/lnaLnd.js"></script>
+  <script src="assets/pages/threatModel.js"></script>
+  <script src="assets/lib/leader-line.min.js"></script>
+  <script src="assets/pages/malwareAnalysis.js"></script>
+  <script src="assets/pages/pentesting.js"></script>
+  <script src="assets/pages/socialEngineering.js"></script>
+  <script src="assets/pages/forensics.js"></script>
+  <script src="assets/lib/leader-line.min.js"></script>
   <script src="renderer.js"></script>
 </html>
