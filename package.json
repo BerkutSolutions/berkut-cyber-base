@@ -1,37 +1,39 @@
 {
     "name": "berkut-cyber-base",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A cyber security info application",
     "main": "main.js",
     "scripts": {
-      "start": "electron .",
-      "build": "electron-builder"
+        "start": "electron .",
+        "build": "electron-builder"
     },
     "author": "Келиберда Александр Дмитриевич",
     "license": "Apache-2.0",
-    "dependencies": {},
     "devDependencies": {
-      "electron": "31.0.0",
-      "electron-builder": "^24.13.3"
+        "electron": "31.0.0",
+        "electron-builder": "^24.13.3"
     },
     "keywords": [],
     "type": "commonjs",
     "build": {
-      "appId": "com.example.berkutcyberbase",
-      "productName": "Berkut Cyber Base",
-      "files": [
-        "main.js",
-        "preload.js",
-        "index.html",
-        "renderer.js",
-        "assets/**/*"
-      ],
-      "win": {
-        "target": "nsis",
-        "icon": "icon.ico"
-      },
-      "directories": {
-        "output": "dist"
-      }
+        "appId": "com.example.berkutcyberbase",
+        "productName": "Berkut Cyber Base",
+        "files": [
+            "main.js",
+            "preload.js",
+            "index.html",
+            "renderer.js",
+            "assets/**/*"
+        ],
+        "win": {
+            "target": "nsis",
+            "icon": "icon.ico"
+        },
+        "directories": {
+            "output": "dist"
+        }
+    },
+    "dependencies": {
+        "node-fetch": "^2.7.0"
     }
-  }
+}

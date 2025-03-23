@@ -12,6 +12,15 @@
     <div id="sidebar">
       <div class="sidebar-header">
         <h2>Berkut Cyber Base</h2>
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Поиск по приложению...">
+          <button id="clear-search" class="clear-search-btn" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
       </div>
       <div class="sidebar-content">
         <button class="sidebar-btn" data-section="home">
@@ -61,6 +70,13 @@
           </svg>
           Соц. инженерия
         </button>
+        <button class="sidebar-btn" data-section="osint">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          OSINT
+        </button>
         <button class="sidebar-btn" data-section="forensics">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
@@ -108,6 +124,13 @@
           </svg>
           Инструменты ИБ
         </button>
+        <button class="sidebar-btn" data-section="russian-szi">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          Российские СЗИ
+        </button>
         <button class="sidebar-btn" data-section="structure-security">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
@@ -147,6 +170,13 @@
           </svg>
           Тестирование
         </button>
+        <button class="sidebar-btn" data-section="settings">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          Настройки
+        </button>
       </div>
     </div>
 
@@ -178,6 +208,15 @@
         </div>
       </div>
     </div>
+
+    <!-- Новое модальное окно для уведомления об обновлении -->
+    <div id="update-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p id="update-message">Вышла новая версия, хотите обновить?</p>
+        <button id="update-yes" class="osi-btn">Да</button>
+        <button id="update-no" class="osi-btn">Нет</button>
+      </div>
+    </div>
   </div>
 
   <script src="assets/pages/osi.js"></script>
@@ -191,11 +230,14 @@
   <script src="assets/pages/training.js"></script>
   <script src="assets/pages/lnaLnd.js"></script>
   <script src="assets/pages/threatModel.js"></script>
-  <script src="assets/lib/leader-line.min.js"></script>
   <script src="assets/pages/malwareAnalysis.js"></script>
   <script src="assets/pages/pentesting.js"></script>
   <script src="assets/pages/socialEngineering.js"></script>
   <script src="assets/pages/forensics.js"></script>
+  <script src="assets/pages/russianSzi.js"></script>
+  <script src="assets/pages/osint.js"></script>
+  <script src="assets/pages/settings.js"></script>
   <script src="assets/lib/leader-line.min.js"></script>
+  <script src="assets/search.js"></script>
   <script src="renderer.js"></script>
 </html>

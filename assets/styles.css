@@ -109,6 +109,103 @@ body {
   font-weight: 600;
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  position: relative;
+  width: 100%;
+}
+
+#search-input {
+  width: 100%;
+  padding: 8px 30px 8px 8px;
+  background-color: #2a2f3b;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+#search-input:focus {
+  outline: none;
+  background-color: rgba(42, 47, 59, 0.8);
+}
+
+#clear-search {
+  display: none;
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.clear-search-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.clear-search-btn:hover {
+  color: #66bb6a;
+}
+
+.search-results {
+  margin: 20px 10px;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.search-result-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #2a2f3b;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-result-btn:hover {
+  background-color: #3a3f4b;
+}
+
+.search-result-text {
+  padding: 10px;
+  background-color: #0e121b;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .sidebar-content {
   flex-grow: 1;
 }
@@ -802,3 +899,30 @@ ul li {
   background: #3a3f4b;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal-content {
+  background-color: #1a1f2b;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  margin: 0 10px;
+}
