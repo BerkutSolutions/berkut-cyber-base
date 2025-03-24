@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell } = require('electron');
+const { app, BrowserWindow, ipcMain, shell, globalShortcut } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const fetch = require('node-fetch');
@@ -27,6 +27,10 @@ function createWindow() {
   mainWindow.loadFile('index.html');
   mainWindow.setMenu(null);
   mainWindow.setBackgroundColor('#00000000');
+
+  mainWindow.webContents.on('context-menu', (e) => {
+    e.preventDefault();
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -94,7 +98,7 @@ function createWindow() {
     try {
       const response = await fetch('https://api.github.com/repos/BerkutSolutions/berkut-cyber-base/releases/latest');
       const data = await response.json();
-      const latestVersion = data.tag_name.replace('v', '');
+      const latestVersion = data.tag_name.replace(/^v\.?/, '');
       return { currentVersion, latestVersion };
     } catch (error) {
       console.error('Error checking updates:', error);
@@ -109,6 +113,17 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
+
+  globalShortcut.register('CommandOrControl+Shift+I', () => {
+    console.log('DevTools shortcut blocked (Ctrl+Shift+I or Cmd+Shift+I)');
+    return false;
+  });
+
+  globalShortcut.register('F12', () => {
+    console.log('DevTools shortcut blocked (F12)');
+    return false;
+  });
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
@@ -123,13 +138,21 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
+app.on('will-quit', () => {
+  globalShortcut.unregisterAll();
+});
+
 async function checkForUpdates() {
   try {
     const response = await fetch('https://api.github.com/repos/BerkutSolutions/berkut-cyber-base/releases/latest');
     const data = await response.json();
-    const latestVersion = data.tag_name.replace('v', '');
+    const latestVersion = data.tag_name.replace(/^v\.?/, '');
+    console.log(`Current version: ${currentVersion}, Latest version: ${latestVersion}`);
     if (latestVersion && compareVersions(latestVersion, currentVersion) > 0) {
-      mainWindow.webContents.send('update-available', latestVersion);
+      console.log(`Update available: ${latestVersion}`);
+      mainWindow.webContents.send('update-available', { version: latestVersion, downloadUrl: data.assets.length > 0 ? data.assets[0].browser_download_url : 'https://github.com/BerkutSolutions/berkut-cyber-base/releases/latest' });
+    } else {
+      console.log('No update available.');
     }
   } catch (error) {
     console.error('Error checking updates in checkForUpdates:', error);
@@ -137,12 +160,27 @@ async function checkForUpdates() {
 }
 
 function compareVersions(v1, v2) {
-  const v1parts = v1.split('.').map(Number);
-  const v2parts = v2.split('.').map(Number);
-  for (let i = 0; i < v1parts.length; i++) {
-    if (v2parts[i] === undefined) return 1;
-    if (v1parts[i] > v2parts[i]) return 1;
-    if (v1parts[i] < v2parts[i]) return -1;
+  const parseVersion = (version) => {
+    const [mainPart, suffix = ''] = version.split('-');
+    const parts = mainPart.split('.').map(Number);
+    return { parts, suffix };
+  };
+
+  const version1 = parseVersion(v1);
+  const version2 = parseVersion(v2);
+
+  const maxLength = Math.max(version1.parts.length, version2.parts.length);
+  for (let i = 0; i < maxLength; i++) {
+    const part1 = version1.parts[i] || 0;
+    const part2 = version2.parts[i] || 0;
+    if (part1 > part2) return 1;
+    if (part1 < part2) return -1;
   }
-  return v1parts.length < v2parts.length ? -1 : 0;
+
+  if (version1.suffix && !version2.suffix) return 1;
+  if (!version1.suffix && version2.suffix) return -1;
+  if (version1.suffix && version2.suffix) {
+    return version1.suffix.localeCompare(version2.suffix);
+  }
+  return 0;
 }

@@ -4,54 +4,163 @@ function loadSecurityToolsContent(container) {
       <h1>Инструменты ИБ</h1>
       <p>Инструменты информационной безопасности (ИБ) — это программные и аппаратные решения, предназначенные для защиты данных, сетей, устройств и пользователей от киберугроз. В этом разделе представлены основные категории инструментов ИБ, их назначение и рекомендации по использованию.</p>
 
-      <!-- Кнопки для инструментов ИБ -->
-      <h2>Основные инструменты ИБ</h2>
-      <div class="security-tools-buttons">
-        <button class="network-btn" id="dlp-btn">DLP</button>
-        <button class="network-btn" id="siem-btn">SIEM</button>
-        <button class="network-btn" id="ngfw-btn">NGFW</button>
-        <button class="network-btn" id="ids-ips-btn">IDS/IPS</button>
-        <button class="network-btn" id="waf-btn">WAF</button>
-        <button class="network-btn" id="edr-btn">EDR</button>
-        <button class="network-btn" id="xdr-btn">XDR</button>
-        <button class="network-btn" id="soar-btn">SOAR</button>
-        <button class="network-btn" id="pam-btn">PAM</button>
-        <button class="network-btn" id="iam-btn">IAM</button>
-        <button class="network-btn" id="vpn-btn">VPN</button>
-        <button class="network-btn" id="nac-btn">NAC</button>
-        <button class="network-btn" id="av-btn">Антивирус</button>
-        <button class="network-btn" id="hsm-btn">HSM</button>
-        <button class="network-btn" id="sandboxing-btn">Sandboxing</button>
-        <button class="network-btn" id="tip-btn">Threat Intelligence</button>
-        <button class="network-btn" id="vm-btn">Vulnerability Management</button>
-        <button class="network-btn" id="seg-btn">Secure Email Gateway</button>
-        <button class="network-btn" id="casb-btn">CASB</button>
-        <button class="network-btn" id="sase-btn">SASE</button>
-        <button class="network-btn" id="ztna-btn">ZTNA</button>
-        <button class="network-btn" id="ddos-btn">DDoS Protection</button>
-        <button class="network-btn" id="encryption-btn">Encryption Tools</button>
-        <button class="network-btn" id="backup-btn">Backup & Recovery</button>
-        <button class="network-btn" id="patch-btn">Patch Management</button>
-        <button class="network-btn" id="mdm-btn">MDM</button>
-        <button class="network-btn" id="whitelisting-btn">Application Whitelisting</button>
-        <button class="network-btn" id="fim-btn">File Integrity Monitoring</button>
-        <button class="network-btn" id="nta-btn">Network Traffic Analysis</button>
-        <button class="network-btn" id="deception-btn">Deception Technology</button>
+      <!-- Контейнер для двух столбцов -->
+      <div class="tools-columns" style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- Левый столбец -->
+        <div class="column" style="flex: 1; min-width: 300px;">
+          <div class="ibtools-accordion">
+            <!-- Сетевая безопасность -->
+            <div class="ibtools-accordion-item">
+              <button class="ibtools-accordion-header">Сетевая безопасность</button>
+              <div class="ibtools-accordion-content">
+                <div class="security-tools-buttons network-security">
+                  <button class="tool-btn" id="ngfw-btn">NGFW</button>
+                  <button class="tool-btn" id="ids-ips-btn">IDS/IPS</button>
+                  <button class="tool-btn" id="waf-btn">WAF</button>
+                  <button class="tool-btn" id="vpn-btn">VPN</button>
+                  <button class="tool-btn" id="nac-btn">NAC</button>
+                  <button class="tool-btn" id="seg-btn">Secure Email Gateway</button>
+                  <button class="tool-btn" id="sase-btn">SASE</button>
+                  <button class="tool-btn" id="ztna-btn">ZTNA</button>
+                  <button class="tool-btn" id="ddos-btn">DDoS Protection</button>
+                  <button class="tool-btn" id="swg-btn">SWG</button>
+                  <button class="tool-btn" id="nta-btn">Network Traffic Analysis</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Защита данных -->
+            <div class="ibtools-accordion-item">
+              <button class="ibtools-accordion-header">Защита данных</button>
+              <div class="ibtools-accordion-content">
+                <div class="security-tools-buttons data-protection">
+                  <button class="tool-btn" id="dlp-btn">DLP</button>
+                  <button class="tool-btn" id="encryption-btn">Encryption Tools</button>
+                  <button class="tool-btn" id="backup-btn">Backup & Recovery</button>
+                  <button class="tool-btn" id="db-security-btn">Database Security Tools</button>
+                  <button class="tool-btn" id="fim-btn">File Integrity Monitoring</button>
+                  <button class="tool-btn" id="data-masking-btn">Data Masking/Tokenization</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Управление доступом и идентификацией -->
+            <div class="ibtools-accordion-item">
+              <button class="ibtools-accordion-header">Управление доступом и идентификацией</button>
+              <div class="ibtools-accordion-content">
+                <div class="security-tools-buttons access-management">
+                  <button class="tool-btn" id="pam-btn">PAM</button>
+                  <button class="tool-btn" id="iam-btn">IAM</button>
+                  <button class="tool-btn" id="idm-btn">IDM</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Программно-аппаратные комплексы -->
+            <div class="ibtools-accordion-item">
+              <button class="ibtools-accordion-header">Программно-аппаратные комплексы</button>
+              <div class="ibtools-accordion-content">
+                <div class="security-tools-buttons hardware-based">
+                  <button class="tool-btn" id="hsm-btn">HSM</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Правый столбец -->
+        <div class="column" style="flex: 1; min-width: 300px;">
+          <div class="ibtools-accordion">
+            <!-- Мониторинг и аналитика -->
+            <div class="ibtools-accordion-item">
+              <button class="ibtools-accordion-header">Мониторинг и аналитика</button>
+              <div class="ibtools-accordion-content">
+                <div class="security-tools-buttons monitoring-analytics">
+                  <button class="tool-btn" id="siem-btn">SIEM</button>
+                  <button class="tool-btn" id="edr-btn">EDR</button>
+                  <button class="tool-btn" id="xdr-btn">XDR</button>
+                  <button class="tool-btn" id="soar-btn">SOAR</button>
+                  <button class="tool-btn" id="tip-btn">Threat Intelligence</button>
+                  <button class="tool-btn" id="ueba-btn">UEBA</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Защита приложений и инфраструктуры -->
+            <div class="ibtools-accordion-item">
+              <button class="ibtools-accordion-header">Защита приложений и инфраструктуры</button>
+              <div class="ibtools-accordion-content">
+                <div class="security-tools-buttons app-infra-protection">
+                  <button class="tool-btn" id="av-btn">Антивирус</button>
+                  <button class="tool-btn" id="sandboxing-btn">Sandboxing</button>
+                  <button class="tool-btn" id="vm-btn">Vulnerability Management</button>
+                  <button class="tool-btn" id="casb-btn">CASB</button>
+                  <button class="tool-btn" id="mdm-btn">MDM</button>
+                  <button class="tool-btn" id="whitelisting-btn">Application Whitelisting</button>
+                  <button class="tool-btn" id="deception-btn">Deception Technology</button>
+                  <button class="tool-btn" id="container-security-btn">Container Security Tools</button>
+                  <button class="tool-btn" id="api-security-btn">API Security Tools</button>
+                  <button class="tool-btn" id="rasp-btn">RASP</button>
+                  <button class="tool-btn" id="cwpp-btn">CWPP</button>
+                  <button class="tool-btn" id="iot-security-btn">IoT Security Tools</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Управление и обучение -->
+            <div class="ibtools-accordion-item">
+              <button class="ibtools-accordion-header">Управление и обучение</button>
+              <div class="ibtools-accordion-content">
+                <div class="security-tools-buttons management-training">
+                  <button class="tool-btn" id="patch-btn">Patch Management</button>
+                  <button class="tool-btn" id="config-mgmt-btn">Configuration Management</button>
+                  <button class="tool-btn" id="security-awareness-btn">Security Awareness Training</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Расследование инцидентов -->
+            <div class="ibtools-accordion-item">
+              <button class="ibtools-accordion-header">Расследование инцидентов</button>
+              <div class="ibtools-accordion-content">
+                <div class="security-tools-buttons incident-investigation">
+                  <button class="tool-btn" id="digital-forensics-btn">Digital Forensics Tools</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Кнопки для программных средств защиты рабочих станций -->
-      <h2>Программные средства защиты рабочих станций</h2>
-      <div class="workstation-protection-buttons">
-        <button class="network-btn" id="personal-firewall-btn">Локальный межсетевой экран</button>
-        <button class="network-btn" id="anti-spyware-btn">Антишпионское ПО</button>
-        <button class="network-btn" id="anti-rootkit-btn">Антируткит</button>
-        <button class="network-btn" id="exploit-protection-btn">Защита от эксплойтов</button>
-        <button class="network-btn" id="app-control-btn">Контроль приложений</button>
-        <button class="network-btn" id="disk-encryption-btn">Шифрование дисков</button>
-        <button class="network-btn" id="anti-phishing-btn">Антифишинг</button>
+      <!-- Программные средства защиты рабочих станций -->
+      <div class="ibtools-accordion">
+        <div class="ibtools-accordion-item">
+          <button class="ibtools-accordion-header">Программные средства защиты рабочих станций</button>
+          <div class="ibtools-accordion-content">
+            <div class="security-tools-buttons workstation-protection-buttons">
+              <button class="tool-btn" id="personal-firewall-btn">Локальный межсетевой экран</button>
+              <button class="tool-btn" id="anti-spyware-btn">Антишпионское ПО</button>
+              <button class="tool-btn" id="anti-rootkit-btn">Антируткит</button>
+              <button class="tool-btn" id="exploit-protection-btn">Защита от эксплойтов</button>
+              <button class="tool-btn" id="app-control-btn">Контроль приложений</button>
+              <button class="tool-btn" id="disk-encryption-btn">Шифрование дисков</button>
+              <button class="tool-btn" id="anti-phishing-btn">Антифишинг</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   `;
+
+  const accordionHeaders = document.querySelectorAll('.ibtools-accordion-header');
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const content = header.nextElementSibling;
+      const isOpen = content.style.display === 'block';
+      content.style.display = isOpen ? 'none' : 'block';
+      header.classList.toggle('active', !isOpen);
+    });
+  });
 
   document.getElementById('dlp-btn').addEventListener('click', () => loadDlpContent(container));
   document.getElementById('siem-btn').addEventListener('click', () => loadSiemContent(container));
@@ -83,6 +192,19 @@ function loadSecurityToolsContent(container) {
   document.getElementById('fim-btn').addEventListener('click', () => loadFimContent(container));
   document.getElementById('nta-btn').addEventListener('click', () => loadNtaContent(container));
   document.getElementById('deception-btn').addEventListener('click', () => loadDeceptionContent(container));
+  document.getElementById('swg-btn').addEventListener('click', () => loadSwgContent(container));
+  document.getElementById('db-security-btn').addEventListener('click', () => loadDbSecurityContent(container));
+  document.getElementById('container-security-btn').addEventListener('click', () => loadContainerSecurityContent(container));
+  document.getElementById('api-security-btn').addEventListener('click', () => loadApiSecurityContent(container));
+  document.getElementById('rasp-btn').addEventListener('click', () => loadRaspContent(container));
+  document.getElementById('idm-btn').addEventListener('click', () => loadIdmContent(container));
+  document.getElementById('digital-forensics-btn').addEventListener('click', () => loadDigitalForensicsContent(container));
+  document.getElementById('ueba-btn').addEventListener('click', () => loadUebaContent(container));
+  document.getElementById('cwpp-btn').addEventListener('click', () => loadCwppContent(container));
+  document.getElementById('security-awareness-btn').addEventListener('click', () => loadSecurityAwarenessContent(container));
+  document.getElementById('config-mgmt-btn').addEventListener('click', () => loadConfigManagementContent(container));
+  document.getElementById('iot-security-btn').addEventListener('click', () => loadIotSecurityContent(container));
+  document.getElementById('data-masking-btn').addEventListener('click', () => loadDataMaskingContent(container));
 
   document.getElementById('personal-firewall-btn').addEventListener('click', () => loadPersonalFirewallContent(container));
   document.getElementById('anti-spyware-btn').addEventListener('click', () => loadAntiSpywareContent(container));
@@ -2461,6 +2583,825 @@ function loadAntiPhishingContent(container) {
           <li>Обучайте сотрудников распознавать фишинговые письма.</li>
           <li>Используйте в связке с Secure Email Gateway для комплексной защиты.</li>
           <li>Регулярно обновляйте базы данных фишинговых ресурсов.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadSwgContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>SWG (Secure Web Gateway)</h1>
+      <div class="theory-section">
+        <h2>Теория SWG</h2>
+        <p>Secure Web Gateway (SWG) — это решение для фильтрации веб-трафика, которое защищает пользователей от вредоносных сайтов, фишинга и нежелательного контента. SWG анализирует HTTP/HTTPS-трафик, применяет политики доступа и предотвращает утечки данных через веб-каналы.</p>
+
+        <h3>Принципы работы SWG</h3>
+        <ul>
+          <li><strong>Фильтрация URL:</strong> Блокирует доступ к вредоносным или запрещённым сайтам на основе баз данных (например, чёрных списков).</li>
+          <li><strong>Анализ трафика:</strong> Проверяет содержимое веб-страниц и файлов на наличие угроз (например, вредоносного кода).</li>
+          <li><strong>Расшифровка SSL:</strong> Анализирует шифрованный трафик для выявления скрытых угроз.</li>
+          <li><strong>Контроль доступа:</strong> Применяет политики на основе пользователей, групп или категорий сайтов (например, запретить доступ к соцсетям).</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>Фишинг:</strong> Поддельные сайты, крадущие учетные данные.</li>
+          <li><strong>Вредоносное ПО:</strong> Загрузка вредоносных файлов через веб.</li>
+          <li><strong>Утечка данных:</strong> Передача конфиденциальных данных через незащищённые веб-каналы.</li>
+        </ul>
+
+        <h3>Схема работы SWG</h3>
+        <div class="swg-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Пользователь</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">SWG</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Фильтрация URL и трафика</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Интернет (разрешённый/заблокированный)</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Логи (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры SWG</h3>
+        <ul>
+          <li><strong>Zscaler Internet Access:</strong> Облачное решение для фильтрации веб-трафика.</li>
+          <li><strong>Cisco Umbrella:</strong> Защита на основе DNS и фильтрации URL.</li>
+          <li><strong>Symantec Secure Web Gateway:</strong> Комплексная защита веб-доступа.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению SWG</h3>
+        <ol>
+          <li>Настройте SWG для анализа всего веб-трафика, включая HTTPS.</li>
+          <li>Создайте политики доступа на основе категорий сайтов и групп пользователей.</li>
+          <li>Интегрируйте SWG с SIEM для мониторинга и анализа логов.</li>
+          <li>Регулярно обновляйте базы данных вредоносных URL.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadDbSecurityContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>Database Security Tools</h1>
+      <div class="theory-section">
+        <h2>Теория Database Security Tools</h2>
+        <p>Database Security Tools — это инструменты для защиты баз данных от несанкционированного доступа, утечек данных и атак. Они обеспечивают шифрование, мониторинг активности, аудит и управление доступом к базам данных.</p>
+
+        <h3>Принципы работы Database Security Tools</h3>
+        <ul>
+          <li><strong>Шифрование данных:</strong> Шифрует данные в базе (в покое и в движении) для защиты от утечек.</li>
+          <li><strong>Мониторинг активности:</strong> Отслеживает запросы к базе данных для выявления аномалий (например, SQL-инъекций).</li>
+          <li><strong>Управление доступом:</strong> Ограничивает доступ к базе на основе ролей и политик.</li>
+          <li><strong>Аудит:</strong> Ведёт логи всех операций для соответствия требованиям (например, GDPR, PCI DSS).</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>SQL-инъекции:</strong> Внедрение вредоносного кода через запросы к базе.</li>
+          <li><strong>Несанкционированный доступ:</strong> Злоумышленники могут получить доступ к базе через слабые пароли.</li>
+          <li><strong>Утечка данных:</strong> Конфиденциальные данные могут быть украдены без шифрования.</li>
+        </ul>
+
+        <h3>Схема работы Database Security Tools</h3>
+        <div class="db-security-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Приложение/Пользователь</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">Database Security Tool</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Мониторинг и шифрование</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">База данных</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Логи (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры Database Security Tools</h3>
+        <ul>
+          <li><strong>Imperva SecureSphere:</strong> Мониторинг и защита баз данных.</li>
+          <li><strong>IBM Guardium:</strong> Аудит и предотвращение утечек данных.</li>
+          <li><strong>Oracle Database Security:</strong> Инструменты для защиты баз Oracle.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению Database Security Tools</h3>
+        <ol>
+          <li>Шифруйте все конфиденциальные данные в базе.</li>
+          <li>Настройте мониторинг активности для выявления аномалий.</li>
+          <li>Ограничьте доступ к базе, используя принцип наименьших привилегий.</li>
+          <li>Интегрируйте с SIEM для анализа логов и аудита.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadContainerSecurityContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>Container Security Tools</h1>
+      <div class="theory-section">
+        <h2>Теория Container Security Tools</h2>
+        <p>Container Security Tools — это инструменты для защиты контейнеров (например, Docker, Kubernetes) от уязвимостей, атак и неправильных конфигураций. Они обеспечивают безопасность на всех этапах жизненного цикла контейнеров: от сборки до эксплуатации.</p>
+
+        <h3>Принципы работы Container Security Tools</h3>
+        <ul>
+          <li><strong>Сканирование образов:</strong> Проверяет образы контейнеров на наличие уязвимостей перед развертыванием.</li>
+          <li><strong>Контроль доступа:</strong> Ограничивает доступ к контейнерам на основе ролей (RBAC).</li>
+          <li><strong>Мониторинг runtime:</strong> Отслеживает поведение контейнеров в реальном времени для выявления аномалий.</li>
+          <li><strong>Сегментация сети:</strong> Изолирует контейнеры для предотвращения распространения атак.</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>Уязвимости в образах:</strong> Использование устаревших библиотек в контейнерах.</li>
+          <li><strong>Неправильные конфигурации:</strong> Открытые порты или избыточные привилегии.</li>
+          <li><strong>Атаки на runtime:</strong> Злоумышленники могут скомпрометировать контейнеры во время работы.</li>
+        </ul>
+
+        <h3>Схема работы Container Security Tools</h3>
+        <div class="container-security-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Образ контейнера</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">Container Security Tool</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Сканирование и мониторинг</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Kubernetes (развёртывание)</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Оповещения (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры Container Security Tools</h3>
+        <ul>
+          <li><strong>Aqua Security:</strong> Полный цикл защиты контейнеров.</li>
+          <li><strong>Sysdig Secure:</strong> Мониторинг и защита Kubernetes.</li>
+          <li><strong>Twistlock (Prisma Cloud):</strong> Защита контейнеров и облачных рабочих нагрузок.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению Container Security Tools</h3>
+        <ol>
+          <li>Сканируйте образы контейнеров перед развертыванием.</li>
+          <li>Настройте RBAC для ограничения доступа к контейнерам.</li>
+          <li>Используйте мониторинг runtime для выявления аномалий.</li>
+          <li>Интегрируйте с CI/CD для автоматизации проверок.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadApiSecurityContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>API Security Tools</h1>
+      <div class="theory-section">
+        <h2>Теория API Security Tools</h2>
+        <p>API Security Tools защищают API (Application Programming Interface) от атак, таких как инъекции, утечки данных и злоупотребления. API часто становятся мишенью, так как они обеспечивают доступ к данным и функционалу приложений.</p>
+
+        <h3>Принципы работы API Security Tools</h3>
+        <ul>
+          <li><strong>Анализ трафика:</strong> Проверяет API-запросы на наличие аномалий (например, инъекций).</li>
+          <li><strong>Аутентификация и авторизация:</strong> Обеспечивает безопасный доступ к API (например, через OAuth).</li>
+          <li><strong>Ограничение скорости:</strong> Предотвращает атаки типа DoS, ограничивая количество запросов.</li>
+          <li><strong>Обнаружение уязвимостей:</strong> Сканирует API на наличие слабых мест (например, отсутствие валидации).</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>Инъекции:</strong> Внедрение вредоносного кода через API-запросы.</li>
+          <li><strong>Утечка данных:</strong> Злоумышленники могут получить доступ к данным через уязвимости API.</li>
+          <li><strong>DoS-атаки:</strong> Перегрузка API большим количеством запросов.</li>
+        </ul>
+
+        <h3>Схема работы API Security Tools</h3>
+        <div class="api-security-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Клиент (запрос API)</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">API Security Tool</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Анализ и аутентификация</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">API-сервер</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Логи (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры API Security Tools</h3>
+        <ul>
+          <li><strong>Salt Security:</strong> Обнаружение и защита API.</li>
+          <li><strong>Wallarm:</strong> Защита API и веб-приложений.</li>
+          <li><strong>Imperva API Security:</strong> Комплексная защита API.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению API Security Tools</h3>
+        <ol>
+          <li>Настройте аутентификацию и авторизацию для всех API.</li>
+          <li>Используйте ограничение скорости для защиты от DoS-атак.</li>
+          <li>Регулярно сканируйте API на уязвимости.</li>
+          <li>Интегрируйте с WAF для дополнительной защиты.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadRaspContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>RASP (Runtime Application Self-Protection)</h1>
+      <div class="theory-section">
+        <h2>Теория RASP</h2>
+        <p>Runtime Application Self-Protection (RASP) — это технология, которая встраивается в приложение и защищает его от атак в реальном времени. RASP анализирует поведение приложения и блокирует атаки, такие как SQL-инъекции или XSS, на уровне кода.</p>
+
+        <h3>Принципы работы RASP</h3>
+        <ul>
+          <li><strong>Интеграция с приложением:</strong> Работает внутри приложения, анализируя его выполнение.</li>
+          <li><strong>Анализ поведения:</strong> Выявляет аномалии в запросах и действиях (например, попытки инъекций).</li>
+          <li><strong>Блокировка атак:</strong> Прерывает выполнение вредоносных запросов.</li>
+          <li><strong>Контекстный анализ:</strong> Понимает логику приложения, что снижает ложные срабатывания.</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>SQL-инъекции:</strong> Внедрение вредоносного кода через запросы.</li>
+          <li><strong>XSS-атаки:</strong> Выполнение скриптов на стороне клиента.</li>
+          <li><strong>Zero-day уязвимости:</strong> Атаки на неизвестные уязвимости приложения.</li>
+        </ul>
+
+        <h3>Схема работы RASP</h3>
+        <div class="rasp-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Пользователь (запрос)</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">Приложение с RASP</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Анализ и блокировка</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Ответ (безопасный)</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Логи (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры RASP</h3>
+        <ul>
+          <li><strong>Imperva RASP:</strong> Защита приложений в реальном времени.</li>
+          <li><strong>Contrast Security:</strong> Интеграция RASP с анализом кода.</li>
+          <li><strong>Waratek:</strong> Защита Java-приложений.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению RASP</h3>
+        <ol>
+          <li>Интегрируйте RASP в критически важные приложения.</li>
+          <li>Настройте правила для минимизации ложных срабатываний.</li>
+          <li>Используйте в связке с WAF для комплексной защиты.</li>
+          <li>Регулярно обновляйте RASP для защиты от новых угроз.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadIdmContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>IDM (Identity Detection and Management)</h1>
+      <div class="theory-section">
+        <h2>Теория IDM</h2>
+        <p>Identity Detection and Management (IDM) — это система управления идентификацией, которая помогает организациям управлять учетными данными пользователей, обеспечивать безопасный доступ и обнаруживать подозрительные действия, связанные с идентификацией.</p>
+
+        <h3>Принципы работы IDM</h3>
+        <ul>
+          <li><strong>Управление учетными данными:</strong> Централизованное создание, изменение и удаление учетных записей.</li>
+          <li><strong>Обнаружение аномалий:</strong> Анализирует поведение пользователей для выявления подозрительных действий (например, вход с необычного устройства).</li>
+          <li><strong>Многофакторная аутентификация (MFA):</strong> Повышает безопасность доступа.</li>
+          <li><strong>Аудит:</strong> Ведёт логи действий пользователей для расследования инцидентов.</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>Кража учетных данных:</strong> Злоумышленники могут использовать фишинг для получения паролей.</li>
+          <li><strong>Инсайдерские угрозы:</strong> Сотрудники могут злоупотреблять доступом.</li>
+          <li><strong>Слабые пароли:</strong> Учетные записи с простыми паролями уязвимы для атак.</li>
+        </ul>
+
+        <h3>Схема работы IDM</h3>
+        <div class="idm-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Пользователь (вход)</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">IDM</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Аутентификация и анализ</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Ресурсы (доступ)</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Логи (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры IDM</h3>
+        <ul>
+          <li><strong>Okta:</strong> Управление идентификацией и доступом.</li>
+          <li><strong>SailPoint:</strong> Обнаружение и управление идентификацией.</li>
+          <li><strong>OneLogin:</strong> Единая точка входа и MFA.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению IDM</h3>
+        <ol>
+          <li>Централизуйте управление учетными записями с помощью IDM.</li>
+          <li>Включите MFA для всех пользователей.</li>
+          <li>Настройте мониторинг поведения для выявления аномалий.</li>
+          <li>Интегрируйте с IAM и SIEM для комплексного управления.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadDigitalForensicsContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>Digital Forensics Tools</h1>
+      <div class="theory-section">
+        <h2>Теория Digital Forensics Tools</h2>
+        <p>Digital Forensics Tools — это инструменты для расследования киберинцидентов, сбора и анализа цифровых улик. Они помогают восстановить хронологию событий, выявить злоумышленников и собрать доказательства для юридических целей.</p>
+
+        <h3>Принципы работы Digital Forensics Tools</h3>
+        <ul>
+          <li><strong>Сбор данных:</strong> Извлечение данных с устройств (жёсткие диски, мобильные устройства, облачные хранилища).</li>
+          <li><strong>Анализ логов:</strong> Изучение логов для восстановления действий злоумышленников.</li>
+          <li><strong>Восстановление данных:</strong> Восстановление удалённых файлов или зашифрованных данных.</li>
+          <li><strong>Цепочка сохранности:</strong> Гарантия, что улики остаются неизменными для юридической достоверности.</li>
+        </ul>
+
+        <h3>Основные задачи</h3>
+        <ul>
+          <li><strong>Идентификация инцидента:</strong> Определение, что произошло (например, утечка данных).</li>
+          <li><strong>Сбор улик:</strong> Извлечение данных без их изменения.</li>
+          <li><strong>Анализ:</strong> Выявление следов атаки (например, вредоносного ПО).</li>
+        </ul>
+
+        <h3>Схема работы Digital Forensics Tools</h3>
+        <div class="digital-forensics-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Устройство (улики)</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">Digital Forensics Tool</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Сбор и анализ данных</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Отчёт (доказательства)</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Логи (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры Digital Forensics Tools</h3>
+        <ul>
+          <li><strong>EnCase:</strong> Инструмент для сбора и анализа улик.</li>
+          <li><strong>Autopsy:</strong> Бесплатный инструмент для цифровой криминалистики.</li>
+          <li><strong>Cellebrite:</strong> Анализ данных с мобильных устройств.</li>
+        </ul>
+
+        <h3>Рекомендации по использованию Digital Forensics Tools</h3>
+        <ol>
+          <li>Создайте копию данных перед анализом, чтобы сохранить оригинал.</li>
+          <li>Используйте сертифицированные инструменты для юридической достоверности.</li>
+          <li>Интегрируйте с SIEM для получения логов и контекста инцидента.</li>
+          <li>Обучите сотрудников работе с инструментами криминалистики.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadUebaContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>UEBA (User and Entity Behavior Analytics)</h1>
+      <div class="theory-section">
+        <h2>Теория UEBA</h2>
+        <p>User and Entity Behavior Analytics (UEBA) — это инструмент для анализа поведения пользователей и сущностей (устройств, приложений) с целью выявления аномалий, которые могут указывать на угрозы, такие как инсайдерские атаки или компрометация учетных записей.</p>
+
+        <h3>Принципы работы UEBA</h3>
+        <ul>
+          <li><strong>Базовый профиль:</strong> Создаёт профиль нормального поведения для каждого пользователя и сущности.</li>
+          <li><strong>Анализ аномалий:</strong> Сравнивает текущее поведение с базовым профилем для выявления отклонений.</li>
+          <li><strong>Машинное обучение:</strong> Использует алгоритмы для обнаружения сложных угроз.</li>
+          <li><strong>Интеграция:</strong> Работает с SIEM для получения данных и контекста.</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>Инсайдерские угрозы:</strong> Сотрудники, злоупотребляющие доступом.</li>
+          <li><strong>Компрометация учетных данных:</strong> Злоумышленники, использующие украденные пароли.</li>
+          <li><strong>Скрытые атаки:</strong> Долгосрочные атаки (APT), которые сложно обнаружить.</li>
+        </ul>
+
+        <h3>Схема работы UEBA</h3>
+        <div class="ueba-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Пользователь/Сущность</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">UEBA</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Анализ поведения</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Оповещение (аномалия)</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Логи (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры UEBA</h3>
+        <ul>
+          <li><strong>Splunk UBA:</strong> Аналитика поведения с интеграцией SIEM.</li>
+          <li><strong>Exabeam:</strong> Обнаружение аномалий и расследование инцидентов.</li>
+          <li><strong>Securonix:</strong> UEBA для выявления инсайдерских угроз.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению UEBA</h3>
+        <ol>
+          <li>Интегрируйте UEBA с SIEM для получения данных.</li>
+          <li>Настройте базовые профили поведения для всех пользователей.</li>
+          <li>Используйте машинное обучение для повышения точности.</li>
+          <li>Регулярно обновляйте модели поведения.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadCwppContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>CWPP (Cloud Workload Protection Platforms)</h1>
+      <div class="theory-section">
+        <h2>Теория CWPP</h2>
+        <p>Cloud Workload Protection Platforms (CWPP) — это решения для защиты рабочих нагрузок в облаке (виртуальные машины, контейнеры, бессерверные приложения). Они обеспечивают безопасность на всех этапах: от разработки до эксплуатации.</p>
+
+        <h3>Принципы работы CWPP</h3>
+        <ul>
+          <li><strong>Сканирование уязвимостей:</strong> Проверяет облачные рабочие нагрузки на наличие уязвимостей.</li>
+          <li><strong>Контроль конфигураций:</strong> Проверяет настройки облачных ресурсов на соответствие стандартам.</li>
+          <li><strong>Мониторинг runtime:</strong> Отслеживает поведение рабочих нагрузок в реальном времени.</li>
+          <li><strong>Интеграция с облаком:</strong> Работает с AWS, Azure, GCP и другими платформами.</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>Неправильные конфигурации:</strong> Открытые порты или избыточные привилегии.</li>
+          <li><strong>Уязвимости:</strong> Устаревшее ПО в облачных рабочих нагрузках.</li>
+          <li><strong>Атаки на runtime:</strong> Компрометация рабочих нагрузок во время работы.</li>
+        </ul>
+
+        <h3>Схема работы CWPP</h3>
+        <div class="cwpp-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Облачная рабочая нагрузка</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">CWPP</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Сканирование и мониторинг</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Облачная платформа</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Оповещения (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры CWPP</h3>
+        <ul>
+          <li><strong>Palo Alto Prisma Cloud:</strong> Защита облачных рабочих нагрузок.</li>
+          <li><strong>McAfee MVISION Cloud:</strong> Безопасность для AWS, Azure, GCP.</li>
+          <li><strong>Aqua Security:</strong> CWPP с фокусом на контейнеры.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению CWPP</h3>
+        <ol>
+          <li>Сканируйте все облачные рабочие нагрузки на уязвимости.</li>
+          <li>Настройте мониторинг runtime для выявления аномалий.</li>
+          <li>Проверяйте конфигурации на соответствие стандартам (например, CIS Benchmarks).</li>
+          <li>Интегрируйте с CASB для комплексной защиты облака.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadSecurityAwarenessContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>Security Awareness Training Tools</h1>
+      <div class="theory-section">
+        <h2>Теория Security Awareness Training Tools</h2>
+        <p>Security Awareness Training Tools — это инструменты для обучения сотрудников основам кибербезопасности. Они помогают снизить риски, связанные с человеческим фактором, обучая пользователей распознавать фишинг, использовать сложные пароли и соблюдать политики безопасности.</p>
+
+        <h3>Принципы работы Security Awareness Training Tools</h3>
+        <ul>
+          <li><strong>Обучающие модули:</strong> Интерактивные курсы по темам кибербезопасности.</li>
+          <li><strong>Симуляции атак:</strong> Имитация фишинговых атак для проверки реакции сотрудников.</li>
+          <li><strong>Оценка знаний:</strong> Тестирование сотрудников для оценки их уровня подготовки.</li>
+          <li><strong>Отчёты:</strong> Анализ прогресса обучения и выявление слабых мест.</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>Фишинг:</strong> Сотрудники могут стать жертвами фишинговых атак.</li>
+          <li><strong>Социальная инженерия:</strong> Злоумышленники могут манипулировать сотрудниками.</li>
+          <li><strong>Небрежность:</strong> Нарушение политик безопасности из-за незнания.</li>
+        </ul>
+
+        <h3>Схема работы Security Awareness Training Tools</h3>
+        <div class="security-awareness-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Сотрудник</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">Security Awareness Tool</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Обучение и симуляции</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Отчёт (прогресс)</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Аналитика</div>
+          </div>
+        </div>
+
+        <h3>Примеры Security Awareness Training Tools</h3>
+        <ul>
+          <li><strong>KnowBe4:</strong> Платформа для обучения и симуляции фишинга.</li>
+          <li><strong>Proofpoint Security Awareness:</strong> Обучение сотрудников кибербезопасности.</li>
+          <li><strong>Cofense PhishMe:</strong> Симуляции фишинговых атак.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению Security Awareness Training Tools</h3>
+        <ol>
+          <li>Проводите регулярное обучение для всех сотрудников.</li>
+          <li>Используйте симуляции фишинга для практической подготовки.</li>
+          <li>Анализируйте прогресс и корректируйте программу обучения.</li>
+          <li>Сделайте обучение интерактивным и доступным.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadConfigManagementContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>Configuration Management and Compliance Tools</h1>
+      <div class="theory-section">
+        <h2>Теория Configuration Management and Compliance Tools</h2>
+        <p>Configuration Management and Compliance Tools — это инструменты для управления конфигурациями ИТ-систем и обеспечения их соответствия стандартам безопасности (например, PCI DSS, GDPR, ISO 27001). Они помогают автоматизировать проверку настроек и устранять уязвимости.</p>
+
+        <h3>Принципы работы Configuration Management and Compliance Tools</h3>
+        <ul>
+          <li><strong>Сканирование конфигураций:</strong> Проверяет настройки систем на соответствие стандартам.</li>
+          <li><strong>Автоматизация:</strong> Автоматически исправляет неправильные конфигурации.</li>
+          <li><strong>Аудит:</strong> Создаёт отчёты для соответствия требованиям.</li>
+          <li><strong>Мониторинг изменений:</strong> Отслеживает изменения в конфигурациях.</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>Неправильные конфигурации:</strong> Открытые порты, слабые пароли.</li>
+          <li><strong>Несоответствие стандартам:</strong> Нарушение требований регуляторов.</li>
+          <li><strong>Неавторизованные изменения:</strong> Изменения, которые могут создать уязвимости.</li>
+        </ul>
+
+        <h3>Схема работы Configuration Management and Compliance Tools</h3>
+        <div class="config-mgmt-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">ИТ-система</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">Config Management Tool</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Сканирование и исправление</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Отчёт (соответствие)</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Логи (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры Configuration Management and Compliance Tools</h3>
+        <ul>
+          <li><strong>Ansible:</strong> Автоматизация управления конфигурациями.</li>
+          <li><strong>Tenable Nessus:</strong> Сканирование на соответствие стандартам.</li>
+          <li><strong>Chef InSpec:</strong> Проверка конфигураций на соответствие.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению Configuration Management and Compliance Tools</h3>
+        <ol>
+          <li>Определите стандарты, которым должны соответствовать системы.</li>
+          <li>Автоматизируйте проверку и исправление конфигураций.</li>
+          <li>Настройте мониторинг изменений в реальном времени.</li>
+          <li>Создавайте регулярные отчёты для аудита.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadIotSecurityContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>IoT Security Tools</h1>
+      <div class="theory-section">
+        <h2>Теория IoT Security Tools</h2>
+        <p>IoT Security Tools — это инструменты для защиты устройств Интернета вещей (IoT), таких как умные камеры, датчики, медицинские устройства и другие подключённые гаджеты. Они помогают предотвращать атаки, связанные с уязвимостями IoT-устройств, и обеспечивают безопасное взаимодействие в экосистеме.</p>
+
+        <h3>Принципы работы IoT Security Tools</h3>
+        <ul>
+          <li><strong>Обнаружение устройств:</strong> Идентифицирует все IoT-устройства в сети.</li>
+          <li><strong>Сегментация сети:</strong> Изолирует IoT-устройства для предотвращения распространения атак.</li>
+          <li><strong>Мониторинг трафика:</strong> Анализирует сетевой трафик для выявления аномалий.</li>
+          <li><strong>Управление уязвимостями:</strong> Проверяет устройства на наличие известных уязвимостей.</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>Слабые пароли:</strong> Многие IoT-устройства имеют пароли по умолчанию.</li>
+          <li><strong>Уязвимости прошивки:</strong> Устаревшее ПО на устройствах.</li>
+          <li><strong>Ботнеты:</strong> IoT-устройства могут быть использованы для DDoS-атак (например, Mirai).</li>
+        </ul>
+
+        <h3>Схема работы IoT Security Tools</h3>
+        <div class="iot-security-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">IoT-устройство</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">IoT Security Tool</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Мониторинг и сегментация</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Сеть (безопасная)</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Оповещения (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры IoT Security Tools</h3>
+        <ul>
+          <li><strong>Armis:</strong> Обнаружение и защита IoT-устройств.</li>
+          <li><strong>Ordr:</strong> Управление безопасностью IoT в корпоративных сетях.</li>
+          <li><strong>Cisco Cyber Vision:</strong> Мониторинг IoT-устройств в промышленных сетях.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению IoT Security Tools</h3>
+        <ol>
+          <li>Создайте инвентаризацию всех IoT-устройств в сети.</li>
+          <li>Используйте сегментацию сети для изоляции IoT-устройств.</li>
+          <li>Регулярно обновляйте прошивку устройств.</li>
+          <li>Интегрируйте с SIEM для мониторинга и анализа.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadDataMaskingContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>Data Masking/Tokenization Tools</h1>
+      <div class="theory-section">
+        <h2>Теория Data Masking/Tokenization Tools</h2>
+        <p>Data Masking/Tokenization Tools — это инструменты для защиты конфиденциальных данных путём их маскирования или токенизации. Они заменяют реальные данные на фиктивные (маскирование) или токены (токенизация), сохраняя при этом функциональность для тестирования или аналитики.</p>
+
+        <h3>Принципы работы Data Masking/Tokenization Tools</h3>
+        <ul>
+          <li><strong>Маскирование:</strong> Заменяет чувствительные данные (например, номера кредитных карт) на случайные или фиктивные значения.</li>
+          <li><strong>Токенизация:</strong> Заменяет данные на уникальные токены, которые можно сопоставить с оригинальными данными через защищённое хранилище.</li>
+          <li><strong>Сохранение формата:</strong> Сохраняет формат данных для использования в тестовой среде.</li>
+          <li><strong>Соответствие требованиям:</strong> Помогает соответствовать стандартам, таким как GDPR, PCI DSS.</li>
+        </ul>
+
+        <h3>Основные угрозы</h3>
+        <ul>
+          <li><strong>Утечка данных:</strong> Конфиденциальные данные могут быть украдены в тестовой среде.</li>
+          <li><strong>Несанкционированный доступ:</strong> Доступ к реальным данным в незащищённых системах.</li>
+          <li><strong>Несоответствие регуляциям:</strong> Нарушение требований по защите данных.</li>
+        </ul>
+
+        <h3>Схема работы Data Masking/Tokenization Tools</h3>
+        <div class="data-masking-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #2e7d32; padding: 10px; border-radius: 5px; width: 200px;">Реальные данные</div>
+            <div style="border: 2px solid #66bb6a; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #388e3c; padding: 5px; border-radius: 5px;">Data Masking/Tokenization Tool</div>
+              <div style="background-color: #66bb6a; padding: 5px; border-radius: 5px; margin-top: 5px;">Маскирование/Токенизация</div>
+            </div>
+            <div style="background-color: #ffeb3b; color: #1a1a1a; padding: 10px; border-radius: 5px; width: 200px;">Защищённые данные</div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #2a2f3b; padding: 10px; border-radius: 5px;">Логи (SIEM)</div>
+          </div>
+        </div>
+
+        <h3>Примеры Data Masking/Tokenization Tools</h3>
+        <ul>
+          <li><strong>Informatica Data Masking:</strong> Маскирование данных для тестирования.</li>
+          <li><strong>Protegrity:</strong> Токенизация для защиты данных.</li>
+          <li><strong>Delphix:</strong> Маскирование данных для DevOps.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению Data Masking/Tokenization Tools</h3>
+        <ol>
+          <li>Используйте маскирование для тестовых сред, а токенизацию для рабочих систем.</li>
+          <li>Настройте политики маскирования для сохранения формата данных.</li>
+          <li>Обеспечьте безопасное хранение токенов (например, в HSM).</li>
+          <li>Интегрируйте с DLP для дополнительной защиты данных.</li>
         </ol>
       </div>
     </div>

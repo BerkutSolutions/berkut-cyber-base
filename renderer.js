@@ -69,22 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 400);
   });
 
-  // Обработка уведомления об обновлении
   const updateModal = document.getElementById('update-modal');
   const updateMessage = document.getElementById('update-message');
   const updateYes = document.getElementById('update-yes');
   const updateNo = document.getElementById('update-no');
 
-  window.electronAPI.onUpdateAvailable((event, version) => {
+  window.electronAPI.onUpdateAvailable((event, { version, downloadUrl }) => {
     updateMessage.textContent = `Вышла новая версия ${version}, хотите обновить?`;
     updateModal.style.display = 'block';
-
+  
     updateYes.addEventListener('click', () => {
-      // Открываем ссылку на GitHub
-      window.electronAPI.openExternalLink('https://github.com/BerkutSolutions/berkut-cyber-base');
+      window.electronAPI.openExternalLink(downloadUrl);
       updateModal.style.display = 'none';
     });
-
+  
     updateNo.addEventListener('click', () => {
       updateModal.style.display = 'none';
     });
@@ -283,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
   searchInput.addEventListener('input', () => {
     const query = searchInput.value.trim();
     clearSearchBtn.style.display = query ? 'block' : 'none';
-    performSearch(query, contentArea, setActiveSidebarButton, updateTabHeader, loadPage);
+    performSearch(query, contentArea, setActiveSidebarButton, updateTabHeader, loadPage, searchInput, clearSearchBtn);
   });
 
   searchInput.addEventListener('keydown', (event) => {
@@ -291,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
       const query = searchInput.value.trim();
       clearSearchBtn.style.display = query ? 'block' : 'none';
-      performSearch(query, contentArea, setActiveSidebarButton, updateTabHeader, loadPage);
+      performSearch(query, contentArea, setActiveSidebarButton, updateTabHeader, loadPage, searchInput, clearSearchBtn);
     }
   });
 

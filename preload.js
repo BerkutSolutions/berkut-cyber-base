@@ -13,5 +13,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
   onShowUpdatePrompt: (callback) => ipcRenderer.on('show-update-prompt', callback),
   onUpdateAvailable: (callback) => ipcRenderer.on('update-available', callback),
   setInitialUpdateSetting: (value) => ipcRenderer.send('set-initial-update-setting', value),
-  openExternalLink: (url) => ipcRenderer.send('open-external-link', url), // Новый метод
+  openExternalLink: (url) => ipcRenderer.send('open-external-link', url),
 });

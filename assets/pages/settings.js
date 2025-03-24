@@ -27,11 +27,6 @@ function loadSettingsContent(contentArea, setActiveSidebarButton, updateTabHeade
   const modalYes = document.getElementById('modal-yes');
   const modalNo = document.getElementById('modal-no');
 
-  // Загрузка текущих настроек
-  window.electronAPI.getSettings().then(settings => {
-    autoUpdateCheck.checked = settings.autoUpdate || false;
-  });
-
   saveBtn.addEventListener('click', () => {
     window.electronAPI.saveSettings({ autoUpdate: autoUpdateCheck.checked });
     alert('Настройки сохранены');
@@ -43,7 +38,6 @@ function loadSettingsContent(contentArea, setActiveSidebarButton, updateTabHeade
     updateTabHeader('Главная');
   });
 
-  // Показ модального окна при первом запуске
   window.electronAPI.onShowUpdatePrompt(() => {
     modal.style.display = 'block';
   });
@@ -60,24 +54,23 @@ function loadSettingsContent(contentArea, setActiveSidebarButton, updateTabHeade
     modal.style.display = 'none';
   });
 
-  // Проверка обновлений при загрузке настроек, если включено
   window.electronAPI.getSettings().then(settings => {
     if (settings.autoUpdate) {
-      window.electronAPI.checkForUpdates().then(({ currentVersion, latestVersion }) => {
+      window.electronAPI.checkForUpdates().then(({ currentVersion, latestVersion, downloadUrl }) => {
         if (latestVersion && compareVersions(latestVersion, currentVersion) > 0) {
           const updateModal = document.getElementById('update-modal');
           const updateMessage = document.getElementById('update-message');
           const updateYes = document.getElementById('update-yes');
           const updateNo = document.getElementById('update-no');
-
+  
           updateMessage.textContent = `Вышла новая версия ${latestVersion}, хотите обновить?`;
           updateModal.style.display = 'block';
-
+  
           updateYes.addEventListener('click', () => {
-            window.electronAPI.openExternalLink('https://github.com/BerkutSolutions/berkut-cyber-base');
+            window.electronAPI.openExternalLink(downloadUrl || 'https://github.com/BerkutSolutions/berkut-cyber-base/releases/latest');
             updateModal.style.display = 'none';
           });
-
+  
           updateNo.addEventListener('click', () => {
             updateModal.style.display = 'none';
           });
@@ -88,12 +81,27 @@ function loadSettingsContent(contentArea, setActiveSidebarButton, updateTabHeade
 }
 
 function compareVersions(v1, v2) {
-  const v1parts = v1.split('.').map(Number);
-  const v2parts = v2.split('.').map(Number);
-  for (let i = 0; i < v1parts.length; i++) {
-    if (v2parts[i] === undefined) return 1;
-    if (v1parts[i] > v2parts[i]) return 1;
-    if (v1parts[i] < v2parts[i]) return -1;
+  const parseVersion = (version) => {
+    const [mainPart, suffix = ''] = version.split('-');
+    const parts = mainPart.split('.').map(Number);
+    return { parts, suffix };
+  };
+
+  const version1 = parseVersion(v1);
+  const version2 = parseVersion(v2);
+
+  const maxLength = Math.max(version1.parts.length, version2.parts.length);
+  for (let i = 0; i < maxLength; i++) {
+    const part1 = version1.parts[i] || 0;
+    const part2 = version2.parts[i] || 0;
+    if (part1 > part2) return 1;
+    if (part1 < part2) return -1;
   }
-  return v1parts.length < v2parts.length ? -1 : 0;
+
+  if (version1.suffix && !version2.suffix) return -1;
+  if (!version1.suffix && version2.suffix) return 1;
+  if (version1.suffix && version2.suffix) {
+    return version1.suffix.localeCompare(version2.suffix);
+  }
+  return 0;
 }

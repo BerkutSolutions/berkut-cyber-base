@@ -178,7 +178,7 @@ body {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #2a2f3b;
+  background-color: #2e7d32;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -189,10 +189,11 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .search-result-btn:hover {
-  background-color: #3a3f4b;
+  background-color: #388e3c;
 }
 
 .search-result-text {
@@ -925,4 +926,140 @@ ul li {
 
 .modal-content button {
   margin: 0 10px;
+}
+
+
+.ibtools-accordion {
+  margin: 20px 0;
+}
+
+.ibtools-accordion-item {
+  border: 1px solid #3a3f4a;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.ibtools-accordion-header {
+  background-color: #1a1f2b;
+  color: #e0e0e0;
+  padding: 15px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  transition: background-color 0.3s ease;
+  line-height: 1.2;
+}
+
+.ibtools-accordion-header:hover {
+  background-color: #2a2f3b;
+}
+
+.ibtools-accordion-header.active {
+  background-color: #1a1f2b;
+}
+
+.ibtools-accordion-header::after {
+  position: absolute;
+  right: 15px;
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+.ibtools-accordion-header.active::after {
+  transform: rotate(180deg);
+}
+
+.ibtools-accordion-content {
+  display: none;
+  padding: 0 15px;
+  background-color: #0e121b;
+  border-top: 1px solid #3a3f4a;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.security-tools-buttons, .workstation-protection-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
+.tool-btn {
+  padding: 10px 20px;
+  background-color: #3a3f4a;
+  color: #e0e0e0;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+
+.tool-btn:hover {
+  background-color: #4a505e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tool-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.question-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.nav-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.nav-item.correct {
+  background-color: #66bb6a;
+  color: #fff;
+}
+
+.nav-item.incorrect {
+  background-color: #d32f2f;
+  color: #fff;
+}
+
+.nav-item:hover {
+  transform: scale(1.1);
+}
+
+.result-item {
+  scroll-margin-top: 40px;
 }
