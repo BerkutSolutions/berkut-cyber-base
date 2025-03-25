@@ -1,169 +1,209 @@
 function loadVulnerabilitiesContent(container) {
-    container.innerHTML = `
-      <div class="vulnerabilities-container">
-        <h1>Уязвимости</h1>
-        <div class="osi-table-container">
-          <table class="osi-table">
-            <thead>
-              <tr>
-                <th>Подход</th>
-                <th>Описание</th>
-                <th>Пример применения</th>
-                <th>Рекомендации</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Анализ CVE (Common Vulnerabilities and Exposures)</td>
-                <td>Изучение известных уязвимостей в системах, используя автоматизированные инструменты для поиска известных уязвимостей в системе.</td>
-                <td>Проверка, уязвима ли система к Log4Shell (CVE-2021-44228).</td>
-                <td>Использовать базы данных NVD, провести CVSS-оценку, обновлять критические уязвимости.</td>
-              </tr>
-              <tr>
-                <td>Оценка по CWE (Common Weakness Enumeration)</td>
-                <td>Анализ слабостей в коде или архитектуре, которые могут привести к уязвимостям (например, XSS).</td>
-                <td>Проверка кода на CWE-79 (XSS) с помощью статического анализа (SonarQube).</td>
-                <td>Использовать CWE Top 25 для приоритизации, внедрять практики безопасной разработки (Secure SDLC).</td>
-              </tr>
-              <tr>
-                <td>Оценка по CVSS (Common Vulnerability Scoring System)</td>
-                <td>Оценка серьёзности уязвимостей по шкале от 0 до 10 на основе воздействия и сложности атаки.</td>
-                <td>Уязвимость с CVSS 9.8 (критическая) требует немедленного устранения.</td>
-                <td>Приоритизировать уязвимости с высоким CVSS (7+), учитывать контекст (например, доступность эксплойта).</td>
-              </tr>
-              <tr>
-                <td>MITRE ATT&CK</td>
-                <td>Анализ тактик и техник атак (TTP) для понимания, как уязвимости могут быть использованы для Initial Access (T1190).</td>
-                <td>Анализ, как уязвимость может быть использована для Initial Access (T1190).</td>
-                <td>Использовать MITRE ATT&CK для модели угроз, разрабатывать сценарии защиты (например, WAF).</td>
-              </tr>
-              <tr>
-                <td>Threat Modeling (моделирование угроз)</td>
-                <td>Выявление потенциальных угроз на этапе проектирования системы.</td>
-                <td>Определение, что API уязвим к SSRF, добавление защиты.</td>
-                <td>Применять STRIDE (Spoofing, Tampering, Repudiation, Information Disclosure, DoS, Elevation of Privilege).</td>
-              </tr>
-              <tr>
-                <td>Анализ рисков (Risk Assessment)</td>
-                <td>Оценка вероятности и воздействия угроз для определения приоритетов.</td>
-                <td>Risk утечки данных из-за XSS оценивается как высокий из-за публичного доступа.</td>
-                <td>Использовать формулу: Risk = Вероятность × Воздействие, фокусироваться на высоких рисках.</td>
-              </tr>
-              <tr>
-                <td>Пентест (Penetration Testing)</td>
-                <td>Имитация атак для выявления уязвимостей в реальных условиях.</td>
-                <td>Пентест выявил возможность SQL-инъекции в веб-приложении.</td>
-                <td>Проводить регулярные пентесты, использовать сертифицированных специалистов, устранять уязвимости.</td>
-              </tr>
-              <tr>
-                <td>Анализ логов и мониторинг</td>
-                <td>Анализ логов для выявления признаков эксплуатации уязвимостей.</td>
-                <td>Обнаружение попыток брутфорса через логи SIEM (Splunk).</td>
-                <td>Настраивать систему NetFlow для анализа трафика, реагировать на инциденты.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-  
-        <div class="vulnerabilities-buttons">
-          <button class="network-btn" id="incident-response-btn">Реагирование на инциденты (IR)</button>
-          <button class="network-btn" id="owasp-btn">OWASP</button>
-          <button class="network-btn" id="cwe-btn">CWE</button>
-          <button class="network-btn" id="cve-btn">CVE</button>
-          <button class="network-btn" id="cvss-btn">CVSS</button>
-          <button class="network-btn" id="mitre-attck-btn">MITRE ATT&CK</button>
-          <button class="network-btn" id="zta-btn">ZTA</button>
-          <button class="network-btn" id="bdu-fstec-btn">БДУ ФСТЭК</button>
-        </div>
-  
-        <h2>Дополнительная информация</h2>
-        <p><strong>Что такое уязвимости?</strong> Уязвимость в контексте информационной безопасности — это слабое место в программном обеспечении, оборудовании, процессах или конфигурации системы, которое может быть использовано злоумышленником для компрометации системы. Уязвимости могут возникать из-за ошибок в коде, неправильной настройки, устаревшего ПО или недостатков в архитектуре системы.</p>
-        <p>Уязвимости классифицируются по различным критериям:</p>
-        <ul>
-          <li><strong>По типу:</strong> программные (например, SQL-инъекции), аппаратные (например, Spectre/Meltdown), сетевые (например, уязвимости в протоколах).</li>
-          <li><strong>По воздействию:</strong> удалённое выполнение кода (RCE), утечка данных, отказ в обслуживании (DoS), повышение привилегий.</li>
-          <li><strong>По источнику:</strong> ошибки разработчиков, сторонние библиотеки, конфигурационные ошибки.</li>
-        </ul>
-
-        <h3>Жизненный цикл уязвимости</h3>
-        <p>Уязвимости проходят несколько стадий в своём жизненном цикле:</p>
-        <ul>
-          <li><strong>Обнаружение:</strong> Уязвимость выявляется исследователем, разработчиком или злоумышленником (например, через fuzzing или аудит кода).</li>
-          <li><strong>Раскрытие:</strong> Информация об уязвимости публикуется (например, в CVE) или передаётся вендору для исправления.</li>
-          <li><strong>Эксплуатация:</strong> Злоумышленники создают эксплойты для использования уязвимости (например, эксплойт для Log4Shell был опубликован через несколько дней после раскрытия).</li>
-          <li><strong>Исправление:</strong> Вендор выпускает патч, а организации его применяют (например, патч для <code>CVE-2021-44228</code> от Apache).</li>
-          <li><strong>Устаревание:</strong> Уязвимость становится неактуальной из-за обновлений или прекращения поддержки ПО.</li>
-        </ul>
-
-        <h3>Почему управление уязвимостями важно?</h3>
-        <p>Управление уязвимостями — это критически важный процесс в кибербезопасности, который помогает:</p>
-        <ul>
-          <li><strong>Снизить риски:</strong> Устранение уязвимостей предотвращает атаки, такие как утечка данных или ransomware.</li>
-          <li><strong>Соответствовать требованиям:</strong> Многие стандарты (например, PCI DSS, ISO 27001, GDPR) требуют регулярного управления уязвимостями.</li>
-          <li><strong>Защитить репутацию:</strong> Утечка данных из-за уязвимости может нанести ущерб репутации компании (например, утечка данных Equifax в 2017 году из-за <code>CVE-2017-5638</code>).</li>
-          <li><strong>Снизить затраты:</strong> Проактивное устранение уязвимостей дешевле, чем восстановление после инцидента.</li>
-          <li><strong>Обеспечить непрерывность бизнеса:</strong> Уязвимости, такие как DoS, могут остановить бизнес-процессы.</li>
-        </ul>
-
-        <h3>История развития угроз</h3>
-        <p>Угрозы информационной безопасности эволюционировали вместе с развитием технологий:</p>
-        <ul>
-          <li><strong>1980-е годы:</strong> Появление первых компьютерных вирусов, таких как Brain (1986), которые распространялись через дискеты.</li>
-          <li><strong>1990-е годы:</strong> Рост числа сетевых атак с развитием интернета. Вирус Melissa (1999) показал, как быстро вредоносное ПО может распространяться через email.</li>
-          <li><strong>2000-е годы:</strong> Появление сложных атак, таких как SQL Slammer (2003), который использовал уязвимость в Microsoft SQL Server (<code>CVE-2002-0649</code>), заражая 75 000 систем за 10 минут.</li>
-          <li><strong>2010-е годы:</strong> Эпоха APT-атак (Advanced Persistent Threats). Атака Stuxnet (2010) использовала несколько 0-day уязвимостей для атаки на промышленные системы. Утечка данных Equifax (2017) из-за <code>CVE-2017-5638</code> затронула 147 миллионов человек.</li>
-          <li><strong>2020-е годы:</strong> Рост числа атак на цепочки поставок (supply chain attacks). Атака SolarWinds (2020) использовала уязвимость в ПО Orion, затронув тысячи организаций. Log4Shell (<code>CVE-2021-44228</code>, 2021) показал, как уязвимость в широко используемой библиотеке может стать глобальной угрозой.</li>
-        </ul>
-        <p>Эволюция уязвимостей также связана с ростом сложности систем. Если в 1990-х годах уязвимости были простыми (например, переполнение буфера), то сегодня злоумышленники используют сложные цепочки эксплуатации, комбинируя несколько уязвимостей (например, цепочка в Log4Shell: JNDI-инъекция → LDAP-запрос → выполнение кода).</p>
-        <p>Цифровизация и интернет вещей (IoT) увеличили число уязвимостей. По данным NIST, в 2023 году было зарегистрировано более 26 000 новых CVE, что на 25% больше, чем в 2020 году. Устройства IoT, такие как умные камеры и роутеры, часто имеют слабую защиту, что делает их мишенями для атак (например, ботнет Mirai в 2016 году).</p>
-
-        <h3>Современные вызовы и тренды</h3>
-        <p>Управление уязвимостями сталкивается с новыми вызовами:</p>
-        <ul>
-          <li><strong>Рост числа уязвимостей в открытом ПО:</strong> Библиотеки, такие как Log4j, широко используются, но часто содержат уязвимости (например, Log4Shell).</li>
-          <li><strong>Облачные системы:</strong> Неправильная конфигурация облаков (например, открытые S3-бакеты в AWS) приводит к утечкам данных.</li>
-          <li><strong>Устройства IoT и 5G:</strong> Рост числа подключённых устройств увеличивает поверхность атаки. Уязвимости в 5G-протоколах могут затронуть миллионы устройств.</li>
-          <li><strong>ИИ в руках злоумышленников:</strong> ИИ используется для автоматизации атак, таких как фишинг или генерация эксплойтов (например, использование ChatGPT для создания вредоносного кода).</li>
-          <li><strong>Атаки на цепочки поставок:</strong> Атаки, такие как SolarWinds, показывают, как уязвимости в стороннем ПО могут затронуть тысячи организаций.</li>
-          <li><strong>Нехватка специалистов:</strong> По данным (ISC)², в 2023 году дефицит специалистов по кибербезопасности составил 3,4 миллиона человек, что затрудняет своевременное устранение уязвимостей.</li>
-        </ul>
-
-        <h3>Подходы к управлению уязвимостями</h3>
-        <p>Эффективное управление уязвимостями требует комплексного подхода, включающего как технические меры (сканирование, патчинг), так и организационные (обучение сотрудников, внедрение Secure SDLC). Важно также учитывать стандарты, такие как ISO 27001, NIST 800-53 и OWASP Top 10, для построения зрелой программы управления уязвимостями.</p>
+  container.innerHTML = `
+    <div class="vulnerabilities-container">
+      <h1>Уязвимости</h1>
+      <div class="osi-table-container">
+        <table class="osi-table">
+          <thead>
+            <tr>
+              <th>Подход</th>
+              <th>Описание</th>
+              <th>Пример применения</th>
+              <th>Рекомендации</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Анализ CVE (Common Vulnerabilities and Exposures)</td>
+              <td>Изучение известных уязвимостей в системах, используя автоматизированные инструменты для поиска известных уязвимостей в системе.</td>
+              <td>Проверка, уязвима ли система к Log4Shell (CVE-2021-44228).</td>
+              <td>Использовать базы данных NVD, провести CVSS-оценку, обновлять критические уязвимости.</td>
+            </tr>
+            <tr>
+              <td>Оценка по CWE (Common Weakness Enumeration)</td>
+              <td>Анализ слабостей в коде или архитектуре, которые могут привести к уязвимостям (например, XSS).</td>
+              <td>Проверка кода на CWE-79 (XSS) с помощью статического анализа (SonarQube).</td>
+              <td>Использовать CWE Top 25 для приоритизации, внедрять практики безопасной разработки (Secure SDLC).</td>
+            </tr>
+            <tr>
+              <td>Оценка по CVSS (Common Vulnerability Scoring System)</td>
+              <td>Оценка серьёзности уязвимостей по шкале от 0 до 10 на основе воздействия и сложности атаки.</td>
+              <td>Уязвимость с CVSS 9.8 (критическая) требует немедленного устранения.</td>
+              <td>Приоритизировать уязвимости с высоким CVSS (7+), учитывать контекст (например, доступность эксплойта).</td>
+            </tr>
+            <tr>
+              <td>MITRE ATT&CK</td>
+              <td>Анализ тактик и техник атак (TTP) для понимания, как уязвимости могут быть использованы для Initial Access (T1190).</td>
+              <td>Анализ, как уязвимость может быть использована для Initial Access (T1190).</td>
+              <td>Использовать MITRE ATT&CK для модели угроз, разрабатывать сценарии защиты (например, WAF).</td>
+            </tr>
+            <tr>
+              <td>Threat Modeling (моделирование угроз)</td>
+              <td>Выявление потенциальных угроз на этапе проектирования системы.</td>
+              <td>Определение, что API уязвим к SSRF, добавление защиты.</td>
+              <td>Применять STRIDE (Spoofing, Tampering, Repudiation, Information Disclosure, DoS, Elevation of Privilege).</td>
+            </tr>
+            <tr>
+              <td>Анализ рисков (Risk Assessment)</td>
+              <td>Оценка вероятности и воздействия угроз для определения приоритетов.</td>
+              <td>Risk утечки данных из-за XSS оценивается как высокий из-за публичного доступа.</td>
+              <td>Использовать формулу: Risk = Вероятность × Воздействие, фокусироваться на высоких рисках.</td>
+            </tr>
+            <tr>
+              <td>Пентест (Penetration Testing)</td>
+              <td>Имитация атак для выявления уязвимостей в реальных условиях.</td>
+              <td>Пентест выявил возможность SQL-инъекции в веб-приложении.</td>
+              <td>Проводить регулярные пентесты, использовать сертифицированных специалистов, устранять уязвимости.</td>
+            </tr>
+            <tr>
+              <td>Анализ логов и мониторинг</td>
+              <td>Анализ логов для выявления признаков эксплуатации уязвимостей.</td>
+              <td>Обнаружение попыток брутфорса через логи SIEM (Splunk).</td>
+              <td>Настраивать систему NetFlow для анализа трафика, реагировать на инциденты.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    `;
 
-    document.getElementById('incident-response-btn').addEventListener('click', () => {
-      loadIncidentResponseContent(container);
-    });
+      <div class="vulnerabilities-buttons">
+        <button class="network-btn" id="incident-response-btn">Реагирование на инциденты (IR)</button>
+        <button class="network-btn" id="owasp-btn">OWASP</button>
+        <button class="network-btn" id="cwe-btn">CWE</button>
+        <button class="network-btn" id="cve-btn">CVE</button>
+        <button class="network-btn" id="cvss-btn">CVSS</button>
+        <button class="network-btn" id="mitre-attck-btn">MITRE ATT&CK</button>
+        <button class="network-btn" id="zta-btn">ZTA</button>
+        <button class="network-btn" id="bdu-fstec-btn">БДУ ФСТЭК</button>
+        <button class="network-btn" id="language-vulnerabilities-btn">Уязвимости языков</button>
+      </div>
 
-    document.getElementById('owasp-btn').addEventListener('click', () => {
-      loadOWASPContent(container);
-    });
+      <h2>Дополнительная информация</h2>
+      <p><strong>Что такое уязвимости?</strong> Уязвимость в контексте информационной безопасности — это слабое место в программном обеспечении, оборудовании, процессах или конфигурации системы, которое может быть использовано злоумышленником для компрометации системы. Уязвимости могут возникать из-за ошибок в коде, неправильной настройки, устаревшего ПО или недостатков в архитектуре системы.</p>
+      <p>Уязвимости классифицируются по различным критериям:</p>
+      <ul>
+        <li><strong>По типу:</strong> программные (например, SQL-инъекции), аппаратные (например, Spectre/Meltdown), сетевые (например, уязвимости в протоколах).</li>
+        <li><strong>По воздействию:</strong> удалённое выполнение кода (RCE), утечка данных, отказ в обслуживании (DoS), повышение привилегий.</li>
+        <li><strong>По источнику:</strong> ошибки разработчиков, сторонние библиотеки, конфигурационные ошибки.</li>
+      </ul>
 
-    document.getElementById('cwe-btn').addEventListener('click', () => {
-      loadCweContent(container);
-    });
+      <h3>Жизненный цикл уязвимости</h3>
+      <p>Уязвимости проходят несколько стадий в своём жизненном цикле:</p>
+      <ul>
+        <li><strong>Обнаружение:</strong> Уязвимость выявляется исследователем, разработчиком или злоумышленником (например, через fuzzing или аудит кода).</li>
+        <li><strong>Раскрытие:</strong> Информация об уязвимости публикуется (например, в CVE) или передаётся вендору для исправления.</li>
+        <li><strong>Эксплуатация:</strong> Злоумышленники создают эксплойты для использования уязвимости (например, эксплойт для Log4Shell был опубликован через несколько дней после раскрытия).</li>
+        <li><strong>Исправление:</strong> Вендор выпускает патч, а организации его применяют (например, патч для <code>CVE-2021-44228</code> от Apache).</li>
+        <li><strong>Устаревание:</strong> Уязвимость становится неактуальной из-за обновлений или прекращения поддержки ПО.</li>
+      </ul>
 
-    document.getElementById('cve-btn').addEventListener('click', () => {
-      loadCveContent(container);
-    });
+      <h3>Теория поиска уязвимостей</h3>
+      <p>Поиск уязвимостей — это процесс выявления слабых мест в системах или коде. В научных целях он проводится в контролируемых средах с разрешения владельцев систем, чтобы не нарушать законодательство РФ (например, ст. 272 УК РФ "Неправомерный доступ к компьютерной информации").</p>
+      <ul>
+        <li><strong>Статический анализ:</strong> Используются инструменты (SonarQube, Bandit, RIPS) для анализа кода без его выполнения. Пример: поиск <code>eval($_GET['cmd'])</code> в PHP для выявления RCE.</li>
+        <li><strong>Динамический анализ:</strong> Тестирование работающего приложения с помощью сканеров (Burp Suite, OWASP ZAP). Пример: отправка <code>' OR '1'='1</code> для проверки SQL-инъекций.</li>
+        <li><strong>Fuzzing:</strong> Генерация случайных данных для проверки поведения системы. Пример: отправка длинных строк для выявления переполнения буфера.</li>
+        <li><strong>Ручной аудит:</strong> Анализ кода или конфигурации на наличие опасных функций (например, <code>strcpy</code> в C) или слабых настроек (открытые порты).</li>
+        <li><strong>Использование баз данных:</strong> Проверка систем на известные уязвимости через CVE (NVD) или БДУ ФСТЭК.</li>
+      </ul>
+      <p><strong>Пример:</strong> В тестовой среде с разрешения владельца можно проверить веб-приложение на XSS, отправив <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> в поле ввода, чтобы изучить фильтрацию данных.</p>
 
-    document.getElementById('cvss-btn').addEventListener('click', () => {
-      loadCvssContent(container);
-    });
+      <h3>Теория эксплуатации уязвимостей (в научных целях)</h3>
+      <p>Эксплуатация уязвимостей изучается для понимания механизмов атак и разработки защиты. Все действия должны проводиться в легальных тестовых средах с явного согласия владельцев систем, чтобы соответствовать законодательству РФ.</p>
+      <ul>
+        <li><strong>SQL-инъекции:</strong> Ввод специальных символов (например, <code>' OR '1'='1</code>) для изменения запроса. Пример: в тестовой среде проверка <code>SELECT * FROM users WHERE id = '$input'</code>.</li>
+        <li><strong>XSS:</strong> Внедрение скриптов (<code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code>) для выполнения кода в браузере жертвы.</li>
+        <li><strong>RCE:</strong> Использование уязвимых функций (например, <code>system($_GET['cmd'])</code> в PHP) для выполнения команд. Пример: в тестовой среде подставить <code>whoami</code>.</li>
+        <li><strong>Переполнение буфера:</strong> Отправка данных сверх выделенной памяти для изменения выполнения программы. Пример: в C-программе с <code>strcpy</code> отправить длинную строку.</li>
+        <li><strong>SSRF:</strong> Подстановка URL (например, <code>http://localhost</code>) для доступа к внутренним ресурсам в тестовой среде.</li>
+      </ul>
+      <p><strong>Этика и закон:</strong> Эксплуатация вне тестовой среды без разрешения — нарушение УК РФ. Используйте виртуальные машины (например, TryHackMe, Hack The Box) для практики.</p>
 
-    document.getElementById('mitre-attck-btn').addEventListener('click', () => {
-      loadMitreAttckContent(container);
-    });
+      <h3>Теория закрытия уязвимостей</h3>
+      <p>Закрытие уязвимостей — это процесс устранения слабых мест для предотвращения атак. Основной принцип — минимизация рисков и обеспечение безопасности.</p>
+      <ul>
+        <li><strong>Патчинг:</strong> Установка обновлений ПО для устранения известных уязвимостей (например, обновление Apache для Log4Shell).</li>
+        <li><strong>Фильтрация ввода:</strong> Проверка и экранирование данных (например, <code>htmlspecialchars()</code> в PHP для защиты от XSS).</li>
+        <li><strong>Параметризация запросов:</strong> Использование подготовленных выражений в SQL (например, PDO в PHP) для защиты от SQLi.</li>
+        <li><strong>Ограничение доступа:</strong> Настройка прав (chmod, ACL), закрытие ненужных портов, использование WAF.</li>
+        <li><strong>Безопасные функции:</strong> Замена уязвимых функций (<code>strcpy</code> → <code>strncpy</code> в C, избегание <code>eval()</code>).</li>
+        <li><strong>Шифрование:</strong> Использование HTTPS, шифрование данных в БД (AES-256).</li>
+        <li><strong>Мониторинг:</strong> Настройка SIEM (Splunk, ELK) для обнаружения попыток эксплуатации.</li>
+      </ul>
+      <p><strong>Пример:</strong> Для защиты от SQLi в PHP замените <code>mysql_query("SELECT * FROM users WHERE id = '$id'")</code> на <code>$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id"); $stmt->execute(['id' => $id]);</code>.</p>
 
-    document.getElementById('zta-btn').addEventListener('click', () => {
-      loadZtaContent(container);
-    });
+      <h3>Почему управление уязвимостями важно?</h3>
+      <p>Управление уязвимостями — это критически важный процесс в кибербезопасности, который помогает:</p>
+      <ul>
+        <li><strong>Снизить риски:</strong> Устранение уязвимостей предотвращает атаки, такие как утечка данных или ransomware.</li>
+        <li><strong>Соответствовать требованиям:</strong> Многие стандарты (например, PCI DSS, ISO 27001, GDPR) требуют регулярного управления уязвимостями.</li>
+        <li><strong>Защитить репутацию:</strong> Утечка данных из-за уязвимости может нанести ущерб репутации компании (например, утечка данных Equifax в 2017 году из-за <code>CVE-2017-5638</code>).</li>
+        <li><strong>Снизить затраты:</strong> Проактивное устранение уязвимостей дешевле, чем восстановление после инцидента.</li>
+        <li><strong>Обеспечить непрерывность бизнеса:</strong> Уязвимости, такие как DoS, могут остановить бизнес-процессы.</li>
+      </ul>
 
-    document.getElementById('bdu-fstec-btn').addEventListener('click', () => {
-      loadBduFstecContent(container);
-    });
+      <h3>История развития угроз</h3>
+      <p>Угрозы информационной безопасности эволюционировали вместе с развитием технологий:</p>
+      <ul>
+        <li><strong>1980-е годы:</strong> Появление первых компьютерных вирусов, таких как Brain (1986), которые распространялись через дискеты.</li>
+        <li><strong>1990-е годы:</strong> Рост числа сетевых атак с развитием интернета. Вирус Melissa (1999) показал, как быстро вредоносное ПО может распространяться через email.</li>
+        <li><strong>2000-е годы:</strong> Появление сложных атак, таких как SQL Slammer (2003), который использовал уязвимость в Microsoft SQL Server (<code>CVE-2002-0649</code>), заражая 75 000 систем за 10 минут.</li>
+        <li><strong>2010-е годы:</strong> Эпоха APT-атак (Advanced Persistent Threats). Атака Stuxnet (2010) использовала несколько 0-day уязвимостей для атаки на промышленные системы. Утечка данных Equifax (2017) из-за <code>CVE-2017-5638</code> затронула 147 миллионов человек.</li>
+        <li><strong>2020-е годы:</strong> Рост числа атак на цепочки поставок (supply chain attacks). Атака SolarWinds (2020) использовала уязвимость в ПО Orion, затронув тысячи организаций. Log4Shell (<code>CVE-2021-44228</code>, 2021) показал, как уязвимость в широко используемой библиотеке может стать глобальной угрозой.</li>
+      </ul>
+      <p>Эволюция уязвимостей также связана с ростом сложности систем. Если в 1990-х годах уязвимости были простыми (например, переполнение буфера), то сегодня злоумышленники используют сложные цепочки эксплуатации, комбинируя несколько уязвимостей (например, цепочка в Log4Shell: JNDI-инъекция → LDAP-запрос → выполнение кода).</p>
+      <p>Цифровизация и интернет вещей (IoT) увеличили число уязвимостей. По данным NIST, в 2023 году было зарегистрировано более 26 000 новых CVE, что на 25% больше, чем в 2020 году. Устройства IoT, такие как умные камеры и роутеры, часто имеют слабую защиту, что делает их мишенями для атак (например, ботнет Mirai в 2016 году).</p>
+
+      <h3>Современные вызовы и тренды</h3>
+      <p>Управление уязвимостями сталкивается с новыми вызовами:</p>
+      <ul>
+        <li><strong>Рост числа уязвимостей в открытом ПО:</strong> Библиотеки, такие как Log4j, широко используются, но часто содержат уязвимости (например, Log4Shell).</li>
+        <li><strong>Облачные системы:</strong> Неправильная конфигурация облаков (например, открытые S3-бакеты в AWS) приводит к утечкам данных.</li>
+        <li><strong>Устройства IoT и 5G:</strong> Рост числа подключённых устройств увеличивает поверхность атаки. Уязвимости в 5G-протоколах могут затронуть миллионы устройств.</li>
+        <li><strong>ИИ в руках злоумышленников:</strong> ИИ используется для автоматизации атак, таких как фишинг или генерация эксплойтов (например, использование ChatGPT для создания вредоносного кода).</li>
+        <li><strong>Атаки на цепочки поставок:</strong> Атаки, такие как SolarWinds, показывают, как уязвимости в стороннем ПО могут затронуть тысячи организаций.</li>
+        <li><strong>Нехватка специалистов:</strong> По данным (ISC)², в 2023 году дефицит специалистов по кибербезопасности составил 3,4 миллиона человек, что затрудняет своевременное устранение уязвимостей.</li>
+      </ul>
+
+      <h3>Подходы к управлению уязвимостями</h3>
+      <p>Эффективное управление уязвимостями требует комплексного подхода, включающего как технические меры (сканирование, патчинг), так и организационные (обучение сотрудников, внедрение Secure SDLC). Важно также учитывать стандарты, такие как ISO 27001, NIST 800-53 и OWASP Top 10, для построения зрелой программы управления уязвимостями.</p>
+    </div>
+  `;
+
+  document.getElementById('incident-response-btn').addEventListener('click', () => {
+    loadIncidentResponseContent(container);
+  });
+
+  document.getElementById('owasp-btn').addEventListener('click', () => {
+    loadOWASPContent(container);
+  });
+
+  document.getElementById('cwe-btn').addEventListener('click', () => {
+    loadCweContent(container);
+  });
+
+  document.getElementById('cve-btn').addEventListener('click', () => {
+    loadCveContent(container);
+  });
+
+  document.getElementById('cvss-btn').addEventListener('click', () => {
+    loadCvssContent(container);
+  });
+
+  document.getElementById('mitre-attck-btn').addEventListener('click', () => {
+    loadMitreAttckContent(container);
+  });
+
+  document.getElementById('zta-btn').addEventListener('click', () => {
+    loadZtaContent(container);
+  });
+
+  document.getElementById('bdu-fstec-btn').addEventListener('click', () => {
+    loadBduFstecContent(container);
+  });
+
+  document.getElementById('language-vulnerabilities-btn').addEventListener('click', () => {
+    loadLanguageVulnerabilitiesContent(container);
+  });
 }
 
 function loadIncidentResponseContent(container) {
@@ -1508,4 +1548,349 @@ function loadBduFstecContent(container) {
     document.querySelector('.back-btn').addEventListener('click', () => {
       loadVulnerabilitiesContent(container);
     });
+}
+
+function loadLanguageVulnerabilitiesContent(container) {
+  container.innerHTML = `
+    <div class="vulnerabilities-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>Уязвимости языков программирования</h1>
+      <div class="language-vuln-description">
+        <p>Уязвимости в языках программирования возникают из-за ошибок в коде, неправильного использования встроенных функций или недостатков в архитектуре приложений. Здесь рассматриваются популярные языки программирования, методы поиска уязвимостей, их эксплуатация (в научных целях, не нарушая законодательство) и возможные векторы атак. Все примеры предназначены для образовательных целей и тестирования в контролируемых средах с явным разрешением владельцев систем.</p>
+
+        <h2>Языки программирования и их уязвимости</h2>
+      </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>PHP</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, XSS, RCE</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Статический анализ</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Внедрение кода</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>PHP</h3>
+            <p><strong>Типичные уязвимости:</strong> SQL-инъекции (SQLi), межсайтовый скриптинг (XSS), удалённое выполнение кода (RCE), уязвимости включения файлов (LFI/RFI).</p>
+            <p><strong>Как искать:</strong> Используйте статический анализ (RIPS, Psalm), ищите опасные функции вроде <code>eval()</code>, <code>exec()</code>, <code>include()</code> без фильтрации ввода. Проверяйте запросы к БД без параметризации (например, <code>mysql_query($_GET['id'])</code>).</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code> в параметры ввода; для RCE — используйте <code>system($_GET['cmd'])</code> в тестовой среде с разрешения владельца; для LFI — попробуйте <code>../../etc/passwd</code>. Все действия только в контролируемой среде.</p>
+            <p><strong>Векторы эксплуатации:</strong> GET/POST-параметры, заголовки HTTP, загрузка файлов, десериализация данных (<code>unserialize()</code>).</p>
+            <p><strong>Рекомендации:</strong> Используйте PDO с параметризованными запросами, экранируйте вывод (<code>htmlspecialchars()</code>), избегайте динамического выполнения кода.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>Java</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">XXE, RCE, Deserialization</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SpotBugs</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Payload в XML</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>Java</h3>
+            <p><strong>Типичные уязвимости:</strong> XML External Entity (XXE), небезопасная десериализация, SQLi, RCE.</p>
+            <p><strong>Как искать:</strong> Используйте SpotBugs, FindBugs, анализаторы кода (SonarQube). Проверяйте использование <code>ObjectInputStream</code>, <code>XMLDecoder</code>, уязвимые парсеры XML (SAX, DOM).</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для XXE — отправьте XML с <code>&lt;!ENTITY xxe SYSTEM "file:///etc/passwd"&gt;</code>; для десериализации — создайте вредоносный объект (ysoserial) в тестовой среде с разрешения.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод XML, сериализованные объекты, параметры запросов, загрузка файлов.</p>
+            <p><strong>Рекомендации:</strong> Отключите внешние сущности в XML-парсерах, используйте белые списки для десериализации, применяйте ORM (Hibernate) для SQL.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>Kotlin</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, RCE</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Detekt</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Внедрение</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>Kotlin</h3>
+            <p><strong>Типичные уязвимости:</strong> SQLi, RCE (через Java-библиотеки), небезопасная десериализация.</p>
+            <p><strong>Как искать:</strong> Используйте Detekt, SonarQube для анализа кода, проверяйте интеграцию с Java (например, <code>ObjectInputStream</code>).</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Аналогично Java — тестируйте десериализацию или SQLi (<code>' OR 1=1</code>) в тестовой среде с разрешения.</p>
+            <p><strong>Векторы эксплуатации:</strong> Параметры ввода, взаимодействие с Java-библиотеками, JSON/XML-данные.</p>
+            <p><strong>Рекомендации:</strong> Используйте безопасные API (Kotlinx.serialization), параметризованные запросы, избегайте устаревших Java-функций.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>C#</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, XSS</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Roslyn</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Внедрение SQL</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>C#</h3>
+            <p><strong>Типичные уязвимости:</strong> SQLi, XSS, небезопасная десериализация, RCE через <code>Process.Start()</code>.</p>
+            <p><strong>Как искать:</strong> Используйте Roslyn-анализаторы, SonarQube, ищите <code>SqlCommand</code> без параметров, <code>BinaryFormatter</code>.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code>; для RCE — используйте <code>Process.Start("cmd.exe", "/c dir")</code> в тестовой среде.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, HTTP-запросы, сериализованные данные.</p>
+            <p><strong>Рекомендации:</strong> Используйте Entity Framework, экранируйте вывод, избегайте <code>BinaryFormatter</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>Python</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">RCE, Pickle</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Bandit</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Eval</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>Python</h3>
+            <p><strong>Типичные уязвимости:</strong> RCE через <code>eval()</code>/<code>exec()</code>, небезопасная десериализация (<code>pickle</code>), SQLi.</p>
+            <p><strong>Как искать:</strong> Используйте Bandit, Pylint, ищите <code>eval(input())</code>, <code>pickle.loads()</code>, прямые SQL-запросы.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для RCE — подставьте <code>__import__('os').system('ls')</code> в <code>eval()</code>; для <code>pickle</code> — создайте вредоносный объект в тестовой среде.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, загрузка файлов, сетевые данные.</p>
+            <p><strong>Рекомендации:</strong> Избегайте <code>eval()/exec()</code>, используйте <code>json</code> вместо <code>pickle</code>, применяйте ORM (SQLAlchemy).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>Ruby</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">RCE, YAML</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Brakeman</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Eval</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>Ruby</h3>
+            <p><strong>Типичные уязвимости:</strong> RCE через <code>eval</code>, небезопасная десериализация YAML, SQLi.</p>
+            <p><strong>Как искать:</strong> Используйте Brakeman, RuboCop, ищите <code>eval(params[:x])</code>, <code>YAML.load</code>.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для RCE — подставьте <code>system('ls')</code> в <code>eval</code>; для YAML — отправьте вредоносный YAML (<code>!ruby/object</code>) в тестовой среде.</p>
+            <p><strong>Векторы эксплуатации:</strong> Параметры запросов, пользовательский ввод, загрузка файлов.</p>
+            <p><strong>Рекомендации:</strong> Используйте <code>safe_yaml</code>, избегайте <code>eval</code>, применяйте ActiveRecord для SQL.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>Node.js</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SSRF, RCE</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">ESLint</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Eval</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>Node.js</h3>
+            <p><strong>Типичные уязвимости:</strong> SSRF, RCE через <code>eval()</code>, SQLi, Prototype Pollution.</p>
+            <p><strong>Как искать:</strong> Используйте ESLint, Snyk, ищите <code>eval(req.query.x)</code>, <code>child_process.exec()</code>, уязвимые npm-пакеты.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для RCE — подставьте <code>require('child_process').exec('ls')</code>; для Prototype Pollution — измените <code>__proto__</code> в JSON.</p>
+            <p><strong>Векторы эксплуатации:</strong> HTTP-запросы, JSON-данные, npm-пакеты.</p>
+            <p><strong>Рекомендации:</strong> Используйте безопасные альтернативы (<code>vm</code>), проверяйте зависимости (Snyk), применяйте ORM (Sequelize).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>Objective-C</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Buffer Overflow</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Clang</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Переполнение</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>Objective-C</h3>
+            <p><strong>Типичные уязвимости:</strong> Переполнение буфера, небезопасное форматирование строк, инъекции.</p>
+            <p><strong>Как искать:</strong> Используйте Clang Static Analyzer, ищите <code>strcpy</code>, <code>sprintf</code>, прямые SQL-запросы.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для переполнения буфера — отправьте длинную строку в <code>strcpy</code> в тестовой среде.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, сетевые данные, форматированные строки.</p>
+            <p><strong>Рекомендации:</strong> Используйте безопасные функции (<code>strncpy</code>), применяйте ORM, проверяйте границы ввода.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>Swift</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, RCE</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SwiftLint</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Внедрение</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>Swift</h3>
+            <p><strong>Типичные уязвимости:</strong> SQLi, RCE через небезопасные вызовы Objective-C, ошибки десериализации.</p>
+            <p><strong>Как искать:</strong> Используйте SwiftLint, ищите прямые SQL-запросы, вызовы Objective-C (<code>NSUnarchiver</code>).</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR 1=1</code> в тестовой среде.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, сетевые запросы, интеграция с Objective-C.</p>
+            <p><strong>Рекомендации:</strong> Используйте безопасные API (Codable), ORM (GRDB), избегайте устаревших функций.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>Dart</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, SSRF</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Dart Analyzer</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Внедрение</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>Dart</h3>
+            <p><strong>Типичные уязвимости:</strong> SQLi, SSRF, небезопасное использование HTTP-клиентов.</p>
+            <p><strong>Как искать:</strong> Используйте Dart Analyzer, ищите прямые SQL-запросы, вызовы <code>http.get</code> без валидации.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SSRF — подставьте <code>http://localhost</code> в запросы в тестовой среде.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, сетевые запросы, JSON-данные.</p>
+            <p><strong>Рекомендации:</strong> Используйте ORM (ObjectBox), валидируйте URL, применяйте HTTPS.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="language-vuln-description">
+        <h2>Общие рекомендации</h2>
+        <ul>
+          <li>Проводите статический и динамический анализ кода для всех языков (инструменты: SonarQube, Snyk, OWASP ZAP).</li>
+          <li>Избегайте использования опасных функций, выполняющих код напрямую (<code>eval</code>, <code>exec</code>).</li>
+          <li>Применяйте ORM и параметризованные запросы для защиты от SQL-инъекций.</li>
+          <li>Проверяйте зависимости на наличие уязвимостей (Snyk, Dependabot).</li>
+          <li>Тестируйте уязвимости только в контролируемых средах с разрешения владельцев систем, соблюдая законодательство.</li>
+        </ul>
+      </div>
+    </div>
+  `;
+
+  document.querySelector('.back-btn').addEventListener('click', () => {
+    loadVulnerabilitiesContent(container);
+  });
 }
