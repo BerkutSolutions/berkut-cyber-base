@@ -91,7 +91,7 @@ function loadSecurityToolsContent(container) {
               <button class="ibtools-accordion-header">Защита приложений и инфраструктуры</button>
               <div class="ibtools-accordion-content">
                 <div class="security-tools-buttons app-infra-protection">
-                  <button class="tool-btn" id="av-btn">Антивирус</button>
+                  <button class="tool-btn" id="av-btn">AV (Антивирус)</button>
                   <button class="tool-btn" id="sandboxing-btn">Sandboxing</button>
                   <button class="tool-btn" id="vm-btn">Vulnerability Management</button>
                   <button class="tool-btn" id="casb-btn">CASB</button>
@@ -115,6 +115,7 @@ function loadSecurityToolsContent(container) {
                   <button class="tool-btn" id="patch-btn">Patch Management</button>
                   <button class="tool-btn" id="config-mgmt-btn">Configuration Management</button>
                   <button class="tool-btn" id="security-awareness-btn">Security Awareness Training</button>
+                  <button class="tool-btn" id="itsm-btn">ITSM</button> <!-- Добавлена кнопка ITSM -->
                 </div>
               </div>
             </div>
@@ -213,6 +214,7 @@ function loadSecurityToolsContent(container) {
   document.getElementById('app-control-btn').addEventListener('click', () => loadAppControlContent(container));
   document.getElementById('disk-encryption-btn').addEventListener('click', () => loadDiskEncryptionContent(container));
   document.getElementById('anti-phishing-btn').addEventListener('click', () => loadAntiPhishingContent(container));
+  document.getElementById('itsm-btn').addEventListener('click', () => loadItsmContent(container));
 }
 
 function loadDlpContent(container) {
@@ -3403,6 +3405,95 @@ function loadDataMaskingContent(container) {
           <li>Обеспечьте безопасное хранение токенов (например, в HSM).</li>
           <li>Интегрируйте с DLP для дополнительной защиты данных.</li>
         </ol>
+      </div>
+    </div>
+  `;
+  document.querySelector('.back-btn').addEventListener('click', () => loadSecurityToolsContent(container));
+}
+
+function loadItsmContent(container) {
+  container.innerHTML = `
+    <div class="security-tools-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>ITSM (IT Service Management)</h1>
+      <div class="theory-section">
+        <p>ITSM (IT Service Management) — это подход к управлению IT-услугами, направленный на предоставление качественных сервисов пользователям через структурированные процессы. ITSM охватывает управление инцидентами, запросами, изменениями, активами и другими аспектами IT-инфраструктуры, часто основываясь на стандартах, таких как ITIL (Information Technology Infrastructure Library).</p>
+
+        <h3>Принципы работы ITSM</h3>
+        <ul>
+          <li><strong>Управление инцидентами:</strong> Быстрое восстановление сервисов после сбоев (например, отключение сервера).</li>
+          <li><strong>Управление запросами:</strong> Обработка пользовательских запросов (например, установка ПО).</li>
+          <li><strong>Управление изменениями:</strong> Контроль внедрения изменений в инфраструктуру (например, обновление ПО).</li>
+          <li><strong>Управление активами:</strong> Учёт IT-ресурсов (оборудование, лицензии).</li>
+          <li><strong>Управление знаниями:</strong> Создание базы знаний для ускорения решений.</li>
+        </ul>
+
+        <h3>Связь с кибербезопасностью</h3>
+        <ul>
+          <li><strong>Обнаружение инцидентов ИБ:</strong> ITSM фиксирует и классифицирует инциденты, передавая их в SIEM или SOAR.</li>
+          <li><strong>Координация реагирования:</strong> Управляет процессом устранения угроз (например, изоляция заражённого устройства).</li>
+          <li><strong>Управление уязвимостями:</strong> Организует процесс исправления (патчи, конфигурация).</li>
+          <li><strong>Отчётность:</strong> Генерирует данные для анализа ИБ (SLA, время реакции).</li>
+        </ul>
+
+        <h3>Схема работы ITSM</h3>
+        <div class="itsm-diagram" style="margin: 20px 0; padding: 20px; border-radius: 8px; text-align: center; position: relative;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div style="background-color: #0288d1; padding: 10px; border-radius: 5px; width: 200px;">
+              Пользователь / Система
+              <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Инцидент или запрос</p>
+            </div>
+            <div style="border: 2px solid #4fc3f7; padding: 10px; border-radius: 5px; width: 250px;">
+              <div style="background-color: #4fc3f7; padding: 5px; border-radius: 5px;">
+                Service Desk
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Регистрация тикета</p>
+              </div>
+              <div style="background-color: #81d4fa; padding: 5px; border-radius: 5px; margin-top: 5px;">
+                Классификация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Инцидент, запрос, изменение</p>
+              </div>
+            </div>
+            <div style="border: 2px solid #b3e5fc; padding: 10px; border-radius: 5px; width: 300px;">
+              <div style="background-color: #b3e5fc; color: #1a1a1a; padding: 5px; border-radius: 5px;">
+                ITSM-система
+                <p style="font-size: 12px; margin: 5px 0 0;">Обработка и эскалация</p>
+              </div>
+              <div style="background-color: #e1f5fe; color: #1a1a1a; padding: 5px; border-radius: 5px; margin-top: 5px;">
+                Назначение исполнителя
+                <p style="font-size: 12px; margin: 5px 0 0;">Blue Team, инженеры</p>
+              </div>
+            </div>
+            <div style="background-color: #2a2f3b; padding: 10px; border-radius: 5px; width: 200px;">
+              Решение
+              <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Восстановление сервиса</p>
+            </div>
+            <div style="position: absolute; bottom: 10px; right: 10px; background-color: #d32f2f; padding: 10px; border-radius: 5px;">
+              Интеграция с системами
+              <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SIEM, SOAR</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Примеры ITSM-систем</h3>
+        <ul>
+          <li><strong>ServiceNow:</strong> Облачная платформа с модулями для ИБ и автоматизации.</li>
+          <li><strong>Jira Service Management:</strong> Гибкое решение для управления тикетами.</li>
+          <li><strong>1С:ITIL:</strong> Российское решение, адаптированное под локальные стандарты.</li>
+        </ul>
+
+        <h3>Преимущества ITSM в ИБ</h3>
+        <ul>
+          <li>Ускорение реагирования на инциденты через автоматизацию.</li>
+          <li>Чёткое распределение ролей и ответственности.</li>
+          <li>Интеграция с инструментами ИБ (SIEM, EDR).</li>
+          <li>Улучшение качества услуг через анализ SLA.</li>
+        </ul>
       </div>
     </div>
   `;

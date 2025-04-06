@@ -1154,136 +1154,195 @@ function loadCvssContent(container) {
 }
 
 function loadMitreAttckContent(container) {
-    container.innerHTML = `
-      <div class="vulnerabilities-container">
-        <button class="back-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          Назад
-        </button>
-        <h1>MITRE ATT&CK</h1>
-        <div class="mitre-attck-description">
-          <p><strong>MITRE ATT&CK</strong> (Adversarial Tactics, Techniques, and Common Knowledge) — это база знаний о тактиках, техниках и процедурах (TTP), используемых злоумышленниками в кибератаках. Она структурирована в виде матрицы, которая описывает этапы атаки (например, Initial Access, Execution, Persistence) и конкретные техники, применяемые на каждом этапе.</p>
+  container.innerHTML = `
+    <div class="vulnerabilities-container">
+      <button class="back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Назад
+      </button>
+      <h1>MITRE ATT&CK</h1>
+      <div class="mitre-attck-description">
+        <p><strong>MITRE ATT&CK</strong> (Adversarial Tactics, Techniques, and Common Knowledge) — это база знаний о тактиках, техниках и процедурах (TTP), используемых злоумышленниками в кибератаках. Она структурирована в виде матрицы, которая описывает этапы атаки (например, Initial Access, Execution, Persistence) и конкретные техники, применяемые на каждом этапе.</p>
 
-          <h2>Зачем нужен MITRE ATT&CK?</h2>
-          <p>MITRE ATT&CK помогает организациям и специалистам по безопасности в следующих аспектах:</p>
-          <ul>
-            <li><strong>Понимание атак:</strong> ATT&CK предоставляет детализированное описание тактик и техник, используемых злоумышленниками, что помогает понять их поведение.</li>
-            <li><strong>Моделирование угроз:</strong> ATT&CK используется для создания сценариев атак и моделирования угроз, чтобы подготовиться к возможным инцидентам.</li>
-            <li><strong>Обнаружение и реагирование:</strong> ATT&CK помогает настроить системы обнаружения (SIEM) и реагирования на инциденты, фокусируясь на конкретных техниках.</li>
-            <li><strong>Обучение:</strong> ATT&CK используется для обучения специалистов по безопасности, показывая, как злоумышленники действуют на разных этапах атаки.</li>
-            <li><strong>Стандартизация:</strong> ATT&CK предоставляет единый язык для описания атак, что упрощает коммуникацию между командами и вендорами.</li>
-          </ul>
+        <h2>Зачем нужен MITRE ATT&CK?</h2>
+        <p>MITRE ATT&CK помогает организациям и специалистам по безопасности в следующих аспектах:</p>
+        <ul>
+          <li><strong>Понимание атак:</strong> ATT&CK предоставляет детализированное описание тактик и техник, используемых злоумышленниками, что помогает понять их поведение.</li>
+          <li><strong>Моделирование угроз:</strong> ATT&CK используется для создания сценариев атак и моделирования угроз, чтобы подготовиться к возможным инцидентам.</li>
+          <li><strong>Обнаружение и реагирование:</strong> ATT&CK помогает настроить системы обнаружения (SIEM) и реагирования на инциденты, фокусируясь на конкретных техниках.</li>
+          <li><strong>Обучение:</strong> ATT&CK используется для обучения специалистов по безопасности, показывая, как злоумышленники действуют на разных этапах атаки.</li>
+          <li><strong>Стандартизация:</strong> ATT&CK предоставляет единый язык для описания атак, что упрощает коммуникацию между командами и вендорами.</li>
+        </ul>
 
-          <h2>История MITRE ATT&CK</h2>
-          <p>MITRE ATT&CK был впервые представлен в 2013 году как часть проекта FMX (Fort Meade Experiment) в MITRE. Изначально он был создан для анализа поведения злоумышленников и улучшения обнаружения атак. В 2015 году MITRE опубликовала первую публичную версию ATT&CK, которая включала матрицу для Enterprise-систем. Позже были добавлены матрицы для Mobile и ICS (Industrial Control Systems). Сегодня ATT&CK регулярно обновляется и используется по всему миру как стандарт для анализа киберугроз.</p>
+        <h2>История MITRE ATT&CK</h2>
+        <p>MITRE ATT&CK был впервые представлен в 2013 году как часть проекта FMX (Fort Meade Experiment) в MITRE. Изначально он был создан для анализа поведения злоумышленников и улучшения обнаружения атак. В 2015 году MITRE опубликовала первую публичную версию ATT&CK, которая включала матрицу для Enterprise-систем. Позже были добавлены матрицы для Mobile и ICS (Industrial Control Systems). Сегодня ATT&CK регулярно обновляется и используется по всему миру как стандарт для анализа киберугроз.</p>
 
-          <h2>Как используется MITRE ATT&CK?</h2>
-          <p>MITRE ATT&CK применяется в различных аспектах кибербезопасности:</p>
-          <ul>
-            <li><strong>Моделирование угроз:</strong> ATT&CK используется для создания сценариев атак (например, как злоумышленник может использовать технику T1190 для начального доступа).</li>
-            <li><strong>Настройка обнаружения:</strong> SIEM-системы, такие как Splunk, настраиваются для обнаружения техник ATT&CK (например, T1059 — Command and Scripting Interpreter).</li>
-            <li><strong>Реагирование на инциденты:</strong> ATT&CK помогает определить, какие техники использовались в атаке, и разработать план реагирования (например, анализ логов для выявления T1078).</li>
-            <li><strong>Пентестинг:</strong> Пентестеры используют ATT&CK для имитации реальных атак (например, применение T1021 для бокового перемещения).</li>
-            <li><strong>Анализ уязвимостей:</strong> ATT&CK связывается с CVE для понимания, как уязвимости могут быть использованы в атаках (например, <code>CVE-2021-44228</code> с T1190).</li>
-            <li><strong>Обучение:</strong> ATT&CK используется в тренингах для демонстрации тактик и техник, таких как T1082 (System Information Discovery).</li>
-          </ul>
+        <h2>Как используется MITRE ATT&CK?</h2>
+        <p>MITRE ATT&CK применяется в различных аспектах кибербезопасности:</p>
+        <ul>
+          <li><strong>Моделирование угроз:</strong> ATT&CK используется для создания сценариев атак (например, как злоумышленник может использовать технику T1190 для начального доступа).</li>
+          <li><strong>Настройка обнаружения:</strong> SIEM-системы, такие как Splunk, настраиваются для обнаружения техник ATT&CK (например, T1059 — Command and Scripting Interpreter).</li>
+          <li><strong>Реагирование на инциденты:</strong> ATT&CK помогает определить, какие техники использовались в атаке, и разработать план реагирования (например, анализ логов для выявления T1078).</li>
+          <li><strong>Пентестинг:</strong> Пентестеры используют ATT&CK для имитации реальных атак (например, применение T1021 для бокового перемещения).</li>
+          <li><strong>Анализ уязвимостей:</strong> ATT&CK связывается с CVE для понимания, как уязвимости могут быть использованы в атаках (например, <code>CVE-2021-44228</code> с T1190).</li>
+          <li><strong>Обучение:</strong> ATT&CK используется в тренингах для демонстрации тактик и техник, таких как T1082 (System Information Discovery).</li>
+        </ul>
 
-          <h2>Как MITRE ATT&CK помогает в управлении угрозами?</h2>
-          <p>MITRE ATT&CK предоставляет следующие возможности для управления киберугрозами:</p>
-          <ul>
-            <li><strong>Проактивная защита:</strong> ATT&CK позволяет подготовиться к атакам, зная, какие техники могут быть использованы (например, защита от T1190 с помощью WAF).</li>
-            <li><strong>Улучшение обнаружения:</strong> ATT&CK помогает настроить правила обнаружения в SIEM для конкретных техник (например, обнаружение T1059 через анализ командных строк).</li>
-            <li><strong>Анализ инцидентов:</strong> ATT&CK позволяет понять, на каком этапе атаки находится злоумышленник (например, T1021 указывает на боковое перемещение).</li>
-            <li><strong>Оптимизация ресурсов:</strong> ATT&CK помогает сосредоточиться на наиболее вероятных техниках, используемых в вашей отрасли (например, T1078 в финансовом секторе).</li>
-            <li><strong>Связь с реальными атаками:</strong> ATT&CK позволяет сопоставить атаки с известными группами (например, APT29 использует T1082 для разведки).</li>
-          </ul>
+        <h2>Как MITRE ATT&CK помогает в управлении угрозами?</h2>
+        <p>MITRE ATT&CK предоставляет следующие возможности для управления киберугрозами:</p>
+        <ul>
+          <li><strong>Проактивная защита:</strong> ATT&CK позволяет подготовиться к атакам, зная, какие техники могут быть использованы (например, защита от T1190 с помощью WAF).</li>
+          <li><strong>Улучшение обнаружения:</strong> ATT&CK помогает настроить правила обнаружения в SIEM для конкретных техник (например, обнаружение T1059 через анализ командных строк).</li>
+          <li><strong>Анализ инцидентов:</strong> ATT&CK позволяет понять, на каком этапе атаки находится злоумышленник (например, T1021 указывает на боковое перемещение).</li>
+          <li><strong>Оптимизация ресурсов:</strong> ATT&CK помогает сосредоточиться на наиболее вероятных техниках, используемых в вашей отрасли (например, T1078 в финансовом секторе).</li>
+          <li><strong>Связь с реальными атаками:</strong> ATT&CK позволяет сопоставить атаки с известными группами (например, APT29 использует T1082 для разведки).</li>
+        </ul>
 
-          <h2>Связь MITRE ATT&CK с другими системами</h2>
-          <p>MITRE ATT&CK интегрируется с другими стандартами и системами:</p>
-          <ul>
-            <li><strong>CVE:</strong> ATT&CK связывает уязвимости с техниками (например, <code>CVE-2021-44228</code> с T1190 — Exploit Public-Facing Application).</li>
-            <li><strong>CVSS:</strong> ATT&CK используется вместе с CVSS для оценки риска техник, связанных с уязвимостями (например, T1190 с CVSS 9.8).</li>
-            <li><strong>CWE:</strong> ATT&CK помогает понять, какие слабости (CWE) могут быть использованы в техниках (например, T1059 связан с <code>CWE-77</code>).</li>
-            <li><strong>NIST 800-53:</strong> ATT&CK используется для реализации контролей безопасности, таких как мониторинг и реагирование.</li>
-            <li><strong>SIEM и EDR:</strong> ATT&CK интегрируется с системами, такими как Splunk или CrowdStrike, для обнаружения и анализа техник.</li>
-          </ul>
+        <h2>Связь MITRE ATT&CK с другими системами</h2>
+        <p>MITRE ATT&CK интегрируется с другими стандартами и системами:</p>
+        <ul>
+          <li><strong>CVE:</strong> ATT&CK связывает уязвимости с техниками (например, <code>CVE-2021-44228</code> с T1190 — Exploit Public-Facing Application).</li>
+          <li><strong>CVSS:</strong> ATT&CK используется вместе с CVSS для оценки риска техник, связанных с уязвимостями (например, T1190 с CVSS 9.8).</li>
+          <li><strong>CWE:</strong> ATT&CK помогает понять, какие слабости (CWE) могут быть использованы в техниках (например, T1059 связан с <code>CWE-77</code>).</li>
+          <li><strong>NIST 800-53:</strong> ATT&CK используется для реализации контролей безопасности, таких как мониторинг и реагирование.</li>
+          <li><strong>SIEM и EDR:</strong> ATT&CK интегрируется с системами, такими как Splunk или CrowdStrike, для обнаружения и анализа техник.</li>
+        </ul>
 
-          <h2>Преимущества MITRE ATT&CK</h2>
-          <p>Использование MITRE ATT&CK приносит следующие преимущества:</p>
-          <ul>
-            <li><strong>Детализация:</strong> ATT&CK предоставляет подробное описание техник, что помогает понять поведение злоумышленников.</li>
-            <li><strong>Универсальность:</strong> ATT&CK охватывает атаки на Enterprise, Mobile и ICS, что делает его применимым в разных средах.</li>
-            <li><strong>Доступность:</strong> ATT&CK является бесплатным и открытым ресурсом, доступным для всех.</li>
-            <li><strong>Интеграция:</strong> ATT&CK легко интегрируется с другими системами, такими как CVE, CVSS и SIEM.</li>
-            <li><strong>Практичность:</strong> ATT&CK ориентирован на реальные атаки, что делает его полезным для практического применения.</li>
-          </ul>
+        <h2>Преимущества MITRE ATT&CK</h2>
+        <p>Использование MITRE ATT&CK приносит следующие преимущества:</p>
+        <ul>
+          <li><strong>Детализация:</strong> ATT&CK предоставляет подробное описание техник, что помогает понять поведение злоумышленников.</li>
+          <li><strong>Универсальность:</strong> ATT&CK охватывает атаки на Enterprise, Mobile и ICS, что делает его применимым в разных средах.</li>
+          <li><strong>Доступность:</strong> ATT&CK является бесплатным и открытым ресурсом, доступным для всех.</li>
+          <li><strong>Интеграция:</strong> ATT&CK легко интегрируется с другими системами, такими как CVE, CVSS и SIEM.</li>
+          <li><strong>Практичность:</strong> ATT&CK ориентирован на реальные атаки, что делает его полезным для практического применения.</li>
+        </ul>
 
-          <h2>Области применения</h2>
-          <p>MITRE ATT&CK используется в различных сценариях:</p>
-          <ul>
-            <li><strong>Моделирование угроз:</strong> Создание сценариев атак для подготовки к инцидентам.</li>
-            <li><strong>Обнаружение и реагирование:</strong> Настройка систем мониторинга и реагирования на инциденты.</li>
-            <li><strong>Пентестинг:</strong> Имитация атак для проверки защищённости систем.</li>
-            <li><strong>Анализ уязвимостей:</strong> Связь техник с уязвимостями для понимания их последствий.</li>
-            <li><strong>Обучение:</strong> Проведение тренингов для специалистов по безопасности.</li>
-          </ul>
+        <h2>Области применения</h2>
+        <p>MITRE ATT&CK используется в различных сценариях:</p>
+        <ul>
+          <li><strong>Моделирование угроз:</strong> Создание сценариев атак для подготовки к инцидентам.</li>
+          <li><strong>Обнаружение и реагирование:</strong> Настройка систем мониторинга и реагирования на инциденты.</li>
+          <li><strong>Пентестинг:</strong> Имитация атак для проверки защищённости систем.</li>
+          <li><strong>Анализ уязвимостей:</strong> Связь техник с уязвимостями для понимания их последствий.</li>
+          <li><strong>Обучение:</strong> Проведение тренингов для специалистов по безопасности.</li>
+        </ul>
 
-          <p>Ниже представлена таблица с примерами техник из MITRE ATT&CK, их описанием, примерами применения и рекомендациями по защите.</p>
+        <h2>Основные тактики MITRE ATT&CK</h2>
+        <p>Ниже представлена схема основных тактик MITRE ATT&CK с описанием и примерами:</p>
+        <div class="attck-diagram" style="margin-bottom: 20px;">
+          <div class="attck-container" style="display: flex; align-items: stretch; gap: 20px;">
+            <div class="attck-tactics" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+              <h3>Основные тактики</h3>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <div style="background-color: #2e7d32; padding: 8px; border-radius: 5px; width: 200px;">
+                  Разведка
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Reconnaissance</p>
+                </div>
+                <div style="background-color: #388e3c; padding: 8px; border-radius: 5px; width: 200px;">
+                  Доступ
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Initial Access</p>
+                </div>
+                <div style="background-color: #66bb6a; padding: 8px; border-radius: 5px; width: 200px;">
+                  Выполнение
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Execution</p>
+                </div>
+                <div style="background-color: #ffeb3b; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
+                  Закрепление
+                  <p style="font-size: 12px; margin: 5px 0 0;">Persistence</p>
+                </div>
+                <div style="background-color: #fff176; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
+                  Повышение привилегий
+                  <p style="font-size: 12px; margin: 5px 0 0;">Privilege Escalation</p>
+                </div>
+                <div style="background-color: #ff9800; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
+                  Обход защиты
+                  <p style="font-size: 12px; margin: 5px 0 0;">Defense Evasion</p>
+                </div>
+                <div style="background-color: #d32f2f; padding: 8px; border-radius: 5px; width: 200px;">
+                  Сбор данных
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Collection</p>
+                </div>
+                <div style="background-color: #2a2f3b; padding: 8px; border-radius: 5px; width: 200px;">
+                  Эксфильтрация
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Exfiltration</p>
+                </div>
+              </div>
+            </div>
+            <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+            <div style="flex: 1; padding: 15px;">
+              <h3>Описание тактик</h3>
+              <ul>
+                <li><strong>Разведка (Reconnaissance):</strong> Сбор информации о цели перед атакой. Пример: сканирование портов с помощью Nmap.</li>
+                <li><strong>Доступ (Initial Access):</strong> Проникновение в систему. Пример: фишинговая атака с вредоносной ссылкой.</li>
+                <li><strong>Выполнение (Execution):</strong> Запуск вредоносного кода. Пример: выполнение PowerShell-скрипта.</li>
+                <li><strong>Закрепление (Persistence):</strong> Обеспечение постоянного присутствия в системе. Пример: добавление в автозагрузку Windows.</li>
+                <li><strong>Повышение привилегий (Privilege Escalation):</strong> Получение более высоких прав доступа. Пример: эксплуатация уязвимости Dirty Pipe (CVE-2022-0847).</li>
+                <li><strong>Обход защиты (Defense Evasion):</strong> Обход средств защиты, таких как антивирусы. Пример: шифрование полезной нагрузки.</li>
+                <li><strong>Сбор данных (Collection):</strong> Поиск и сбор ценных данных. Пример: экспорт базы данных через SQL-запрос.</li>
+                <li><strong>Эксфильтрация (Exfiltration):</strong> Передача украденных данных наружу. Пример: отправка файлов через HTTPS.</li>
+              </ul>
+              <p><strong>Противодействие:</strong> Используйте MITRE ATT&CK для настройки систем обнаружения (EDR, SIEM), анализа инцидентов и разработки мер защиты, таких как обновление ПО, внедрение MFA и мониторинг сети.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="osi-table-container">
-          <table class="osi-table">
-            <thead>
-              <tr>
-                <th>Название техники</th>
-                <th>Описание</th>
-                <th>Пример применения</th>
-                <th>Рекомендации по защите</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Exploit Public-Facing Application (<code>T1190</code>)</strong></td>
-                <td>Использование уязвимостей в публичных приложениях для получения начального доступа (Initial Access).</td>
-                <td>Злоумышленник использует <code>CVE-2021-44228</code> (Log4Shell) для выполнения кода через публичный веб-сервер.</td>
-                <td>Настроить WAF для фильтрации вредоносных запросов, регулярно обновлять ПО, проводить пентесты.</td>
-              </tr>
-              <tr>
-                <td><strong>Command and Scripting Interpreter (<code>T1059</code>)</strong></td>
-                <td>Использование командных оболочек (например, PowerShell) для выполнения вредоносных команд (Execution).</td>
-                <td>Злоумышленник выполняет <code>powershell.exe -EncodedCommand</code> для загрузки вредоносного ПО.</td>
-                <td>Ограничить выполнение PowerShell для непривилегированных пользователей, мониторить командные строки через SIEM.</td>
-              </tr>
-              <tr>
-                <td><strong>Valid Accounts (<code>T1078</code>)</strong></td>
-                <td>Использование украденных учётных данных для доступа к системам (Persistence, Privilege Escalation).</td>
-                <td>Злоумышленник использует украденные учётные данные администратора для входа в систему.</td>
-                <td>Внедрить MFA, мониторить аномальную активность учётных записей, использовать RBAC.</td>
-              </tr>
-              <tr>
-                <td><strong>Remote Desktop Protocol (<code>T1021</code>)</strong></td>
-                <td>Использование RDP для бокового перемещения внутри сети (Lateral Movement).</td>
-                <td>Злоумышленник подключается к серверу через RDP, используя украденные учётные данные.</td>
-                <td>Ограничить доступ к RDP (порт 3389), использовать VPN, включить Network Level Authentication (NLA).</td>
-              </tr>
-              <tr>
-                <td><strong>System Information Discovery (<code>T1082</code>)</strong></td>
-                <td>Сбор информации о системе для дальнейшей атаки (Discovery).</td>
-                <td>Злоумышленник выполняет <code>systeminfo</code> для получения данных о версии ОС и патчах.</td>
-                <td>Ограничить доступ к системным командам, мониторить подозрительные вызовы через EDR.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <p>Ниже представлена таблица с примерами техник из MITRE ATT&CK, их описанием, примерами применения и рекомендациями по защите.</p>
       </div>
-    `;
 
-    document.querySelector('.back-btn').addEventListener('click', () => {
-      loadVulnerabilitiesContent(container);
-    });
+      <div class="osi-table-container">
+        <table class="osi-table">
+          <thead>
+            <tr>
+              <th>Название техники</th>
+              <th>Описание</th>
+              <th>Пример применения</th>
+              <th>Рекомендации по защите</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Exploit Public-Facing Application (<code>T1190</code>)</strong></td>
+              <td>Использование уязвимостей в публичных приложениях для получения начального доступа (Initial Access).</td>
+              <td>Злоумышленник использует <code>CVE-2021-44228</code> (Log4Shell) для выполнения кода через публичный веб-сервер.</td>
+              <td>Настроить WAF для фильтрации вредоносных запросов, регулярно обновлять ПО, проводить пентесты.</td>
+            </tr>
+            <tr>
+              <td><strong>Command and Scripting Interpreter (<code>T1059</code>)</strong></td>
+              <td>Использование командных оболочек (например, PowerShell) для выполнения вредоносных команд (Execution).</td>
+              <td>Злоумышленник выполняет <code>powershell.exe -EncodedCommand</code> для загрузки вредоносного ПО.</td>
+              <td>Ограничить выполнение PowerShell для непривилегированных пользователей, мониторить командные строки через SIEM.</td>
+            </tr>
+            <tr>
+              <td><strong>Valid Accounts (<code>T1078</code>)</strong></td>
+              <td>Использование украденных учётных данных для доступа к системам (Persistence, Privilege Escalation).</td>
+              <td>Злоумышленник использует украденные учётные данные администратора для входа в систему.</td>
+              <td>Внедрить MFA, мониторить аномальную активность учётных записей, использовать RBAC.</td>
+            </tr>
+            <tr>
+              <td><strong>Remote Desktop Protocol (<code>T1021</code>)</strong></td>
+              <td>Использование RDP для бокового перемещения внутри сети (Lateral Movement).</td>
+              <td>Злоумышленник подключается к серверу через RDP, используя украденные учётные данные.</td>
+              <td>Ограничить доступ к RDP (порт 3389), использовать VPN, включить Network Level Authentication (NLA).</td>
+            </tr>
+            <tr>
+              <td><strong>System Information Discovery (<code>T1082</code>)</strong></td>
+              <td>Сбор информации о системе для дальнейшей атаки (Discovery).</td>
+              <td>Злоумышленник выполняет <code>systeminfo</code> для получения данных о версии ОС и патчах.</td>
+              <td>Ограничить доступ к системным командам, мониторить подозрительные вызовы через EDR.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+
+  document.querySelector('.back-btn').addEventListener('click', () => {
+    loadVulnerabilitiesContent(container);
+  });
 }
 
 function loadZtaContent(container) {
@@ -1574,11 +1633,11 @@ function loadLanguageVulnerabilitiesContent(container) {
             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
               <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Типичные уязвимости
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, XSS, RCE</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, XSS, RCE, LFI/RFI</p>
               </div>
               <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Поиск
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Статический анализ</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">RIPS, Psalm</p>
               </div>
               <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Эксплуатация
@@ -1589,11 +1648,11 @@ function loadLanguageVulnerabilitiesContent(container) {
           <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
           <div style="flex: 1; padding: 15px;">
             <h3>PHP</h3>
-            <p><strong>Типичные уязвимости:</strong> SQL-инъекции (SQLi), межсайтовый скриптинг (XSS), удалённое выполнение кода (RCE), уязвимости включения файлов (LFI/RFI).</p>
-            <p><strong>Как искать:</strong> Используйте статический анализ (RIPS, Psalm), ищите опасные функции вроде <code>eval()</code>, <code>exec()</code>, <code>include()</code> без фильтрации ввода. Проверяйте запросы к БД без параметризации (например, <code>mysql_query($_GET['id'])</code>).</p>
-            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code> в параметры ввода; для RCE — используйте <code>system($_GET['cmd'])</code> в тестовой среде с разрешения владельца; для LFI — попробуйте <code>../../etc/passwd</code>. Все действия только в контролируемой среде.</p>
-            <p><strong>Векторы эксплуатации:</strong> GET/POST-параметры, заголовки HTTP, загрузка файлов, десериализация данных (<code>unserialize()</code>).</p>
-            <p><strong>Рекомендации:</strong> Используйте PDO с параметризованными запросами, экранируйте вывод (<code>htmlspecialchars()</code>), избегайте динамического выполнения кода.</p>
+            <p><strong>Типичные уязвимости:</strong> SQL-инъекции (SQLi), межсайтовый скриптинг (XSS), удалённое выполнение кода (RCE), уязвимости включения файлов (LFI/RFI), небезопасная десериализация через <code>unserialize()</code>.</p>
+            <p><strong>Как искать:</strong> Используйте инструменты статического анализа, такие как RIPS, Psalm или PHPStan. Ищите опасные функции вроде <code>eval()</code>, <code>exec()</code>, <code>system()</code>, <code>include($_GET['file'])</code> без фильтрации ввода, а также запросы к БД без параметризации (например, <code>mysql_query($_GET['id'])</code>). Проверяйте использование <code>unserialize()</code> с данными от пользователя.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code> в параметры ввода; для XSS — отправьте <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> в поле без экранирования; для RCE — используйте <code>system($_GET['cmd'])</code> с вводом <code>whoami</code>; для LFI — попробуйте <code>../../etc/passwd</code>; для десериализации — создайте вредоносный объект (например, через POP-цепочку) и передайте в <code>unserialize()</code>. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> GET/POST-параметры, HTTP-заголовки (например, User-Agent), загрузка файлов, десериализованные данные, куки.</p>
+            <p><strong>Рекомендации:</strong> Используйте PDO или MySQLi с параметризованными запросами (например, <code>$stmt->prepare("SELECT * FROM users WHERE id = ?")</code>), экранируйте вывод через <code>htmlspecialchars()</code>, фильтруйте пути для <code>include</code> с белыми списками, избегайте <code>unserialize()</code> с пользовательскими данными, используйте <code>json_decode()</code> вместо этого.</p>
           </div>
         </div>
       </div>
@@ -1609,7 +1668,7 @@ function loadLanguageVulnerabilitiesContent(container) {
               </div>
               <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Поиск
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SpotBugs</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SpotBugs, SonarQube</p>
               </div>
               <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Эксплуатация
@@ -1620,11 +1679,11 @@ function loadLanguageVulnerabilitiesContent(container) {
           <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
           <div style="flex: 1; padding: 15px;">
             <h3>Java</h3>
-            <p><strong>Типичные уязвимости:</strong> XML External Entity (XXE), небезопасная десериализация, SQLi, RCE.</p>
-            <p><strong>Как искать:</strong> Используйте SpotBugs, FindBugs, анализаторы кода (SonarQube). Проверяйте использование <code>ObjectInputStream</code>, <code>XMLDecoder</code>, уязвимые парсеры XML (SAX, DOM).</p>
-            <p><strong>Эксплуатация (в научных целях):</strong> Для XXE — отправьте XML с <code>&lt;!ENTITY xxe SYSTEM "file:///etc/passwd"&gt;</code>; для десериализации — создайте вредоносный объект (ysoserial) в тестовой среде с разрешения.</p>
-            <p><strong>Векторы эксплуатации:</strong> Ввод XML, сериализованные объекты, параметры запросов, загрузка файлов.</p>
-            <p><strong>Рекомендации:</strong> Отключите внешние сущности в XML-парсерах, используйте белые списки для десериализации, применяйте ORM (Hibernate) для SQL.</p>
+            <p><strong>Типичные уязвимости:</strong> XML External Entity (XXE), небезопасная десериализация, SQL-инъекции (SQLi), удалённое выполнение кода (RCE), Server-Side Request Forgery (SSRF).</p>
+            <p><strong>Как искать:</strong> Используйте SpotBugs, FindBugs, SonarQube для статического анализа. Проверяйте уязвимые XML-парсеры (например, <code>DocumentBuilder</code> без отключения внешних сущностей), использование <code>ObjectInputStream.readObject()</code>, прямые SQL-запросы (например, <code>Statement.execute("SELECT * FROM users WHERE id = '" + id + "'")</code>), вызовы <code>Runtime.exec()</code>, и HTTP-клиенты вроде <code>HttpURLConnection</code> без валидации URL.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для XXE — отправьте XML с <code>&lt;!ENTITY xxe SYSTEM "file:///etc/passwd"&gt;</code>; для десериализации — создайте вредоносный объект с помощью ysoserial и передайте в <code>readObject()</code>; для SQLi — подставьте <code>' OR '1'='1</code>; для RCE — используйте <code>Runtime.getRuntime().exec("cmd /c dir")</code>; для SSRF — отправьте <code>http://localhost:8080</code>. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод XML, сериализованные данные (например, через POST), параметры запросов, HTTP-заголовки, загрузка файлов.</p>
+            <p><strong>Рекомендации:</strong> Отключите внешние сущности в XML-парсерах (<code>builder.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)</code>), используйте белые списки для десериализации или безопасные альтернативы вроде <code>Jackson</code>, применяйте <code>PreparedStatement</code> для SQL, избегайте <code>Runtime.exec()</code>, валидируйте URL в HTTP-запросах.</p>
           </div>
         </div>
       </div>
@@ -1636,11 +1695,11 @@ function loadLanguageVulnerabilitiesContent(container) {
             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
               <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Типичные уязвимости
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, RCE</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, RCE, Deserialization</p>
               </div>
               <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Поиск
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Detekt</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Detekt, SonarQube</p>
               </div>
               <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Эксплуатация
@@ -1651,11 +1710,11 @@ function loadLanguageVulnerabilitiesContent(container) {
           <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
           <div style="flex: 1; padding: 15px;">
             <h3>Kotlin</h3>
-            <p><strong>Типичные уязвимости:</strong> SQLi, RCE (через Java-библиотеки), небезопасная десериализация.</p>
-            <p><strong>Как искать:</strong> Используйте Detekt, SonarQube для анализа кода, проверяйте интеграцию с Java (например, <code>ObjectInputStream</code>).</p>
-            <p><strong>Эксплуатация (в научных целях):</strong> Аналогично Java — тестируйте десериализацию или SQLi (<code>' OR 1=1</code>) в тестовой среде с разрешения.</p>
-            <p><strong>Векторы эксплуатации:</strong> Параметры ввода, взаимодействие с Java-библиотеками, JSON/XML-данные.</p>
-            <p><strong>Рекомендации:</strong> Используйте безопасные API (Kotlinx.serialization), параметризованные запросы, избегайте устаревших Java-функций.</p>
+            <p><strong>Типичные уязвимости:</strong> SQL-инъекции (SQLi), удалённое выполнение кода (RCE) через Java-библиотеки, небезопасная десериализация, SSRF через HTTP-клиенты.</p>
+            <p><strong>Как искать:</strong> Используйте Detekt, SonarQube для анализа кода. Проверяйте интеграцию с Java (например, <code>ObjectInputStream.readObject()</code>), прямые SQL-запросы (например, <code>db.execSQL("SELECT * FROM users WHERE id = '$id'")</code>), вызовы <code>Runtime.exec()</code>, и HTTP-запросы вроде <code>HttpClient.newCall()</code> без проверки URL.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code>; для RCE — используйте <code>Runtime.getRuntime().exec("cmd /c dir")</code> через Java-интероп; для десериализации — передайте вредоносный объект в <code>readObject()</code>; для SSRF — отправьте <code>http://localhost</code>. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> Пользовательский ввод, параметры запросов, JSON/XML-данные, вызовы Java-методов.</p>
+            <p><strong>Рекомендации:</strong> Используйте безопасные API (например, <code>Kotlinx.serialization</code> вместо Java-десериализации), применяйте <code>Room</code> или <code>SQLiteDatabase</code> с параметрами, избегайте прямых вызовов Java RCE-функций, валидируйте URL в HTTP-запросах.</p>
           </div>
         </div>
       </div>
@@ -1667,11 +1726,11 @@ function loadLanguageVulnerabilitiesContent(container) {
             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
               <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Типичные уязвимости
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, XSS</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, XSS, RCE</p>
               </div>
               <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Поиск
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Roslyn</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Roslyn, SonarQube</p>
               </div>
               <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Эксплуатация
@@ -1682,11 +1741,11 @@ function loadLanguageVulnerabilitiesContent(container) {
           <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
           <div style="flex: 1; padding: 15px;">
             <h3>C#</h3>
-            <p><strong>Типичные уязвимости:</strong> SQLi, XSS, небезопасная десериализация, RCE через <code>Process.Start()</code>.</p>
-            <p><strong>Как искать:</strong> Используйте Roslyn-анализаторы, SonarQube, ищите <code>SqlCommand</code> без параметров, <code>BinaryFormatter</code>.</p>
-            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code>; для RCE — используйте <code>Process.Start("cmd.exe", "/c dir")</code> в тестовой среде.</p>
-            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, HTTP-запросы, сериализованные данные.</p>
-            <p><strong>Рекомендации:</strong> Используйте Entity Framework, экранируйте вывод, избегайте <code>BinaryFormatter</code>.</p>
+            <p><strong>Типичные уязвимости:</strong> SQL-инъекции (SQLi), межсайтовый скриптинг (XSS), удалённое выполнение кода (RCE) через <code>Process.Start()</code>, небезопасная десериализация (например, <code>BinaryFormatter</code>), SSRF.</p>
+            <p><strong>Как искать:</strong> Используйте Roslyn-анализаторы, SonarQube. Ищите прямые SQL-запросы (например, <code>SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE id = '" + id + "'")</code>), вызовы <code>Process.Start(userInput)</code>, использование <code>BinaryFormatter.Deserialize()</code>, HTTP-запросы через <code>HttpClient</code> без валидации URL.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code>; для XSS — отправьте <code>&lt;script&gt;alert(1)&lt;/script&gt;</code>; для RCE — используйте <code>Process.Start("cmd.exe", "/c dir")</code>; для десериализации — передайте вредоносный объект в <code>BinaryFormatter</code>; для SSRF — отправьте <code>http://localhost</code>. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, HTTP-запросы, сериализованные данные, заголовки, загрузка файлов.</p>
+            <p><strong>Рекомендации:</strong> Используйте Entity Framework или <code>SqlParameter</code> для SQL, экранируйте вывод через Razor или <code>HttpUtility.HtmlEncode</code>, избегайте <code>BinaryFormatter</code> (используйте <code>JsonSerializer</code>), заменяйте <code>Process.Start</code> на безопасные альтернативы, валидируйте URL.</p>
           </div>
         </div>
       </div>
@@ -1698,11 +1757,11 @@ function loadLanguageVulnerabilitiesContent(container) {
             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
               <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Типичные уязвимости
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">RCE, Pickle</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">RCE, Pickle, SQLi</p>
               </div>
               <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Поиск
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Bandit</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Bandit, Pylint</p>
               </div>
               <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Эксплуатация
@@ -1713,11 +1772,11 @@ function loadLanguageVulnerabilitiesContent(container) {
           <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
           <div style="flex: 1; padding: 15px;">
             <h3>Python</h3>
-            <p><strong>Типичные уязвимости:</strong> RCE через <code>eval()</code>/<code>exec()</code>, небезопасная десериализация (<code>pickle</code>), SQLi.</p>
-            <p><strong>Как искать:</strong> Используйте Bandit, Pylint, ищите <code>eval(input())</code>, <code>pickle.loads()</code>, прямые SQL-запросы.</p>
-            <p><strong>Эксплуатация (в научных целях):</strong> Для RCE — подставьте <code>__import__('os').system('ls')</code> в <code>eval()</code>; для <code>pickle</code> — создайте вредоносный объект в тестовой среде.</p>
-            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, загрузка файлов, сетевые данные.</p>
-            <p><strong>Рекомендации:</strong> Избегайте <code>eval()/exec()</code>, используйте <code>json</code> вместо <code>pickle</code>, применяйте ORM (SQLAlchemy).</p>
+            <p><strong>Типичные уязвимости:</strong> Удалённое выполнение кода (RCE) через <code>eval()</code>/<code>exec()</code>, небезопасная десериализация (<code>pickle</code>), SQL-инъекции (SQLi), SSRF через HTTP-клиенты.</p>
+            <p><strong>Как искать:</strong> Используйте Bandit, Pylint, Semgrep. Ищите <code>eval(input())</code>, <code>exec(user_data)</code>, <code>pickle.loads(user_input)</code>, прямые SQL-запросы (например, <code>cursor.execute("SELECT * FROM users WHERE id = '" + id + "'")</code>), вызовы <code>os.system()</code>, и HTTP-запросы через <code>requests.get()</code> без проверки URL.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для RCE — подставьте <code>__import__('os').system('ls')</code> в <code>eval()</code>; для <code>pickle</code> — создайте вредоносный объект и передайте в <code>pickle.loads()</code>; для SQLi — используйте <code>' OR '1'='1</code>; для SSRF — отправьте <code>requests.get('http://localhost')</code>. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, загрузка файлов, сетевые данные, HTTP-параметры.</p>
+            <p><strong>Рекомендации:</strong> Избегайте <code>eval()/exec()</code>, используйте <code>ast.literal_eval()</code> для безопасного разбора, заменяйте <code>pickle</code> на <code>json</code>, применяйте ORM (SQLAlchemy) с параметрами, валидируйте URL в HTTP-запросах, используйте <code>subprocess</code> с фиксированными командами вместо <code>os.system()</code>.</p>
           </div>
         </div>
       </div>
@@ -1729,11 +1788,11 @@ function loadLanguageVulnerabilitiesContent(container) {
             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
               <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Типичные уязвимости
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">RCE, YAML</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">RCE, YAML, SQLi</p>
               </div>
               <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Поиск
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Brakeman</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Brakeman, RuboCop</p>
               </div>
               <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Эксплуатация
@@ -1744,11 +1803,11 @@ function loadLanguageVulnerabilitiesContent(container) {
           <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
           <div style="flex: 1; padding: 15px;">
             <h3>Ruby</h3>
-            <p><strong>Типичные уязвимости:</strong> RCE через <code>eval</code>, небезопасная десериализация YAML, SQLi.</p>
-            <p><strong>Как искать:</strong> Используйте Brakeman, RuboCop, ищите <code>eval(params[:x])</code>, <code>YAML.load</code>.</p>
-            <p><strong>Эксплуатация (в научных целях):</strong> Для RCE — подставьте <code>system('ls')</code> в <code>eval</code>; для YAML — отправьте вредоносный YAML (<code>!ruby/object</code>) в тестовой среде.</p>
-            <p><strong>Векторы эксплуатации:</strong> Параметры запросов, пользовательский ввод, загрузка файлов.</p>
-            <p><strong>Рекомендации:</strong> Используйте <code>safe_yaml</code>, избегайте <code>eval</code>, применяйте ActiveRecord для SQL.</p>
+            <p><strong>Типичные уязвимости:</strong> Удалённое выполнение кода (RCE) через <code>eval</code>, небезопасная десериализация YAML, SQL-инъекции (SQLi), XSS.</p>
+            <p><strong>Как искать:</strong> Используйте Brakeman, RuboCop. Ищите <code>eval(params[:x])</code>, <code>YAML.load(user_input)</code>, прямые SQL-запросы (например, <code>User.where("id = '#{params[:id]}'")</code>), вывод без экранирования в ERB (например, <code><%= user_input %></code>).</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для RCE — подставьте <code>system('ls')</code> в <code>eval</code>; для YAML — отправьте <code>!ruby/object:Class {code: system('ls')}</code>; для SQLi — используйте <code>' OR '1'='1</code>; для XSS — отправьте <code>&lt;script&gt;alert(1)&lt;/script&gt;</code>. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> Параметры запросов, пользовательский ввод, YAML/JSON-данные, HTTP-заголовки.</p>
+            <p><strong>Рекомендации:</strong> Избегайте <code>eval</code>, используйте <code>Psych.safe_load</code> для YAML, применяйте ActiveRecord с параметрами (например, <code>User.where(id: params[:id])</code>), экранируйте вывод в ERB через <code><%= h user_input %></code> или используйте Rails HTML-экранирование по умолчанию.</p>
           </div>
         </div>
       </div>
@@ -1760,11 +1819,11 @@ function loadLanguageVulnerabilitiesContent(container) {
             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
               <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Типичные уязвимости
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SSRF, RCE</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SSRF, RCE, SQLi</p>
               </div>
               <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Поиск
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">ESLint</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">ESLint, Snyk</p>
               </div>
               <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Эксплуатация
@@ -1775,11 +1834,11 @@ function loadLanguageVulnerabilitiesContent(container) {
           <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
           <div style="flex: 1; padding: 15px;">
             <h3>Node.js</h3>
-            <p><strong>Типичные уязвимости:</strong> SSRF, RCE через <code>eval()</code>, SQLi, Prototype Pollution.</p>
-            <p><strong>Как искать:</strong> Используйте ESLint, Snyk, ищите <code>eval(req.query.x)</code>, <code>child_process.exec()</code>, уязвимые npm-пакеты.</p>
-            <p><strong>Эксплуатация (в научных целях):</strong> Для RCE — подставьте <code>require('child_process').exec('ls')</code>; для Prototype Pollution — измените <code>__proto__</code> в JSON.</p>
-            <p><strong>Векторы эксплуатации:</strong> HTTP-запросы, JSON-данные, npm-пакеты.</p>
-            <p><strong>Рекомендации:</strong> Используйте безопасные альтернативы (<code>vm</code>), проверяйте зависимости (Snyk), применяйте ORM (Sequelize).</p>
+            <p><strong>Типичные уязвимости:</strong> Server-Side Request Forgery (SSRF), удалённое выполнение кода (RCE) через <code>eval()</code>, SQL-инъекции (SQLi), Prototype Pollution, XSS.</p>
+            <p><strong>Как искать:</strong> Используйте ESLint, Snyk, Semgrep. Ищите <code>eval(req.query.x)</code>, <code>child_process.exec(user_input)</code>, прямые SQL-запросы (например, <code>db.query("SELECT * FROM users WHERE id = '" + id + "'")</code>), модификацию <code>__proto__</code> в JSON, вывод без экранирования.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SSRF — отправьте <code>http://localhost</code> через <code>axios.get()</code>; для RCE — подставьте <code>require('child_process').exec('ls')</code> в <code>eval()</code>; для SQLi — используйте <code>' OR '1'='1</code>; для Prototype Pollution — отправьте <code>{"__proto__": {"polluted": true}}</code>; для XSS — отправьте <code>&lt;script&gt;alert(1)&lt;/script&gt;</code>. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> HTTP-запросы, JSON-данные, npm-пакеты, пользовательский ввод.</p>
+            <p><strong>Рекомендации:</strong> Валидируйте URL в HTTP-запросах, избегайте <code>eval()</code> (используйте <code>vm</code> с песочницей), применяйте ORM (Sequelize) с параметрами, используйте <code>Object.create(null)</code> для защиты от Prototype Pollution, экранируйте вывод через шаблонизаторы (Handlebars, Pug).</p>
           </div>
         </div>
       </div>
@@ -1791,7 +1850,7 @@ function loadLanguageVulnerabilitiesContent(container) {
             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
               <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Типичные уязвимости
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Buffer Overflow</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Buffer Overflow, SQLi</p>
               </div>
               <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Поиск
@@ -1806,11 +1865,11 @@ function loadLanguageVulnerabilitiesContent(container) {
           <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
           <div style="flex: 1; padding: 15px;">
             <h3>Objective-C</h3>
-            <p><strong>Типичные уязвимости:</strong> Переполнение буфера, небезопасное форматирование строк, инъекции.</p>
-            <p><strong>Как искать:</strong> Используйте Clang Static Analyzer, ищите <code>strcpy</code>, <code>sprintf</code>, прямые SQL-запросы.</p>
-            <p><strong>Эксплуатация (в научных целях):</strong> Для переполнения буфера — отправьте длинную строку в <code>strcpy</code> в тестовой среде.</p>
-            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, сетевые данные, форматированные строки.</p>
-            <p><strong>Рекомендации:</strong> Используйте безопасные функции (<code>strncpy</code>), применяйте ORM, проверяйте границы ввода.</p>
+            <p><strong>Типичные уязвимости:</strong> Переполнение буфера, небезопасное форматирование строк, SQL-инъекции (SQLi), RCE через <code>system()</code>.</p>
+            <p><strong>Как искать:</strong> Используйте Clang Static Analyzer. Ищите <code>strcpy</code>, <code>sprintf</code>, <code>system(userInput)</code>, прямые SQL-запросы (например, <code>sqlite3_exec(db, "SELECT * FROM users WHERE id = '" + id + "'")</code>), отсутствие проверки границ в массивах.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для переполнения буфера — отправьте длинную строку в <code>strcpy</code> (например, 1000 символов); для SQLi — подставьте <code>' OR '1'='1</code>; для RCE — используйте <code>system("ls")</code>. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, сетевые данные, форматированные строки, SQLite-запросы.</p>
+            <p><strong>Рекомендации:</strong> Используйте безопасные функции (<code>strncpy</code>, <code>snprintf</code>), проверяйте границы массивов, применяйте параметризованные запросы в SQLite (<code>sqlite3_prepare_v2</code>), избегайте <code>system()</code> в пользу безопасных альтернатив.</p>
           </div>
         </div>
       </div>
@@ -1822,7 +1881,7 @@ function loadLanguageVulnerabilitiesContent(container) {
             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
               <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Типичные уязвимости
-                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, RCE</p>
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, RCE, Deserialization</p>
               </div>
               <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
                 Поиск
@@ -1837,11 +1896,11 @@ function loadLanguageVulnerabilitiesContent(container) {
           <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
           <div style="flex: 1; padding: 15px;">
             <h3>Swift</h3>
-            <p><strong>Типичные уязвимости:</strong> SQLi, RCE через небезопасные вызовы Objective-C, ошибки десериализации.</p>
-            <p><strong>Как искать:</strong> Используйте SwiftLint, ищите прямые SQL-запросы, вызовы Objective-C (<code>NSUnarchiver</code>).</p>
-            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR 1=1</code> в тестовой среде.</p>
-            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, сетевые запросы, интеграция с Objective-C.</p>
-            <p><strong>Рекомендации:</strong> Используйте безопасные API (Codable), ORM (GRDB), избегайте устаревших функций.</p>
+            <p><strong>Типичные уязвимости:</strong> SQL-инъекции (SQLi), удалённое выполнение кода (RCE) через Objective-C вызовы, небезопасная десериализация (например, <code>NSKeyedUnarchiver</code>), SSRF.</p>
+            <p><strong>Как искать:</strong> Используйте SwiftLint, Clang Analyzer. Ищите прямые SQL-запросы (например, <code>try db.execute(sql: "SELECT * FROM users WHERE id = '\(id)'")</code>), вызовы <code>system()</code> через Objective-C, использование <code>NSKeyedUnarchiver.unarchiveObject(with:)</code>, HTTP-запросы через <code>URLSession</code> без проверки URL.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code>; для RCE — вызовите <code>system("ls")</code> через Objective-C; для десериализации — передайте вредоносный объект в <code>NSKeyedUnarchiver</code>; для SSRF — отправьте <code>http://localhost</code>. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, сетевые запросы, данные для десериализации, Objective-C интероп.</p>
+            <p><strong>Рекомендации:</strong> Используйте ORM (GRDB, SQLite.swift) с параметрами (например, <code>try db.execute(sql: "SELECT * FROM users WHERE id = ?", arguments: [id])</code>), избегайте Objective-C RCE-функций, применяйте <code>Codable</code> вместо <code>NSKeyedUnarchiver</code>, валидируйте URL в <code>URLSession</code>.</p>
           </div>
         </div>
       </div>
@@ -1868,25 +1927,77 @@ function loadLanguageVulnerabilitiesContent(container) {
           <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
           <div style="flex: 1; padding: 15px;">
             <h3>Dart</h3>
-            <p><strong>Типичные уязвимости:</strong> SQLi, SSRF, небезопасное использование HTTP-клиентов.</p>
-            <p><strong>Как искать:</strong> Используйте Dart Analyzer, ищите прямые SQL-запросы, вызовы <code>http.get</code> без валидации.</p>
-            <p><strong>Эксплуатация (в научных целях):</strong> Для SSRF — подставьте <code>http://localhost</code> в запросы в тестовой среде.</p>
-            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, сетевые запросы, JSON-данные.</p>
-            <p><strong>Рекомендации:</strong> Используйте ORM (ObjectBox), валидируйте URL, применяйте HTTPS.</p>
+            <p><strong>Типичные уязвимости:</strong> SQL-инъекции (SQLi), Server-Side Request Forgery (SSRF), небезопасное использование HTTP-клиентов, XSS в Flutter-приложениях.</p>
+            <p><strong>Как искать:</strong> Используйте Dart Analyzer, dart_code_metrics. Ищите прямые SQL-запросы (например, <code>db.rawQuery("SELECT * FROM users WHERE id = '$id'")</code>), вызовы <code>http.get(Uri.parse(userInput))</code> без валидации, вывод без экранирования в Flutter (например, <code>Text(userInput)</code>).</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code>; для SSRF — отправьте <code>http://localhost</code> через <code>http.get()</code>; для XSS — используйте <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> в веб-контексте Flutter. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод пользователя, сетевые запросы, JSON-данные, UI-компоненты.</p>
+            <p><strong>Рекомендации:</strong> Используйте ORM (ObjectBox, sqflite) с параметрами (например, <code>db.rawQuery("SELECT * FROM users WHERE id = ?", [id])</code>), валидируйте URL с белыми списками, применяйте HTTPS, экранируйте вывод в Flutter через безопасные виджеты.</p>
           </div>
         </div>
       </div>
 
-      <div class="language-vuln-description">
-        <h2>Общие рекомендации</h2>
-        <ul>
-          <li>Проводите статический и динамический анализ кода для всех языков (инструменты: SonarQube, Snyk, OWASP ZAP).</li>
-          <li>Избегайте использования опасных функций, выполняющих код напрямую (<code>eval</code>, <code>exec</code>).</li>
-          <li>Применяйте ORM и параметризованные запросы для защиты от SQL-инъекций.</li>
-          <li>Проверяйте зависимости на наличие уязвимостей (Snyk, Dependabot).</li>
-          <li>Тестируйте уязвимости только в контролируемых средах с разрешения владельцев систем, соблюдая законодательство.</li>
-        </ul>
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>Go (Golang)</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, SSRF, RCE</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">gosec, go vet</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Внедрение</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>Go (Golang)</h3>
+            <p><strong>Типичные уязвимости:</strong> SQL-инъекции (SQLi), Server-Side Request Forgery (SSRF), удалённое выполнение кода (RCE) через <code>os/exec</code>, Race Conditions из-за конкурентности.</p>
+            <p><strong>Как искать:</strong> Используйте <code>gosec</code>, <code>go vet</code>, <code>SonarQube</code>. Ищите прямые SQL-запросы (например, <code>db.Query("SELECT * FROM users WHERE id = '" + r.FormValue("id") + "'")</code>), <code>exec.Command(userInput)</code>, HTTP-запросы через <code>http.Get()</code> без проверки, конкурентный код без синхронизации (например, запись в общую переменную несколькими горутинами).</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code>; для SSRF — отправьте <code>http://localhost:8080</code>; для RCE — используйте <code>exec.Command("sh", "-c", "whoami")</code>; для Race Conditions — запустите горутины с <code>go run -race</code> и спровоцируйте конфликт. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> HTTP-параметры, ввод в shell-команды, сетевые запросы, конкурентный доступ.</p>
+            <p><strong>Рекомендации:</strong> Используйте <code>database/sql</code> с параметрами (например, <code>db.Query("SELECT * FROM users WHERE id = ?", id)</code>), валидируйте URL, заменяйте <code>os/exec</code> на фиксированные команды, применяйте <code>sync.Mutex</code> или каналы для синхронизации.</p>
+          </div>
+        </div>
       </div>
+
+      <div class="language-method">
+        <div class="language-method-container" style="display: flex; align-items: stretch; gap: 20px; margin-bottom: 20px;">
+          <div class="language-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+            <h3>Rust</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+              <div style="background-color: #1976d2; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Типичные уязвимости
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SQLi, Unsafe</p>
+              </div>
+              <div style="background-color: #2196f3; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Поиск
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Clippy</p>
+              </div>
+              <div style="background-color: #64b5f6; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                Эксплуатация
+                <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Внедрение</p>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+          <div style="flex: 1; padding: 15px;">
+            <h3>Rust</h3>
+            <p><strong>Типичные уязвимости:</strong> SQL-инъекции (SQLi), ошибки в <code>unsafe</code> блоках, SSRF, небезопасная десериализация через <code>serde</code>.</p>
+            <p><strong>Как искать:</strong> Используйте <code>clippy</code>, <code>cargo-audit</code>. Ищите прямые SQL-запросы (например, <code>"SELECT * FROM users WHERE id = '".to_string() + &input</code>), <code>unsafe</code> блоки с некорректными указателями, <code>reqwest::get(user_input)</code> без валидации, десериализацию через <code>serde_json::from_str</code> без проверки данных.</p>
+            <p><strong>Эксплуатация (в научных целях):</strong> Для SQLi — подставьте <code>' OR '1'='1</code>; для <code>unsafe</code> — вызовите ошибку памяти (например, <code>unsafe { *ptr = 42 }</code> с некорректным <code>ptr</code>); для SSRF — отправьте <code>http://localhost</code>; для десериализации — передайте вредоносный JSON. Все действия только в тестовой среде с разрешения владельца.</p>
+            <p><strong>Векторы эксплуатации:</strong> Ввод в SQL, сетевые запросы, данные для десериализации, <code>unsafe</code> код.</p>
+            <p><strong>Рекомендации:</strong> Используйте <code>sqlx</code> или <code>diesel</code> с параметрами (например, <code>sqlx::query("SELECT * FROM users WHERE id = $1").bind(id)</code>), минимизируйте <code>unsafe</code>, валидируйте URL, применяйте <code>serde</code> с проверкой входных данных.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   `;
 

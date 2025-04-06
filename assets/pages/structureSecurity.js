@@ -1,78 +1,245 @@
   function loadStructureSecurityContent(container) {
     container.innerHTML = `
-      <div class="structure-security-container">
-        <h1>Защита структур</h1>
+<div class="structure-security-container">
+      <h1>Защита структур</h1>
 
-        <div class="structure-security-buttons">
-          <button class="network-btn" id="os-security-btn">Безопасность ОС</button>
-          <button class="network-btn" id="network-security-btn">Безопасность сетей</button>
-          <button class="network-btn" id="auth-security-btn">Аутентификация и авторизация</button>
-          <button class="network-btn" id="leak-protection-btn">Защита от утечек</button>
-          <button class="network-btn state-secrets-btn">Защита гостайны</button>
-          <button class="network-btn" id="cii-security-btn">Безопасность КИИ</button>
-          <button class="network-btn" id="ot-security-btn">Безопасность АСУТП</button>
-          <button class="network-btn" id="app-security-btn">Безопасность приложений</button>
-          <button class="network-btn" id="db-security-btn">Безопасность СУБД</button>
-          <button class="network-btn" id="cloud-security-btn">Безопасность облачных технологий</button>
-          <button class="network-btn" id="iot-security-btn">Безопасность IoT</button>
-          <button class="network-btn" id="microservices-security-btn">Безопасность микросервисов</button>
-        </div>
-
-        <div class="structure-security-theory">
-          <h2>Теория структурной безопасности</h2>
-          <p>Структурная безопасность — это комплексный подход к защите информационных систем, который охватывает все уровни ИТ-инфраструктуры: от операционных систем и сетей до приложений, баз данных, облачных технологий, IoT, микросервисов и специализированных систем, таких как автоматизированные системы управления технологическими процессами (АСУТП), критическая информационная инфраструктура (КИИ) и государственная тайна. Основная цель структурной безопасности — минимизировать риски кибератак, утечек данных и сбоев в работе систем, обеспечивая их устойчивость и надёжность.</p>
-
-          <h3>Основные принципы структурной безопасности</h3>
-          <p>Структурная безопасность базируется на нескольких ключевых принципах, которые помогают создать многоуровневую защиту:</p>
-          <ul>
-            <li><strong>Принцип минимальных привилегий:</strong> Пользователи и процессы должны иметь доступ только к тем ресурсам, которые необходимы для выполнения их задач. Например, оператор АСУТП должен иметь доступ только к SCADA-системе, но не к корпоративной сети.</li>
-            <li><strong>Многоуровневая защита (Defense-in-Depth):</strong> Использование нескольких слоёв защиты (физическая, сетевая, прикладная) для снижения риска компрометации. Например, для защиты КИИ применяются межсетевые экраны, системы обнаружения вторжений (IDS) и шифрование данных.</li>
-            <li><strong>Сегментация:</strong> Разделение систем на изолированные зоны для ограничения распространения угроз. Например, сеть АСУТП должна быть изолирована от корпоративной сети с помощью VLAN и межсетевых экранов.</li>
-            <li><strong>Мониторинг и реагирование:</strong> Постоянное наблюдение за состоянием систем с помощью SIEM-систем (например, Splunk) и оперативное реагирование на инциденты. Это позволяет своевременно выявлять аномалии, такие как несанкционированный доступ.</li>
-            <li><strong>Соответствие нормативным требованиям:</strong> Соблюдение стандартов и законов, таких как ФЗ-187 (для КИИ), ФЗ-149 (для гостайны) и ГОСТ Р ИСО/МЭК 27001, чтобы обеспечить юридическую и техническую защиту.</li>
-          </ul>
-
-          <h3>Подходы к обеспечению структурной безопасности</h3>
-          <p>Для реализации структурной безопасности применяются следующие подходы:</p>
-          <ul>
-            <li><strong>Управление рисками:</strong> Проведение регулярной оценки рисков для выявления уязвимостей и определения приоритетных мер защиты. Например, для АСУТП важно учитывать риски физического доступа к оборудованию.</li>
-            <li><strong>Технические меры:</strong> Использование межсетевых экранов, систем шифрования (TLS, IPsec, ГОСТ), антивирусов и DLP-систем для предотвращения утечек данных.</li>
-            <li><strong>Организационные меры:</strong> Обучение персонала, разработка политик безопасности, проведение аудитов и тестов на проникновение (penetration testing).</li>
-            <li><strong>Автоматизация:</strong> Внедрение систем автоматизации реагирования на инциденты (SOAR), таких как IBM Resilient, для ускорения обработки угроз.</li>
-          </ul>
-
-          <h3>Примеры угроз и меры защиты</h3>
-          <p>Структурная безопасность направлена на защиту от различных типов угроз. Вот несколько примеров:</p>
-          <ul>
-            <li><strong>Кибератаки на АСУТП:</strong> Атака Stuxnet (2010) показала, как уязвимости в SCADA-системах могут привести к физическому разрушению оборудования. Для защиты применяются изоляция сети, шифрование и регулярное обновление ПО.</li>
-            <li><strong>Утечки гостайны:</strong> В 2016 году в России была зафиксирована утечка через USB-накопитель. Для предотвращения таких инцидентов используются DLP-системы и строгий контроль носителей.</li>
-            <li><strong>DDoS-атаки на КИИ:</strong> Атака на энергосистему Украины (2015) привела к отключению электроэнергии. Для защиты применяются системы фильтрации трафика (например, Cloudflare) и резервирование каналов связи.</li>
-            <li><strong>Утечки через технические каналы:</strong> Акустические утечки через окна могут быть предотвращены с помощью шумогенераторов и защитных плёнок.</li>
-          </ul>
-
-          <h3>Роль нормативных актов</h3>
-          <p>В России структурная безопасность регулируется рядом нормативных актов, которые задают стандарты защиты:</p>
-          <ul>
-            <li><strong>ФЗ-187 "О безопасности КИИ":</strong> Определяет требования к защите критической информационной инфраструктуры, включая категорирование объектов и взаимодействие с ГосСОПКА.</li>
-            <li><strong>ФЗ-149 "Об информации":</strong> Устанавливает общие требования к защите информации, включая гостайну.</li>
-            <li><strong>ГОСТ Р ИСО/МЭК 27001:</strong> Международный стандарт управления информационной безопасностью, адаптированный для России.</li>
-            <li><strong>Приказы ФСТЭК и ФСБ:</strong> Например, Приказ ФСТЭК № 239 для КИИ и Приказ ФСБ № 378 для защиты гостайны.</li>
-          </ul>
-
-          <h3>Рекомендации по внедрению структурной безопасности</h3>
-          <ol>
-            <li><strong>Проведите инвентаризацию активов:</strong> Определите все системы, сети и данные, которые нужно защищать.</li>
-            <li><strong>Разработайте политики безопасности:</strong> Установите правила доступа, шифрования и мониторинга.</li>
-            <li><strong>Внедрите многоуровневую защиту:</strong> Используйте комбинацию технических и организационных мер.</li>
-            <li><strong>Обучайте персонал:</strong> Регулярно проводите тренинги по кибербезопасности.</li>
-            <li><strong>Проводите аудиты:</strong> Регулярно проверяйте системы на уязвимости и соответствие требованиям.</li>
-          </ol>
-
-          <h3>Заключение</h3>
-          <p>Структурная безопасность — это не разовое мероприятие, а непрерывный процесс, который требует постоянного обновления и адаптации к новым угрозам. Использование современных технологий, соблюдение нормативных требований и обучение персонала позволяют создать надёжную защиту для всех компонентов ИТ-инфраструктуры.</p>
-        </div>
+      <div class="structure-security-buttons">
+        <button class="network-btn" id="os-security-btn">Безопасность ОС</button>
+        <button class="network-btn" id="network-security-btn">Безопасность сетей</button>
+        <button class="network-btn" id="auth-security-btn">Аутентификация и авторизация</button>
+        <button class="network-btn" id="leak-protection-btn">Защита от утечек</button>
+        <button class="network-btn state-secrets-btn">Защита гостайны</button>
+        <button class="network-btn" id="cii-security-btn">Безопасность КИИ</button>
+        <button class="network-btn" id="ot-security-btn">Безопасность АСУТП</button>
+        <button class="network-btn" id="app-security-btn">Безопасность приложений</button>
+        <button class="network-btn" id="db-security-btn">Безопасность СУБД</button>
+        <button class="network-btn" id="cloud-security-btn">Безопасность облачных технологий</button>
+        <button class="network-btn" id="iot-security-btn">Безопасность IoT</button>
+        <button class="network-btn" id="microservices-security-btn">Безопасность микросервисов</button>
       </div>
-    `;
+
+      <div class="structure-security-theory">
+        <h2>Теория структурной безопасности</h2>
+        <p>Структурная безопасность — это комплексный подход к защите информационных систем, который охватывает все уровни ИТ-инфраструктуры: от операционных систем и сетей до приложений, баз данных, облачных технологий, IoT, микросервисов и специализированных систем, таких как автоматизированные системы управления технологическими процессами (АСУТП), критическая информационная инфраструктура (КИИ) и государственная тайна. Основная цель структурной безопасности — минимизировать риски кибератак, утечек данных и сбоев в работе систем, обеспечивая их устойчивость и надёжность.</p>
+
+        <h3>Основные принципы структурной безопасности</h3>
+        <p>Структурная безопасность базируется на нескольких ключевых принципах, которые помогают создать многоуровневую защиту:</p>
+        <ul>
+          <li><strong>Принцип минимальных привилегий:</strong> Пользователи и процессы должны иметь доступ только к тем ресурсам, которые необходимы для выполнения их задач. Например, оператор АСУТП должен иметь доступ только к SCADA-системе, но не к корпоративной сети.</li>
+          <li><strong>Многоуровневая защита (Defense-in-Depth):</strong> Использование нескольких слоёв защиты (физическая, сетевая, прикладная) для снижения риска компрометации. Например, для защиты КИИ применяются межсетевые экраны, системы обнаружения вторжений (IDS) и шифрование данных.</li>
+          <li><strong>Сегментация:</strong> Разделение систем на изолированные зоны для ограничения распространения угроз. Например, сеть АСУТП должна быть изолирована от корпоративной сети с помощью VLAN и межсетевых экранов.</li>
+          <li><strong>Мониторинг и реагирование:</strong> Постоянное наблюдение за состоянием систем с помощью SIEM-систем (например, Splunk) и оперативное реагирование на инциденты. Это позволяет своевременно выявлять аномалии, такие как несанкционированный доступ.</li>
+          <li><strong>Соответствие нормативным требованиям:</strong> Соблюдение стандартов и законов, таких как ФЗ-187 (для КИИ), ФЗ-149 (для гостайны) и ГОСТ Р ИСО/МЭК 27001, чтобы обеспечить юридическую и техническую защиту.</li>
+        </ul>
+
+        <h3>Подходы к обеспечению структурной безопасности</h3>
+        <p>Для реализации структурной безопасности применяются следующие подходы:</p>
+        <ul>
+          <li><strong>Управление рисками:</strong> Проведение регулярной оценки рисков для выявления уязвимостей и определения приоритетных мер защиты. Например, для АСУТП важно учитывать риски физического доступа к оборудованию.</li>
+          <li><strong>Технические меры:</strong> Использование межсетевых экранов, систем шифрования (TLS, IPsec, ГОСТ), антивирусов и DLP-систем для предотвращения утечек данных.</li>
+          <li><strong>Организационные меры:</strong> Обучение персонала, разработка политик безопасности, проведение аудитов и тестов на проникновение (penetration testing).</li>
+          <li><strong>Автоматизация:</strong> Внедрение систем автоматизации реагирования на инциденты (SOAR), таких как IBM Resilient, для ускорения обработки угроз.</li>
+        </ul>
+
+        <h3>Примеры угроз и меры защиты</h3>
+        <p>Структурная безопасность направлена на защиту от различных типов угроз. Вот несколько примеров:</p>
+        <ul>
+          <li><strong>Кибератаки на АСУТП:</strong> Атака Stuxnet (2010) показала, как уязвимости в SCADA-системах могут привести к физическому разрушению оборудования. Для защиты применяются изоляция сети, шифрование и регулярное обновление ПО.</li>
+          <li><strong>Утечки гостайны:</strong> В 2016 году в России была зафиксирована утечка через USB-накопитель. Для предотвращения таких инцидентов используются DLP-системы и строгий контроль носителей.</li>
+          <li><strong>DDoS-атаки на КИИ:</strong> Атака на энергосистему Украины (2015) привела к отключению электроэнергии. Для защиты применяются системы фильтрации трафика (например, Cloudflare) и резервирование каналов связи.</li>
+          <li><strong>Утечки через технические каналы:</strong> Акустические утечки через окна могут быть предотвращены с помощью шумогенераторов и защитных плёнок.</li>
+        </ul>
+
+        <h3>Концепции анализа киберугроз</h3>
+        <p>Для эффективной защиты структур важно понимать модели и методы анализа киберугроз. Ниже представлены ключевые концепции с подробным описанием и схемами:</p>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header">Cyber Kill Chain</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> Cyber Kill Chain (Цепочка кибератаки) — это модель, разработанная Lockheed Martin, которая описывает этапы кибератаки от подготовки до достижения цели. Она помогает понять действия злоумышленника и разработать меры противодействия на каждом этапе.</p>
+              <p><strong>Схема этапов Cyber Kill Chain:</strong></p>
+              <div class="kill-chain-diagram" style="margin-bottom: 20px;">
+                <div class="kill-chain-container" style="display: flex; align-items: stretch; gap: 20px;">
+                  <div class="kill-chain-stages" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+                    <h3>Этапы атаки</h3>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                      <div style="background-color: #2e7d32; padding: 8px; border-radius: 5px; width: 200px;">
+                        Разведка
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Сбор информации</p>
+                      </div>
+                      <div style="background-color: #388e3c; padding: 8px; border-radius: 5px; width: 200px;">
+                        Вооружение
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Создание эксплойта</p>
+                      </div>
+                      <div style="background-color: #66bb6a; padding: 8px; border-radius: 5px; width: 200px;">
+                        Доставка
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Передача</p>
+                      </div>
+                      <div style="background-color: #ffeb3b; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
+                        Эксплуатация
+                        <p style="font-size: 12px; margin: 5px 0 0;">Выполнение кода</p>
+                      </div>
+                      <div style="background-color: #fff176; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
+                        Установка
+                        <p style="font-size: 12px; margin: 5px 0 0;">Закрепление</p>
+                      </div>
+                      <div style="background-color: #ff9800; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
+                        Управление
+                        <p style="font-size: 12px; margin: 5px 0 0;">C2</p>
+                      </div>
+                      <div style="background-color: #d32f2f; padding: 8px; border-radius: 5px; width: 200px;">
+                        Действия
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Цель</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+                  <div style="flex: 1; padding: 15px;">
+                    <h3>Описание этапов</h3>
+                    <ul>
+                      <li><strong>Разведка:</strong> Сбор данных о цели (OSINT, сканирование сети). Пример: поиск уязвимостей через Shodan.</li>
+                      <li><strong>Вооружение:</strong> Создание вредоносного ПО или эксплойта. Пример: настройка пейлоада в Metasploit.</li>
+                      <li><strong>Доставка:</strong> Передача эксплойта жертве (фишинг, USB). Пример: отправка PDF с вредоносным кодом.</li>
+                      <li><strong>Эксплуатация:</strong> Использование уязвимости для выполнения кода. Пример: EternalBlue (CVE-2017-0144).</li>
+                      <li><strong>Установка:</strong> Закрепление в системе (установка бэкдора). Пример: создание службы в Windows.</li>
+                      <li><strong>Управление:</strong> Удалённое управление через C2-сервер. Пример: использование Cobalt Strike.</li>
+                      <li><strong>Действия:</strong> Достижение цели (кража данных, шифрование). Пример: запуск шифровальщика WannaCry.</li>
+                    </ul>
+                    <p><strong>Противодействие:</strong> Блокировать разведку (WAF), проверять вложения (антивирус), обновлять ПО (патчи), мониторить сеть (IDS/IPS).</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">Pyramid of Pain</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> Pyramid of Pain (Пирамида боли) — это модель, предложенная Дэвидом Бьянко, которая классифицирует индикаторы компрометации (IoC) по уровню сложности их изменения для злоумышленника. Чем выше уровень в пирамиде, тем сложнее атакующему адаптироваться, что делает защиту эффективнее.</p>
+              <p><strong>Схема уровней Pyramid of Pain:</strong></p>
+              <div class="pyramid-pain-diagram" style="margin-bottom: 20px;">
+                <div class="pyramid-pain-container" style="display: flex; align-items: stretch; gap: 20px;">
+                  <div class="pyramid-pain-levels" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+                    <h3>Уровни пирамиды</h3>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                      <div style="background-color: #d32f2f; padding: 8px; border-radius: 5px; width: 200px;">
+                        Тактики и методы
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">TTPs</p>
+                      </div>
+                      <div style="background-color: #ff9800; color: #000; padding: 8px; border-radius: 5px; width: 190px;">
+                        Инструменты
+                        <p style="font-size: 12px; margin: 5px 0 0;">Malware</p>
+                      </div>
+                      <div style="background-color: #fff176; color: #000; padding: 8px; border-radius: 5px; width: 180px;">
+                        Сетевые артефакты
+                        <p style="font-size: 12px; margin: 5px 0 0;">C2</p>
+                      </div>
+                      <div style="background-color: #66bb6a; padding: 8px; border-radius: 5px; width: 170px;">
+                        Домены
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">DNS</p>
+                      </div>
+                      <div style="background-color: #388e3c; padding: 8px; border-radius: 5px; width: 160px;">
+                        IP-адреса
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">IPs</p>
+                      </div>
+                      <div style="background-color: #2e7d32; padding: 8px; border-radius: 5px; width: 150px;">
+                        Хеш-суммы
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Файлы</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+                  <div style="flex: 1; padding: 15px;">
+                    <h3>Описание уровней</h3>
+                    <ul>
+                      <li><strong>Хеш-суммы:</strong> Уникальные идентификаторы файлов (MD5, SHA). Легко блокируются, но легко меняются. Пример: блокировка WannaCry по хешу.</li>
+                      <li><strong>IP-адреса:</strong> Адреса серверов атакующего. Блокировка через фаервол, но IP легко сменить. Пример: блокировка C2-сервера.</li>
+                      <li><strong>Домены:</strong> DNS-имена для связи. Сложнее менять, чем IP. Пример: блокировка домена через DNS Sinkhole.</li>
+                      <li><strong>Сетевые артефакты:</strong> Протоколы, порты, сигнатуры трафика. Пример: блокировка трафика Cobalt Strike по портам.</li>
+                      <li><strong>Инструменты:</strong> Используемые программы (Metasploit). Смена инструмента требует усилий. Пример: обнаружение Mimikatz.</li>
+                      <li><strong>Тактики и методы (TTPs):</strong> Поведение атакующего (MITRE ATT&CK). Сложнее всего изменить. Пример: обнаружение фишинга через поведенческий анализ.</li>
+                    </ul>
+                    <p><strong>Противодействие:</strong> Фокусируйтесь на TTPs (SIEM, EDR), используйте индикаторы нижних уровней как дополнение.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">MITRE ATT&CK</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> MITRE ATT&CK — это база знаний о тактиках, техниках и процедурах (TTPs) кибератак, основанная на реальных инцидентах. Она помогает классифицировать действия злоумышленников и разрабатывать стратегии защиты.</p>
+              <p><strong>Подробности:</strong> Для детального описания тактик и техник смотрите специализированный раздел по MITRE ATT&CK в разделе "Уязвимости".</p>
+              <p><strong>Противодействие:</strong> Используйте MITRE ATT&CK для настройки EDR (CrowdStrike), анализа инцидентов и обучения персонала.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">Diamond Model</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> Diamond Model (Алмазная модель) — это фреймворк для анализа киберинцидентов, который фокусируется на взаимосвязях между четырьмя элементами: злоумышленник, жертва, инфраструктура и возможности. Она помогает понять контекст атаки и разработать меры реагирования.</p>
+              <p><strong>Схема элементов Diamond Model:</strong></p>
+              <div class="diamond-model-diagram" style="margin-bottom: 20px;">
+                <div class="diamond-model-container" style="display: flex; align-items: stretch; gap: 20px;">
+                  <div class="diamond-model-elements" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+                    <h3>Элементы модели</h3>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                      <div style="background-color: #2e7d32; padding: 8px; border-radius: 5px; width: 200px;">
+                        Злоумышленник
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Attacker</p>
+                      </div>
+                      <div style="background-color: #66bb6a; padding: 8px; border-radius: 5px; width: 200px;">
+                        Жертва
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Victim</p>
+                      </div>
+                      <div style="background-color: #ffeb3b; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
+                        Инфраструктура
+                        <p style="font-size: 12px; margin: 5px 0 0;">Infrastructure</p>
+                      </div>
+                      <div style="background-color: #d32f2f; padding: 8px; border-radius: 5px; width: 200px;">
+                        Возможности
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Capabilities</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+                  <div style="flex: 1; padding: 15px;">
+                    <h3>Описание элементов</h3>
+                    <ul>
+                      <li><strong>Злоумышленник:</strong> Кто атакует (группа, одиночка). Пример: APT28.</li>
+                      <li><strong>Жертва:</strong> Цель атаки (компания, система). Пример: сервер КИИ.</li>
+                      <li><strong>Инфраструктура:</strong> Средства атаки (C2, домены). Пример: арендованный VPS.</li>
+                      <li><strong>Возможности:</strong> Инструменты и методы (Malware, TTPs). Пример: использование Mimikatz.</li>
+                    </ul>
+                    <p><strong>Противодействие:</strong> Анализируйте инциденты через SIEM, блокируйте инфраструктуру (IP/DNS), изучайте TTPs для предотвращения повторных атак.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Роль нормативных актов</h3>
+        <p>В России структурная безопасность регулируется рядом нормативных актов, которые задают стандарты защиты:</p>
+        <ul>
+          <li><strong>ФЗ-187 "О безопасности КИИ":</strong> Определяет требования к защите критической информационной инфраструктуры, включая категорирование объектов и взаимодействие с ГосСОПКА.</li>
+          <li><strong>ФЗ-149 "Об информации":</strong> Устанавливает общие требования к защите информации, включая гостайну.</li>
+          <li><strong>ГОСТ Р ИСО/МЭК 27001:</strong> Международный стандарт управления информационной безопасностью, адаптированный для России.</li>
+          <li><strong>Приказы ФСТЭК и ФСБ:</strong> Например, Приказ ФСТЭК № 239 для КИИ и Приказ ФСБ № 378 для защиты гостайны.</li>
+        </ul>
+
+        <h3>Рекомендации по внедрению структурной безопасности</h3>
+        <ol>
+          <li><strong>Проведите инвентаризацию активов:</strong> Определите все системы, сети и данные, которые нужно защищать.</li>
+          <li><strong>Разработайте политики безопасности:</strong> Установите правила доступа, шифрования и мониторинга.</li>
+          <li><strong>Внедрите многоуровневую защиту:</strong> Используйте комбинацию технических и организационных мер.</li>
+          <li><strong>Обучайте персонал:</strong> Регулярно проводите тренинги по кибербезопасности.</li>
+          <li><strong>Проводите аудиты:</strong> Регулярно проверяйте системы на уязвимости и соответствие требованиям.</li>
+        </ol>
+
+        <h3>Заключение</h3>
+        <p>Структурная безопасность — это не разовое мероприятие, а непрерывный процесс, который требует постоянного обновления и адаптации к новым угрозам. Использование современных технологий, соблюдение нормативных требований и обучение персонала позволяют создать надёжную защиту для всех компонентов ИТ-инфраструктуры.</p>
+      </div>
+    </div>
+  `;
 
     document.getElementById('os-security-btn').addEventListener('click', () => {
       loadOSSecurityContent(container);
@@ -121,6 +288,14 @@
     document.getElementById('microservices-security-btn').addEventListener('click', () => {
       loadMicroservicesSecurityContent(container);
     });
+
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const content = header.nextElementSibling;
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    });
+  });
   }
 
   function loadOSSecurityContent(container) {
@@ -382,47 +557,124 @@
                   <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">TLS/IPsec</p>
                 </div>
                 <div style="background-color: #ab47bc; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
-                  Контроль доступа
-                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">802.1X</p>
+                  Фильтрация
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">ACL</p>
                 </div>
                 <div style="background-color: #ce93d8; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word; color: #000;">
-                  Мониторинг
+                  Обнаружение
                   <p style="font-size: 12px; margin: 5px 0 0; color: #000;">IDS/IPS</p>
                 </div>
-                <div style="background-color: #f3e5f5; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word; color: #000;">
-                  Обновления
-                  <p style="font-size: 12px; margin: 5px 0 0; color: #000;">Патчи</p>
+                <div style="background-color: #e1bee7; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word; color: #000;">
+                  Мониторинг
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #000;">SIEM</p>
                 </div>
               </div>
             </div>
             <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
             <div style="flex: 1; padding: 15px;">
               <h3>Описание мер защиты сетей</h3>
-              <p>Эти меры защищают сеть от угроз:</p>
+              <p>Эти меры обеспечивают комплексную защиту сетей:</p>
               <ul>
-                <li><strong>Сегментация:</strong> Ограничивает атаки (VLAN для HR и IT). Рекомендация: применять ACL между сегментами.</li>
-                <li><strong>Шифрование:</strong> Защищает данные (TLS для HTTPS). Рекомендация: использовать TLS 1.3.</li>
-                <li><strong>Контроль доступа:</strong> Аутентификация устройств (802.1X). Рекомендация: настраивать брандмауэры.</li>
-                <li><strong>Мониторинг:</strong> Обнаружение угроз (Snort). Рекомендация: применять NetFlow и Rate Limiting.</li>
-                <li><strong>Обновления:</strong> Устранение уязвимостей (Cisco IOS, CVE-2023-20198). Рекомендация: тестировать патчи.</li>
+                <li><strong>Сегментация:</strong> Ограничивает распространение угроз (VLAN).</li>
+                <li><strong>Шифрование:</strong> Защищает данные (TLS, IPsec).</li>
+                <li><strong>Фильтрация:</strong> Ограничивает доступ (iptables).</li>
+                <li><strong>Обнаружение:</strong> Выявляет атаки (Suricata).</li>
+                <li><strong>Мониторинг:</strong> Анализирует события (Splunk).</li>
               </ul>
             </div>
           </div>
         </div>
   
-        <h2>Рекомендации по защите сетей</h2>
-        <ol>
-          <li>Сегментируйте сеть с помощью VLAN и ACL.</li>
-          <li>Шифруйте трафик через TLS или IPsec.</li>
-          <li>Используйте 802.1X и брандмауэры.</li>
-          <li>Настройте IDS/IPS и мониторинг NetFlow.</li>
-          <li>Обновляйте прошивки сетевых устройств.</li>
-        </ol>
+        <h2>Протоколы безопасности</h2>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header">Internet Key Exchange (IKE)</button>
+            <div class="accordion-content" style="display: none;">
+              <p><strong>Описание:</strong> Internet Key Exchange (IKE) — это протокол, используемый для установления защищённых соединений в IPsec (Internet Protocol Security). Он отвечает за аутентификацию сторон, согласование криптографических параметров и создание ключей для шифрования и целостности данных. IKE работает в двух версиях: IKEv1 (RFC 2409, 1998) и IKEv2 (RFC 7296, 2005), причём IKEv2 более современен, эффективен и устойчив к атакам.</p>
+              
+              <h3>Основные принципы IKE</h3>
+              <ul>
+                <li><strong>Аутентификация:</strong> Подтверждение идентичности участников через предварительно общие ключи (PSK), цифровые подписи (RSA, ECDSA) или сертификаты (X.509).</li>
+                <li><strong>Обмен ключами:</strong> Использование алгоритма Диффи-Хеллмана (DH) или эллиптических кривых (ECDH) для создания общего секретного ключа.</li>
+                <li><strong>Создание SA:</strong> Установление Security Associations (SA) — набора параметров для шифрования и аутентификации трафика в IPsec.</li>
+                <li><strong>Защита от атак:</strong> IKEv2 включает защиту от DoS (например, через "cookie"-механизм) и перехвата (MitM).</li>
+              </ul>
+  
+              <h3>Этапы работы IKEv2</h3>
+              <p>IKEv2 делится на две основные фазы:</p>
+              <div class="ike-phases" style="margin-bottom: 20px;">
+                <div class="ike-phases-container" style="display: flex; align-items: stretch; gap: 20px;">
+                  <div class="ike-phases-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+                    <h3>Фазы IKEv2</h3>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                      <div style="background-color: #2e7d32; padding: 8px; border-radius: 5px; width: 200px;">
+                        IKE_SA_INIT
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Обмен ключами</p>
+                      </div>
+                      <div style="background-color: #66bb6a; padding: 8px; border-radius: 5px; width: 200px;">
+                        IKE_AUTH
+                        <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Аутентификация</p>
+                      </div>
+                      <div style="background-color: #ffeb3b; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
+                        CHILD_SA
+                        <p style="font-size: 12px; margin: 5px 0 0;">Ключи IPsec</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+                  <div style="flex: 1; padding: 15px;">
+                    <h3>Описание фаз</h3>
+                    <ul>
+                      <li><strong>IKE_SA_INIT:</strong> Инициатор и респондент обмениваются сообщениями для согласования алгоритмов (AES, SHA) и создания общего ключа через Диффи-Хеллмана. Устанавливается IKE SA (Security Association).</li>
+                      <li><strong>IKE_AUTH:</strong> Происходит аутентификация сторон (PSK, сертификаты) и настройка защищённого канала. Подтверждается целостность сообщений через HMAC.</li>
+                      <li><strong>CHILD_SA:</strong> Создаются дополнительные SA для IPsec (ESP или AH), определяются ключи и параметры шифрования трафика.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+  
+              <h3>Преимущества IKEv2</h3>
+              <ul>
+                <li>Быстрое восстановление соединения (MOBIKE для мобильных устройств).</li>
+                <li>Устойчивость к DoS (механизм "cookie").</li>
+                <li>Поддержка NAT-T (Network Address Translation Traversal).</li>
+                <li>Меньшее количество сообщений по сравнению с IKEv1.</li>
+              </ul>
+  
+              <h3>Уязвимости и противодействие</h3>
+              <ul>
+                <li><strong>Слабые ключи DH:</strong> Атака Logjam (2015) показала, что слабые параметры DH (группы 512/1024 бит) уязвимы. Рекомендация: использовать DH группы 2048 бит или ECDH.</li>
+                <li><strong>MitM:</strong> Возможен при слабой аутентификации (PSK). Рекомендация: использовать сертификаты X.509.</li>
+                <li><strong>DoS:</strong> Перегрузка инициации SA. Рекомендация: включить "cookie" в IKEv2.</li>
+              </ul>
+  
+              <h3>Применение</h3>
+              <p>IKE используется в VPN (например, Cisco AnyConnect, StrongSwan), защищённых сетях КИИ и удалённом доступе. В России применяется в продуктах, сертифицированных ФСБ (например, ViPNet).</p>
+  
+              <h3>Рекомендации</h3>
+              <ul>
+                <li>Используйте IKEv2 вместо IKEv1.</li>
+                <li>Настройте сильные алгоритмы: AES-256, SHA-256, DH Group 14+ или ECDH.</li>
+                <li>Применяйте сертификаты для аутентификации.</li>
+                <li>Включите NAT-T для работы через NAT.</li>
+                <li>Мониторьте IKE-логи через SIEM для выявления аномалий.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     `;
   
     document.querySelector('.back-btn').addEventListener('click', () => {
       loadStructureSecurityContent(container);
+    });
+
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      });
     });
   }
 
@@ -1297,264 +1549,409 @@
           Назад
         </button>
         <h1>Безопасность приложений</h1>
-        <p>Безопасность приложений охватывает защиту программного обеспечения на всех этапах его жизненного цикла — от разработки до эксплуатации. Это включает предотвращение уязвимостей, таких как SQL-инъекции, XSS, а также внедрение практик безопасной разработки (Secure SDLC) и DevSecOps.</p>
-
+        <p>Безопасность приложений (Application Security, AppSec) — это дисциплина, направленная на защиту программного обеспечения от угроз на всех этапах его жизненного цикла: проектирования, разработки, тестирования, развертывания и эксплуатации. AppSec охватывает веб-приложения, мобильные приложения, API, десктопные программы и встроенное ПО, защищая их от атак, таких как инъекции, утечки данных и несанкционированный доступ. Основная цель — минимизировать риски, связанные с уязвимостями кода, конфигурации и зависимостей, обеспечивая конфиденциальность, целостность и доступность данных.</p>
+  
         <h2>Теоретические основы безопасности приложений</h2>
-        <p>Безопасность приложений строится на следующих принципах:</p>
+        <p>AppSec опирается на теорию информационной безопасности, криптографию, модели управления доступом и процессы разработки ПО. Вот ключевые концепции:</p>
         <ul>
-          <li><strong>Secure by Design:</strong> Безопасность должна быть встроена в приложение с этапа проектирования. Это включает минимизацию поверхности атаки и использование безопасных фреймворков.</li>
-          <li><strong>Принцип наименьших привилегий:</strong> Приложение должно работать с минимальными правами, необходимыми для выполнения задач.</li>
-          <li><strong>Глубокая защита (Defense in Depth):</strong> Использование нескольких уровней защиты (например, WAF, валидация ввода, шифрование) для снижения риска компрометации.</li>
-          <li><strong>Регулярное тестирование:</strong> Приложения должны проходить тестирование на уязвимости (SAST, DAST, пентесты) на всех этапах разработки.</li>
+          <li><strong>Поверхность атаки:</strong> Чем сложнее приложение (много кода, зависимостей, API), тем больше точек входа для атак. Теория минимизации поверхности атаки требует сокращения ненужных функций и строгой валидации данных.</li>
+          <li><strong>Secure SDLC:</strong> Secure Software Development Lifecycle — интеграция безопасности в процесс разработки (DevSecOps). Это включает статический анализ (SAST), динамический анализ (DAST), управление зависимостями и тестирование на проникновение (pentesting).</li>
+          <li><strong>Криптография:</strong> Шифрование данных (AES, RSA) и хеширование (SHA-256, bcrypt) защищают данные в транзите и в покое. Теория стойкости к атакам требует использования современных алгоритмов и защиты от атак по сторонним каналам (side-channel attacks).</li>
+          <li><strong>Модели угроз:</strong> Использование STRIDE (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege) для анализа рисков приложения.</li>
+          <li><strong>Zero Trust:</strong> Принцип "никому не доверяй" применяется к приложениям: каждый запрос должен быть аутентифицирован и авторизован, даже внутри системы.</li>
+          <li><strong>Управление зависимостями:</strong> Теория цепочки поставок ПО (Software Supply Chain) подчёркивает риски от устаревших или скомпрометированных библиотек (например, Log4Shell, CVE-2021-44228).</li>
+          <li><strong>Оркестрация:</strong> Современные приложения часто разворачиваются в контейнерах (Docker, Kubernetes), что требует защиты на уровне оркестрации, включая управление секретами, сетевые политики и сканирование образов.</li>
         </ul>
         <p>Основные угрозы для приложений:</p>
         <ul>
-          <li><strong>OWASP Top 10:</strong> Включает такие уязвимости, как SQL-инъекции, XSS (межсайтовый скриптинг), CSRF (межсайтовая подделка запросов) и небезопасная десериализация.</li>
-          <li><strong>Уязвимости зависимостей:</strong> Использование устаревших библиотек (например, Log4j CVE-2021-44228) может привести к компрометации.</li>
-          <li><strong>Небезопасная конфигурация:</strong> Неправильная настройка серверов приложений (например, Apache Tomcat) может открыть доступ к конфиденциальным данным.</li>
-          <li><strong>Атаки на API:</strong> Незащищенные API могут стать точкой входа для злоумышленников (например, отсутствие проверки токенов).</li>
+          <li><strong>Инъекции:</strong> SQL-инъекции, XSS, командные инъекции из-за недостаточной валидации данных.</li>
+          <li><strong>Утечки данных:</strong> Неправильная конфигурация (например, открытые API) или слабое шифрование.</li>
+          <li><strong>Компрометация зависимостей:</strong> Атаки через устаревшие библиотеки (Log4j).</li>
+          <li><strong>DoS:</strong> Перегрузка приложения запросами (например, через слабые API).</li>
+          <li><strong>Социальная инженерия:</strong> Фишинг для получения учетных данных приложения.</li>
         </ul>
-
-        <h2>Схема процесса безопасной разработки</h2>
-        <div class="app-security-diagram" style="margin-bottom: 20px;">
-          <div class="app-security-diagram-container" style="display: flex; align-items: stretch; gap: 20px;">
-            <div class="app-security-diagram-content" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
-              <h3>Процесс разработки</h3>
+  
+        <h2>Жизненный цикл разработки безопасного ПО (Secure SDLC)</h2>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header">Этапы Secure SDLC</button>
+            <div class="accordion-content">
+              <table class="osi-table">
+                <thead>
+                  <tr>
+                    <th>Этап</th>
+                    <th>Описание</th>
+                    <th>Действия</th>
+                    <th>Инструменты</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Планирование</strong></td>
+                    <td>Определение требований безопасности и моделирование угроз.</td>
+                    <td>Анализ рисков, создание модели угроз (STRIDE).</td>
+                    <td>Microsoft Threat Modeling Tool, OWASP Threat Dragon</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Проектирование</strong></td>
+                    <td>Разработка архитектуры с учётом безопасности.</td>
+                    <td>Выбор безопасных паттернов (например, принцип наименьших привилегий).</td>
+                    <td>Diagrams.net, Enterprise Architect</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Разработка</strong></td>
+                    <td>Написание кода с учётом безопасности.</td>
+                    <td>Статический анализ кода (SAST), валидация данных.</td>
+                    <td>SonarQube, Checkmarx, ESLint</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Тестирование</strong></td>
+                    <td>Проверка приложения на уязвимости.</td>
+                    <td>Динамический анализ (DAST), пентест.</td>
+                    <td>OWASP ZAP, Burp Suite, Postman</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Развертывание</strong></td>
+                    <td>Запуск приложения с защитой окружения.</td>
+                    <td>Настройка WAF, шифрование, оркестрация.</td>
+                    <td>AWS WAF, Kubernetes, Docker</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Эксплуатация</strong></td>
+                    <td>Мониторинг и реагирование на угрозы.</td>
+                    <td>Runtime-защита (RASP), анализ логов.</td>
+                    <td>Splunk, Imperva, ELK</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+  
+        <h2>Процессы DevSecOps</h2>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header">Этапы DevSecOps</button>
+            <div class="accordion-content">
+              <table class="osi-table">
+                <thead>
+                  <tr>
+                    <th>Этап</th>
+                    <th>Описание</th>
+                    <th>Действия</th>
+                    <th>Инструменты</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>CI (Continuous Integration)</strong></td>
+                    <td>Автоматизация сборки и тестирования кода.</td>
+                    <td>Запуск SAST и SCA в пайплайне.</td>
+                    <td>Jenkins, GitLab CI, SonarQube</td>
+                  </tr>
+                  <tr>
+                    <td><strong>CD (Continuous Deployment)</strong></td>
+                    <td>Автоматическое развертывание с проверками.</td>
+                    <td>DAST и проверка конфигурации окружения.</td>
+                    <td>CircleCI, ArgoCD, OWASP ZAP</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Сканирование зависимостей</strong></td>
+                    <td>Проверка библиотек на уязвимости.</td>
+                    <td>Анализ через SCA (например, npm audit).</td>
+                    <td>Snyk, Dependabot, WhiteSource</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Оркестрация</strong></td>
+                    <td>Управление контейнерами и сервисами.</td>
+                    <td>Сканирование образов, настройка Network Policies.</td>
+                    <td>Kubernetes, Trivy, Istio</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Мониторинг</strong></td>
+                    <td>Обнаружение угроз в реальном времени.</td>
+                    <td>Интеграция SIEM и RASP.</td>
+                    <td>Prometheus, Splunk, Imperva</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+  
+        <h2>Процессы AppSec</h2>
+        <p>Безопасность приложений реализуется через структурированные процессы, интегрированные в жизненный цикл разработки:</p>
+        <div class="appsec-processes-table" style="margin-bottom: 20px;">
+          <table class="osi-table">
+            <thead>
+              <tr>
+                <th>Процесс</th>
+                <th>Описание</th>
+                <th>Инструменты</th>
+                <th>Применение</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>SAST</strong></td>
+                <td>Static Application Security Testing — статический анализ исходного кода для поиска уязвимостей без выполнения приложения.</td>
+                <td>SonarQube, Checkmarx, Fortify</td>
+                <td>Интеграция в CI/CD для анализа кода на этапе разработки (например, поиск SQL-инъекций в Python).</td>
+              </tr>
+              <tr>
+                <td><strong>DAST</strong></td>
+                <td>Dynamic Application Security Testing — динамический анализ работающего приложения для выявления уязвимостей (black-box тестирование).</td>
+                <td>OWASP ZAP, Burp Suite, AppScan</td>
+                <td>Тестирование веб-приложений на этапе QA (например, проверка XSS через ввод данных).</td>
+              </tr>
+              <tr>
+                <td><strong>IAST</strong></td>
+                <td>Interactive Application Security Testing — комбинация SAST и DAST, анализ кода в реальном времени во время выполнения.</td>
+                <td>Contrast Security, Acunetix</td>
+                <td>Мониторинг приложений в тестовой среде для точного определения уязвимостей.</td>
+              </tr>
+              <tr>
+                <td><strong>SCA</strong></td>
+                <td>Software Composition Analysis — анализ зависимостей на наличие известных уязвимостей (CVE).</td>
+                <td>Snyk, Dependabot, WhiteSource</td>
+                <td>Проверка библиотек в package.json или pom.xml на этапе сборки.</td>
+              </tr>
+              <tr>
+                <td><strong>Оркестрация</strong></td>
+                <td>Управление безопасностью контейнеров и микросервисов в распределённых системах.</td>
+                <td>Kubernetes, Istio, Docker</td>
+                <td>Настройка Network Policies, управление секретами через Vault, сканирование образов Trivy.</td>
+              </tr>
+              <tr>
+                <td><strong>Penetration Testing</strong></td>
+                <td>Ручное или автоматизированное тестирование на проникновение для поиска уязвимостей.</td>
+                <td>Metasploit, Kali Linux, Burp Suite</td>
+                <td>Симуляция атак на приложение перед релизом.</td>
+              </tr>
+              <tr>
+                <td><strong>RASP</strong></td>
+                <td>Runtime Application Self-Protection — защита приложения в реальном времени на уровне выполнения.</td>
+                <td>Imperva, Sqreen</td>
+                <td>Блокировка атак (например, SQL-инъекций) в продакшене.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <h2>Подробное описание процессов AppSec</h2>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header">SAST (Static Application Security Testing)</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> SAST анализирует исходный код или бинарные файлы приложения без его выполнения (white-box тестирование). Он выявляет уязвимости, такие как SQL-инъекции, XSS, буферные переполнения и слабые криптографические алгоритмы, на ранних этапах разработки.</p>
+              <p><strong>Как работает:</strong> Инструменты SAST сканируют код, строят модель данных (AST — Abstract Syntax Tree) и проверяют её на соответствие правилам безопасности. Например, инструмент может обнаружить использование функции <code>eval()</code> в JavaScript как потенциально опасной.</p>
+              <p><strong>Пример:</strong> В коде на Python строка <code>cursor.execute(user_input)</code> без параметризации будет помечена как уязвимость к SQL-инъекциям.</p>
+              <p><strong>Преимущества:</strong> Раннее обнаружение ошибок, интеграция в IDE и CI/CD, высокая точность при правильной настройке.</p>
+              <p><strong>Недостатки:</strong> Не видит runtime-уязвимости, может выдавать ложные срабатывания (false positives).</p>
+              <p><strong>Инструменты:</strong> SonarQube, Checkmarx, Fortify, ESLint (для JS), Bandit (для Python).</p>
+              <p><strong>Рекомендации:</strong> Интегрируйте SAST в CI/CD (например, GitLab CI), настройте правила под проект, регулярно обновляйте базы уязвимостей.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">DAST (Dynamic Application Security Testing)</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> DAST тестирует приложение во время его выполнения (black-box тестирование), моделируя атаки извне. Он проверяет веб-приложения, API и мобильные приложения на уязвимости, такие как XSS, CSRF и некорректная обработка ошибок.</p>
+              <p><strong>Как работает:</strong> Инструменты отправляют вредоносные запросы (например, <code>&lt;script&gt;alert(1)&lt;/script&gt;</code>) и анализируют ответы приложения на наличие уязвимостей.</p>
+              <p><strong>Пример:</strong> DAST-инструмент может обнаружить XSS, если ввод пользователя отображается на странице без экранирования.</p>
+              <p><strong>Преимущества:</strong> Проверяет реальное поведение приложения, не требует доступа к коду, эффективен для веб-приложений.</p>
+              <p><strong>Недостатки:</strong> Не видит уязвимости в коде, которые не проявляются в runtime, требует запущенного приложения.</p>
+              <p><strong>Инструменты:</strong> OWASP ZAP, Burp Suite, AppScan, Nikto.</p>
+              <p><strong>Рекомендации:</strong> Используйте DAST на этапе QA, комбинируйте с SAST, настройте тестовую среду с покрытием всех API-эндпоинтов.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">IAST (Interactive Application Security Testing)</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> IAST сочетает преимущества SAST и DAST, анализируя приложение в реальном времени во время выполнения. Он использует агентов или библиотеки, внедрённые в код, для мониторинга выполнения и выявления уязвимостей.</p>
+              <p><strong>Как работает:</strong> Агент отслеживает выполнение кода (например, через JVM или .NET CLR) и фиксирует уязвимости, такие как SQL-инъекции, в момент их проявления.</p>
+              <p><strong>Пример:</strong> IAST может обнаружить, что строка <code>request.getParameter("id")</code> в Java передаётся в SQL-запрос без экранирования.</p>
+              <p><strong>Преимущества:</strong> Высокая точность, низкий уровень ложных срабатываний, видит runtime-уязвимости.</p>
+              <p><strong>Недостатки:</strong> Требует внедрения агента, может замедлять приложение, сложнее в настройке.</p>
+              <p><strong>Инструменты:</strong> Contrast Security, Acunetix, Synopsys Seeker.</p>
+              <p><strong>Рекомендации:</strong> Используйте IAST в тестовой среде, настройте агентов для покрытия критических частей кода, комбинируйте с другими методами.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">SCA (Software Composition Analysis)</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> SCA анализирует зависимости приложения (библиотеки, фреймворки) на наличие известных уязвимостей (CVE) и лицензионных рисков.</p>
+              <p><strong>Как работает:</strong> Инструменты сканируют файлы зависимостей (например, <code>package.json</code>, <code>pom.xml</code>) и сопоставляют их с базами уязвимостей (NVD).</p>
+              <p><strong>Пример:</strong> SCA может обнаружить уязвимость Log4j (CVE-2021-44228) в проекте и предложить обновить версию.</p>
+              <p><strong>Преимущества:</strong> Быстрое обнаружение проблем в зависимостях, автоматизация в CI/CD, проверка лицензий.</p>
+              <p><strong>Недостатки:</strong> Не видит уязвимости в собственном коде, зависит от актуальности баз данных.</p>
+              <p><strong>Инструменты:</strong> Snyk, Dependabot, WhiteSource, OWASP Dependency-Check.</p>
+              <p><strong>Рекомендации:</strong> Интегрируйте SCA в CI/CD, настройте автоматическое обновление зависимостей, проверяйте лицензии перед релизом.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">Оркестрация</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> Оркестрация управляет безопасностью контейнеров и микросервисов в распределённых системах, таких как Kubernetes или Docker Swarm, обеспечивая изоляцию, управление секретами и мониторинг.</p>
+              <p><strong>Как работает:</strong> Используются инструменты для автоматизации развертывания, настройки сетевых политик (Network Policies), сканирования образов и управления доступом.</p>
+              <p><strong>Пример:</strong> Kubernetes может ограничить доступ между подами через Network Policies, а Trivy просканирует образ на уязвимости перед развертыванием.</p>
+              <p><strong>Преимущества:</strong> Повышает безопасность микросервисов, автоматизирует управление, изолирует компоненты.</p>
+              <p><strong>Недостатки:</strong> Требует глубоких знаний DevOps, сложность настройки.</p>
+              <p><strong>Инструменты:</strong> Kubernetes, Docker, Istio, Trivy, HashiCorp Vault.</p>
+              <p><strong>Рекомендации:</strong> Настройте Network Policies, используйте Vault для секретов, сканируйте образы в CI/CD, применяйте принцип наименьших привилегий.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">RASP (Runtime Application Self-Protection)</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> RASP защищает приложение в реальном времени, внедряя агентов на уровне выполнения (runtime), которые блокируют атаки, такие как SQL-инъекции или XSS, без изменения кода.</p>
+              <p><strong>Как работает:</strong> Агент отслеживает выполнение приложения (например, через JVM или PHP) и вмешивается, если обнаруживает подозрительное поведение, например, выполнение вредоносного SQL-запроса.</p>
+              <p><strong>Пример:</strong> RASP может заблокировать SQL-инъекцию, если запрос содержит <code>1=1 OR DROP TABLE</code>, даже если код уязвим.</p>
+              <p><strong>Преимущества:</strong> Защита в продакшене, минимальные ложные срабатывания, не требует доработки кода.</p>
+              <p><strong>Недостатки:</strong> Может замедлять приложение, требует интеграции, не заменяет превентивные меры.</p>
+              <p><strong>Инструменты:</strong> Imperva, Sqreen, Signal Sciences.</p>
+              <p><strong>Рекомендации:</strong> Используйте RASP как дополнительный слой защиты, настройте в продакшене, комбинируйте с WAF и мониторингом.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header">Penetration Testing (Тестирование на проникновение)</button>
+            <div class="accordion-content">
+              <p><strong>Описание:</strong> Penetration Testing (пентест) — это симуляция атак на приложение для выявления уязвимостей, которые могут быть пропущены автоматическими инструментами. Может быть ручным или автоматизированным.</p>
+              <p><strong>Как работает:</strong> Специалисты или инструменты моделируют действия хакеров, используя техники, такие как перебор паролей, инъекции или эксплуатация API.</p>
+              <p><strong>Пример:</strong> Пентестер может обнаружить, что API принимает некорректный токен JWT и выдаёт доступ к данным.</p>
+              <p><strong>Преимущества:</strong> Выявляет сложные уязвимости, имитирует реальные атаки, даёт рекомендации по устранению.</p>
+              <p><strong>Недостатки:</strong> Затратно по времени и ресурсам, зависит от квалификации исполнителя.</p>
+              <p><strong>Инструменты:</strong> Metasploit, Kali Linux, Burp Suite, Nmap, Hydra.</p>
+              <p><strong>Рекомендации:</strong> Проводите пентест перед релизом, используйте как дополнение к SAST/DAST, нанимайте сертифицированных специалистов (CEH, OSCP).</p>
+            </div>
+          </div>
+        </div>
+  
+        <h2>Схема уровней защиты приложений</h2>
+        <div class="app-security-method" style="margin-bottom: 20px;">
+          <div class="app-security-method-container" style="display: flex; align-items: stretch; gap: 20px;">
+            <div class="app-security-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+              <h3>Уровни защиты</h3>
               <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
                 <div style="background-color: #2e7d32; padding: 8px; border-radius: 5px; width: 200px;">
-                  Планирование
-                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Threat Modeling</p>
+                  Пользователь
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Клиент</p>
                 </div>
                 <div style="background-color: #388e3c; padding: 8px; border-radius: 5px; width: 200px;">
-                  Проектирование
-                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Secure by Design</p>
+                  WAF
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Фильтрация</p>
                 </div>
                 <div style="background-color: #66bb6a; padding: 8px; border-radius: 5px; width: 200px;">
-                  Разработка
-                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SAST, Код-ревью</p>
-                </div>
-                <div style="background-color: #fff176; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
-                  Тестирование
-                  <p style="font-size: 12px; margin: 5px 0 0;">DAST, Пентесты</p>
+                  TLS
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Шифрование</p>
                 </div>
                 <div style="background-color: #ffeb3b; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
-                  Развертывание
-                  <p style="font-size: 12px; margin: 5px 0 0;">WAF, HTTPS</p>
+                  Приложение
+                  <p style="font-size: 12px; margin: 5px 0 0;">Код</p>
+                </div>
+                <div style="background-color: #fff176; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
+                  RASP
+                  <p style="font-size: 12px; margin: 5px 0 0;">Защита runtime</p>
                 </div>
                 <div style="background-color: #ff9800; color: #000; padding: 8px; border-radius: 5px; width: 200px;">
-                  Мониторинг
-                  <p style="font-size: 12px; margin: 5px 0 0;">SIEM, Логи</p>
+                  Контейнер
+                  <p style="font-size: 12px; margin: 5px 0 0;">Docker</p>
+                </div>
+                <div style="background-color: #d32f2f; padding: 8px; border-radius: 5px; width: 200px;">
+                  Данные
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">БД</p>
+                </div>
+                <div style="background-color: #2a2f3b; padding: 8px; border-radius: 5px; width: 200px;">
+                  SIEM
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Мониторинг</p>
                 </div>
               </div>
             </div>
             <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
             <div style="flex: 1; padding: 15px;">
-              <h3>Описание процесса</h3>
-              <p>Этапы безопасной разработки (Secure SDLC):</p>
+              <h3>Описание уровней</h3>
+              <p>Многоуровневая защита приложения:</p>
               <ul>
-                <li><strong>Планирование:</strong> Анализ угроз (Threat Modeling).</li>
-                <li><strong>Проектирование:</strong> Применение Secure by Design.</li>
-                <li><strong>Разработка:</strong> Статический анализ (SAST), код-ревью.</li>
-                <li><strong>Тестирование:</strong> Динамический анализ (DAST), пентесты.</li>
-                <li><strong>Развертывание:</strong> Защита в продакшене (WAF, HTTPS).</li>
-                <li><strong>Мониторинг:</strong> Анализ логов и инцидентов (SIEM).</li>
+                <li><strong>Пользователь:</strong> Клиент, отправляющий запросы.</li>
+                <li><strong>WAF:</strong> Защита от атак L7 (Cloudflare).</li>
+                <li><strong>TLS:</strong> Шифрование соединения.</li>
+                <li><strong>Приложение:</strong> Код с встроенной защитой (валидация).</li>
+                <li><strong>RASP:</strong> Защита в реальном времени.</li>
+                <li><strong>Контейнер:</strong> Изоляция в Docker/Kubernetes.</li>
+                <li><strong>Данные:</strong> Шифрование в БД.</li>
+                <li><strong>SIEM:</strong> Мониторинг логов (Splunk).</li>
               </ul>
             </div>
           </div>
         </div>
-
-        <h2>Основные меры защиты приложений</h2>
+  
+        <h2>Меры защиты приложений</h2>
         <div class="app-security-measures" style="margin-bottom: 20px;">
           <div class="app-security-measures-container" style="display: flex; align-items: stretch; gap: 20px;">
             <div class="app-security-measures-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
               <h3>Меры защиты</h3>
               <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
                 <div style="background-color: #7b1fa2; padding: 8px; border-radius: 5px; width: 200px;">
-                  Безопасная разработка
-                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Secure SDLC</p>
+                  SAST/DAST
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Анализ</p>
                 </div>
                 <div style="background-color: #8e24aa; padding: 8px; border-radius: 5px; width: 200px;">
-                  Валидация ввода
-                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Экранирование</p>
+                  SCA
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Зависимости</p>
                 </div>
                 <div style="background-color: #ab47bc; padding: 8px; border-radius: 5px; width: 200px;">
-                  Шифрование данных
-                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">AES</p>
+                  Шифрование
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Данные</p>
                 </div>
                 <div style="background-color: #ce93d8; padding: 8px; border-radius: 5px; width: 200px; color: #000;">
-                  Аутентификация и авторизация
-                  <p style="font-size: 12px; margin: 5px 0 0;">MFA</p>
+                  Контроль доступа
+                  <p style="font-size: 12px; margin: 5px 0 0;">RBAC</p>
                 </div>
                 <div style="background-color: #e1bee7; padding: 8px; border-radius: 5px; width: 200px; color: #000;">
-                  Обновление ПО
-                  <p style="font-size: 12px; margin: 5px 0 0;">CVE</p>
+                  Оркестрация
+                  <p style="font-size: 12px; margin: 5px 0 0;">Kubernetes</p>
                 </div>
                 <div style="background-color: #f3e5f5; padding: 8px; border-radius: 5px; width: 200px; color: #000;">
-                  Защита от инъекций
-                  <p style="font-size: 12px; margin: 5px 0 0;">Параметризация</p>
-                </div>
-                <div style="background-color: #f3e5f5; padding: 8px; border-radius: 5px; width: 200px; color: #000;">
-                  Использование WAF
-                  <p style="font-size: 12px; margin: 5px 0 0;">Фильтрация</p>
+                  Мониторинг
+                  <p style="font-size: 12px; margin: 5px 0 0;">Логи</p>
                 </div>
               </div>
             </div>
             <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
             <div style="flex: 1; padding: 15px;">
               <h3>Описание мер</h3>
-              <p>Комплексный подход к защите приложений:</p>
+              <p>Комплексный подход к защите:</p>
               <ul>
-                <li><strong>Безопасная разработка:</strong> Внедрение Secure SDLC (SonarQube).</li>
-                <li><strong>Валидация ввода:</strong> Экранирование для защиты от XSS.</li>
-                <li><strong>Шифрование данных:</strong> Хэширование паролей (bcrypt).</li>
-                <li><strong>Аутентификация и авторизация:</strong> MFA и RBAC (JWT).</li>
-                <li><strong>Обновление ПО:</strong> Устранение уязвимостей (Log4j).</li>
-                <li><strong>Защита от инъекций:</strong> Параметризованные запросы.</li>
-                <li><strong>Использование WAF:</strong> Фильтрация трафика (Cloudflare).</li>
+                <li><strong>SAST/DAST:</strong> Анализ кода и тестирование (SonarQube, OWASP ZAP).</li>
+                <li><strong>SCA:</strong> Проверка зависимостей (Snyk).</li>
+                <li><strong>Шифрование:</strong> Защита данных (AES-256).</li>
+                <li><strong>Контроль доступа:</strong> RBAC или ABAC.</li>
+                <li><strong>Оркестрация:</strong> Безопасность контейнеров (Kubernetes).</li>
+                <li><strong>Мониторинг:</strong> Анализ логов (ELK).</li>
               </ul>
             </div>
           </div>
         </div>
-
-        <div class="accordion">
-          <div class="accordion-item">
-            <button class="accordion-header">Жизненный цикл разработки ПО (SDLC)</button>
-            <div class="accordion-content">
-              <div class="osi-table-container">
-                <table class="osi-table">
-                  <thead>
-                    <tr>
-                      <th>Этап</th>
-                      <th>Описание</th>
-                      <th>Пример применения</th>
-                      <th>Особенности</th>
-                      <th>Рекомендации</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Планирование</strong></td>
-                      <td>Определение целей проекта, сбор требований, оценка рисков и ресурсов. Включает анализ безопасности (Threat Modeling).</td>
-                      <td>Составление требований для веб-приложения: функционал, безопасность (например, защита от XSS), бюджет.</td>
-                      <td>- Определяются цели, риски и ограничения.<br>- Проводится Threat Modeling (например, STRIDE).<br>- Формируется план управления рисками.</td>
-                      <td>- Включить требования безопасности (например, OWASP Top 10).<br>- Провести анализ рисков.<br>- Определить метрики успеха (KPI).</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Анализ и проектирование</strong></td>
-                      <td>Детализация требований, проектирование архитектуры системы, выбор технологий. Включает проектирование с учетом безопасности (Secure by Design).</td>
-                      <td>Проектирование API с учетом аутентификации (OAuth) и защиты от SQL-инъекций (параметризация запросов).</td>
-                      <td>- Создаются спецификации и архитектура.<br>- Учитываются принципы Secure by Design.<br>- Определяются точки интеграции (например, API).</td>
-                      <td>- Применять Secure by Design (например, минимизация привилегий).<br>- Использовать стандарты (например, OWASP ASVS).<br>- Документировать архитектуру.</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Разработка</strong></td>
-                      <td>Написание кода, интеграция компонентов, внедрение мер безопасности (например, валидация ввода).</td>
-                      <td>Разработка веб-приложения с использованием фреймворка (Django) и внедрением защиты от XSS (экранирование ввода).</td>
-                      <td>- Код пишется с учетом стандартов безопасности.<br>- Используются инструменты статического анализа (SonarQube).<br>- Проводятся код-ревью.</td>
-                      <td>- Следовать практикам безопасной разработки (Secure SDLC).<br>- Использовать статический анализ (Checkmarx, SonarQube).<br>- Проводить регулярные код-ревью.</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Тестирование</strong></td>
-                      <td>Проверка функциональности, производительности и безопасности (например, пентесты, сканирование уязвимостей).</td>
-                      <td>Пентест приложения для выявления SQL-инъекций и сканирование с помощью OWASP ZAP для поиска XSS.</td>
-                      <td>- Проводятся функциональные, нагрузочные и тесты безопасности.<br>- Используются инструменты (Burp Suite, Nessus).<br>- Проверяются уязвимости (CVE, OWASP Top 10).</td>
-                      <td>- Проводить пентесты и сканирование уязвимостей.<br>- Использовать автоматизированные тесты (DAST, SAST).<br>- Исправлять найденные уязвимости до релиза.</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Развертывание</strong></td>
-                      <td>Выпуск приложения в продакшен, настройка окружения, обеспечение безопасности (например, настройка WAF).</td>
-                      <td>Развертывание приложения на сервере с HTTPS, настройка WAF (Cloudflare) и мониторинга (SIEM).</td>
-                      <td>- Проводится финальная проверка (Smoke Testing).<br>- Настраиваются меры безопасности (HTTPS, WAF).<br>- Обеспечивается мониторинг (логи, SIEM).</td>
-                      <td>- Использовать HTTPS и WAF.<br>- Настраивать мониторинг (SIEM, NetFlow).<br>- Проверять конфигурации (отключать дефолтные настройки).</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Поддержка и мониторинг</strong></td>
-                      <td>Обновление приложения, устранение уязвимостей, мониторинг инцидентов. Включает реагирование на новые угрозы (например, новые CVE).</td>
-                      <td>Обновление Log4j для устранения CVE-2021-44228, мониторинг логов через Splunk для обнаружения атак.</td>
-                      <td>- Регулярные обновления (патчи, зависимости).<br>- Мониторинг инцидентов (SIEM, IDS/IPS).<br>- Реагирование на новые уязвимости (CVE).</td>
-                      <td>- Следить за новыми CVE и обновлять ПО.<br>- Использовать SIEM для мониторинга.<br>- Разработать план реагирования на инциденты (IR).</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-header">DevSecOps</button>
-            <div class="accordion-content">
-              <div class="osi-table-container">
-                <table class="osi-table">
-                  <thead>
-                    <tr>
-                      <th>Аспект</th>
-                      <th>Описание</th>
-                      <th>Пример применения</th>
-                      <th>Особенности</th>
-                      <th>Рекомендации</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Что это?</strong></td>
-                      <td>Интеграция безопасности в процессы DevOps, чтобы внедрять меры защиты на всех этапах разработки.</td>
-                      <td>Внедрение DevSecOps: сканирование кода на уязвимости (SAST) в CI/CD pipeline с помощью GitLab.</td>
-                      <td>- Безопасность встроена в SDLC.<br>- Автоматизация через CI/CD.<br>- Сотрудничество между Dev, Sec и Ops.</td>
-                      <td>- Внедрять DevSecOps с первых этапов проекта.<br>- Использовать автоматизацию для сканирования.<br>- Обучать команды практикам безопасной разработки.</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Назначение</strong></td>
-                      <td>Снизить риски уязвимостей, внедряя безопасность на ранних стадиях разработки и эксплуатации.</td>
-                      <td>Проверка контейнеров на уязвимости перед развертыванием с помощью Trivy.</td>
-                      <td>- Сдвиг влево (Shift Left): безопасность на этапе разработки.<br>- Непрерывный мониторинг.<br>- Быстрое реагирование на угрозы.</td>
-                      <td>- Применять Shift Left: проверять код на этапе разработки.<br>- Использовать инструменты (SAST, DAST, SCA).<br>- Настраивать мониторинг в продакшене.</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Ключевые практики</strong></td>
-                      <td>SAST (Static Application Security Testing), DAST (Dynamic Application Security Testing), SCA (Software Composition Analysis), мониторинг контейнеров.</td>
-                      <td>SAST с Checkmarx для поиска XSS, DAST с OWASP ZAP для тестирования API.</td>
-                      <td>- SAST: анализ кода на уязвимости.<br>- DAST: тестирование работающего приложения.<br>- SCA: проверка зависимостей (например, OWASP Dependency-Check).</td>
-                      <td>- Использовать SAST (SonarQube), DAST (Burp Suite), SCA (Snyk).<br>- Интегрировать проверки в CI/CD (Jenkins, GitLab).<br>- Проводить регулярные пентесты.</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Инструменты</strong></td>
-                      <td>Checkmarx, SonarQube, Snyk, Trivy, OWASP ZAP, Aqua Security.</td>
-                      <td>Использование Snyk для проверки зависимостей в проекте на Node.js.</td>
-                      <td>- Интеграция с CI/CD pipeline.<br>- Поддержка контейнеров (Docker, Kubernetes).<br>- Автоматизация отчетов и исправлений.</td>
-                      <td>- Выбирать инструменты, совместимые с вашим CI/CD.<br>- Настраивать автоматические уведомления.<br>- Использовать Trivy для сканирования контейнеров.</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Для чего нужно?</strong></td>
-                      <td>Для предотвращения уязвимостей на этапе разработки и обеспечения безопасности в продакшене.</td>
-                      <td>Обнаружение Log4Shell (CVE-2021-44228) в зависимостях до релиза.</td>
-                      <td>- Уменьшает затраты на исправление уязвимостей.<br>- Повышает скорость разработки.<br>- Соответствует стандартам (например, PCI DSS).</td>
-                      <td>- Использовать для всех проектов с CI/CD.<br>- Фокусироваться на автоматизации проверок.<br>- Обеспечить обучение команд по DevSecOps.</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Поддержка и мониторинг</strong></td>
-                      <td>Обновление приложения, устранение уязвимостей, мониторинг инцидентов. Включает реагирование на новые угрозы (например, новые CVE).</td>
-                      <td>Обновление Log4j для устранения CVE-2021-44228, мониторинг логов через Splunk для обнаружения атак.</td>
-                      <td>- Регулярные обновления (патчи, зависимости).<br>- Мониторинг инцидентов (SIEM, IDS/IPS).<br>- Реагирование на новые уязвимости (CVE).</td>
-                      <td>- Следить за новыми CVE и обновлять ПО.<br>- Использовать SIEM для мониторинга.<br>- Разработать план реагирования на инциденты (IR).</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
+  
         <h2>Рекомендации по защите приложений</h2>
         <ol>
-          <li>Следуйте стандартам OWASP Top 10 и ASVS для разработки безопасных приложений.</li>
-          <li>Используйте фреймворки с встроенной защитой (например, Django, Spring Security).</li>
-          <li>Проводите регулярные тесты на проникновение (penetration testing).</li>
-          <li>Настройте WAF для защиты от атак на веб-приложения.</li>
-          <li>Обновляйте зависимости и следите за новыми уязвимостями (CVE).</li>
+          <li>Интегрируйте SAST (SonarQube) и DAST (OWASP ZAP) в CI/CD.</li>
+          <li>Используйте SCA (Snyk) для проверки зависимостей на уязвимости.</li>
+          <li>Шифруйте данные в транзите (TLS 1.3) и в покое (AES-256).</li>
+          <li>Настройте RBAC/ABAC для управления доступом.</li>
+          <li>Применяйте оркестрацию (Kubernetes) с Network Policies и секретами (Vault).</li>
+          <li>Внедрите мониторинг с помощью SIEM (Splunk) и RASP для runtime-защиты.</li>
+          <li>Проводите регулярные пентесты и аудиты безопасности.</li>
         </ol>
+  
+        <h2>Примеры атак на приложения</h2>
+        <ul>
+          <li><strong>Equifax (2017):</strong> Уязвимость в Apache Struts (CVE-2017-5638) привела к утечке данных 147 миллионов человек из-за отсутствия обновлений.</li>
+          <li><strong>Log4Shell (2021):</strong> Уязвимость в Log4j (CVE-2021-44228) позволила удалённое выполнение кода в тысячах приложений.</li>
+          <li><strong>SQL-инъекция в Sony (2011):</strong> Атака через слабую валидацию ввода украла данные 77 миллионов пользователей.</li>
+        </ul>
       </div>
     `;
-
+  
     document.querySelector('.back-btn').addEventListener('click', () => {
       loadStructureSecurityContent(container);
     });
@@ -1563,11 +1960,7 @@
     accordionHeaders.forEach(header => {
       header.addEventListener('click', () => {
         const content = header.nextElementSibling;
-        const isOpen = content.style.display === 'block';
-        document.querySelectorAll('.accordion-content').forEach(item => {
-          item.style.display = 'none';
-        });
-        content.style.display = isOpen ? 'none' : 'block';
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
       });
     });
   }

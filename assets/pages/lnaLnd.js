@@ -135,7 +135,6 @@ function loadLnaLndContent(contentArea) {
   `;
   contentArea.innerHTML = initialContent;
 
-  // Функция для рисования SVG-стрелок
   function drawArrows() {
     const schemeFrame = document.querySelector('.scheme-frame');
     if (!schemeFrame) {
@@ -143,7 +142,6 @@ function loadLnaLndContent(contentArea) {
       return;
     }
 
-    // Получаем элементы
     const lnaApprove = document.getElementById('lna-approve');
     const lnaDistribute = document.getElementById('lna-distribute');
     const lndTask = document.getElementById('lnd-task');
@@ -154,14 +152,12 @@ function loadLnaLndContent(contentArea) {
       return;
     }
 
-    // Получаем координаты относительно scheme-frame
     const frameRect = schemeFrame.getBoundingClientRect();
     const approveRect = lnaApprove.getBoundingClientRect();
     const distributeRect = lnaDistribute.getBoundingClientRect();
     const taskRect = lndTask.getBoundingClientRect();
     const collectRect = lndCollect.getBoundingClientRect();
 
-    // Координаты начала и конца стрелок (относительно scheme-frame)
     const startX1 = approveRect.right - frameRect.left;
     const startY1 = (approveRect.top + approveRect.bottom) / 2 - frameRect.top;
     const endX1 = taskRect.left - frameRect.left;
@@ -172,7 +168,6 @@ function loadLnaLndContent(contentArea) {
     const endX2 = collectRect.left - frameRect.left;
     const endY2 = (collectRect.top + collectRect.bottom) / 2 - frameRect.top;
 
-    // Рисуем первую стрелку (Утверждение -> Определение задачи)
     const arrow1 = document.getElementById('arrow1');
     const controlX1 = startX1 + (endX1 - startX1) / 2;
     const controlY1 = startY1;
@@ -180,7 +175,6 @@ function loadLnaLndContent(contentArea) {
     const controlY2 = endY1;
     arrow1.setAttribute('d', `M${startX1},${startY1} C${controlX1},${controlY1} ${controlX2},${controlY2} ${endX1},${endY1}`);
 
-    // Рисуем вторую стрелку (Распространение -> Сбор данных)
     const arrow2 = document.getElementById('arrow2');
     const controlX3 = startX2 + (endX2 - startX2) / 2;
     const controlY3 = startY2;
@@ -189,7 +183,6 @@ function loadLnaLndContent(contentArea) {
     arrow2.setAttribute('d', `M${startX2},${startY2} C${controlX3},${controlY3} ${controlX4},${controlY4} ${endX2},${endY2}`);
   }
 
-  // Функция debounce для ограничения частоты вызовов
   function debounce(func, wait) {
     let timeout;
     return function (...args) {
@@ -198,16 +191,12 @@ function loadLnaLndContent(contentArea) {
     };
   }
 
-  // Создаём debounced версию drawArrows
   const debouncedDrawArrows = debounce(drawArrows, 100);
 
-  // Вызываем функцию рисования стрелок после загрузки DOM
   setTimeout(drawArrows, 100);
 
-  // Обновляем стрелки при изменении размеров окна с debounce
   window.addEventListener('resize', debouncedDrawArrows);
 
-  // Добавляем скролл для scheme-frame
   document.querySelector('.scheme-frame').addEventListener('scroll', debouncedDrawArrows);
 
   document.getElementById('lna-btn').addEventListener('click', () => {

@@ -5,7 +5,8 @@ const fetch = require('node-fetch');
 
 let mainWindow;
 const settingsPath = path.join(__dirname, 'assets', 'settings.json');
-const currentVersion = '1.0.4';
+const currentVersion = '1.0.5';
+let previousBounds = null;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -23,7 +24,6 @@ function createWindow() {
   });
 
   mainWindow.setMinimumSize(1400, 900);
-
   mainWindow.loadFile('index.html');
   mainWindow.setMenu(null);
   mainWindow.setBackgroundColor('#00000000');
@@ -32,8 +32,43 @@ function createWindow() {
     e.preventDefault();
   });
 
-  mainWindow.on('closed', () => {
-    mainWindow = null;
+  mainWindow.on('will-resize', () => {
+    if (!mainWindow.isMaximized()) {
+      previousBounds = mainWindow.getBounds();
+    }
+  });
+
+  mainWindow.on('will-move', () => {
+    if (!mainWindow.isMaximized()) {
+      previousBounds = mainWindow.getBounds();
+    }
+  });
+
+  mainWindow.on('moved', () => {
+    if (mainWindow.isMaximized()) {
+      console.log('Maximized window was moved, restoring to previous bounds');
+      mainWindow.unmaximize();
+      if (previousBounds) {
+        mainWindow.setBounds(previousBounds);
+      }
+    }
+  });
+
+  mainWindow.on('maximize', () => {
+    console.log('Window maximized');
+    mainWindow.setBackgroundColor('#00000000');
+    mainWindow.webContents.send('window-maximized');
+    mainWindow.setResizable(false);
+  });
+
+  mainWindow.on('unmaximize', () => {
+    console.log('Window unmaximized');
+    mainWindow.setBackgroundColor('#00000000');
+    mainWindow.webContents.send('window-unmaximized');
+    if (previousBounds) {
+      mainWindow.setBounds(previousBounds);
+    }
+    mainWindow.setResizable(true);
   });
 
   mainWindow.on('minimize', () => {
@@ -45,18 +80,11 @@ function createWindow() {
     console.log('Window restored');
     mainWindow.setBackgroundColor('#00000000');
     mainWindow.webContents.send('window-restored');
+    mainWindow.setResizable(true);
   });
 
-  mainWindow.on('maximize', () => {
-    console.log('Window maximized');
-    mainWindow.setBackgroundColor('#00000000');
-    mainWindow.webContents.send('window-maximized');
-  });
-
-  mainWindow.on('unmaximize', () => {
-    console.log('Window unmaximized');
-    mainWindow.setBackgroundColor('#00000000');
-    mainWindow.webContents.send('window-unmaximized');
+  mainWindow.on('closed', () => {
+    mainWindow = null;
   });
 
   ipcMain.handle('minimize-window', () => {
@@ -67,6 +95,7 @@ function createWindow() {
     if (mainWindow.isMaximized()) {
       mainWindow.unmaximize();
     } else {
+      previousBounds = mainWindow.getBounds();
       mainWindow.maximize();
     }
   });

@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const contentArea = document.getElementById('content-area');
   const searchInput = document.getElementById('search-input');
   const clearSearchBtn = document.getElementById('clear-search');
+  const maximizeBtn = document.getElementById('maximize-btn');
 
   if (!windowContainer) {
     console.error('Element with id "window-container" not found. Check your index.html structure.');
@@ -39,20 +40,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 400);
   });
 
-  document.getElementById('maximize-btn').addEventListener('click', () => {
-    windowContainer.classList.add('maximize-animation');
-    setTimeout(() => {
-      window.electronAPI.maximizeWindow();
-      windowContainer.classList.remove('maximize-animation');
-    }, 350);
+  maximizeBtn.addEventListener('click', () => {
+    window.electronAPI.maximizeWindow();
   });
 
   window.electronAPI.onWindowMaximized(() => {
     windowContainer.classList.add('maximized');
+    maximizeBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+      </svg>
+    `;
   });
 
   window.electronAPI.onWindowUnmaximized(() => {
     windowContainer.classList.remove('maximized');
+    maximizeBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+      </svg>
+    `;
   });
 
   document.getElementById('close-btn').addEventListener('click', () => {
@@ -105,11 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function loadPage(section, targetArea = contentArea) {
+  window.loadPage = function(section, targetArea = contentArea) {
     if (targetArea === contentArea && searchInput.value.trim() !== '') return;
-
+  
     try {
-      if (section === 'osi') {
+      if (section === 'home') {
+        loadHomeContent(targetArea);
+      } else if (section === 'osi') {
         if (typeof loadOsiContent === 'function') {
           loadOsiContent(targetArea);
         } else {
@@ -121,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
           loadVulnerabilitiesContent(targetArea);
         } else {
           console.error('loadVulnerabilitiesContent is not defined. Check if vulnerabilities.js is loaded correctly.');
-          targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Уязвимости".</p>`;
+          targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Уязвимостей".</p>`;
         }
       } else if (section === 'malware-analysis') {
         if (typeof loadMalwareAnalysisContent === 'function') {
@@ -228,28 +237,27 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error('loadOsintContent is not defined. Check if osint.js is loaded correctly.');
           targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "OSINT".</p>`;
         }
+      } else if (section === 'certificates') {
+        if (typeof loadCertificatesContent === 'function') {
+          loadCertificatesContent(targetArea);
+        } else {
+          console.error('loadCertificatesContent is not defined. Check if certificates.js is loaded correctly.');
+          targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Сертификаты".</p>`;
+        }
+      } else if (section === 'teams-threat-intel') {
+        if (typeof loadTeamsThreatIntelContent === 'function') {
+          loadTeamsThreatIntelContent(targetArea);
+        } else {
+          console.error('loadTeamsThreatIntelContent is not defined. Check if teamsThreatIntel.js is loaded correctly.');
+          targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Команды ИБ и Threat Intelligence".</p>`;
+        }
       } else if (section === 'settings') {
         if (typeof loadSettingsContent === 'function') {
-          loadSettingsContent(targetArea, setActiveSidebarButton, updateTabHeader, loadPage);
+          loadSettingsContent(targetArea, setActiveSidebarButton, updateTabHeader, window.loadPage);
         } else {
           console.error('loadSettingsContent is not defined. Check if settings.js is loaded correctly.');
           targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Настройки".</p>`;
         }
-      } else if (section === 'home') {
-        targetArea.innerHTML = `
-          <h1>Главная</h1>
-          <div class="description">
-            <p><strong>Berkut Cyber Base</strong> — это локальная библиотека знаний, разработанная специально для специалистов по информационной безопасности и защиты информации. Программа представляет собой удобный инструмент для изучения, анализа и применения ключевых концепций в области кибербезопасности.</p>
-            <p>Приложение объединяет в себе обширный набор тем, включая модель OSI, уязвимости, построение сетей, криптографию, электронные подписи и инфраструктуру открытых ключей (PKI), инструменты информационной безопасности, защиту структур, правовые нормы, локальные нормативные акты, моделирование угроз, а также модули обучения и тестирования.</p>
-            <p><strong>Для чего нужна программа?</strong></p>
-            <ul>
-              <li><strong>Обучение и повышение квалификации:</strong> предоставляет структурированные материалы для освоения основ и углубленного изучения тем ИБ.</li>
-              <li><strong>Практическое применение:</strong> помогает специалистам быстро находить информацию и применять её в реальных задачах.</li>
-              <li><strong>Локальность и безопасность:</strong> работает оффлайн, обеспечивая конфиденциальность данных и независимость от интернета.</li>
-              <li><strong>Удобство:</strong> интуитивно понятный интерфейс и быстрый доступ к нужным разделам.</li>
-            </ul>
-          </div>
-        `;
       } else {
         const tabHeader = document.getElementById('tab-header');
         if (tabHeader) {
@@ -264,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error(`Error loading section ${section}:`, error);
       }
     }
-  }
+  };
 
   document.querySelectorAll('.sidebar-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -274,14 +282,14 @@ document.addEventListener('DOMContentLoaded', () => {
       contentArea.innerHTML = '';
       setActiveSidebarButton(section);
       updateTabHeader(btn.textContent.trim());
-      loadPage(section);
+      window.loadPage(section);
     });
   });
 
   searchInput.addEventListener('input', () => {
     const query = searchInput.value.trim();
     clearSearchBtn.style.display = query ? 'block' : 'none';
-    performSearch(query, contentArea, setActiveSidebarButton, updateTabHeader, loadPage, searchInput, clearSearchBtn);
+    performSearch(query, contentArea, setActiveSidebarButton, updateTabHeader, window.loadPage, searchInput, clearSearchBtn);
   });
 
   searchInput.addEventListener('keydown', (event) => {
@@ -289,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
       const query = searchInput.value.trim();
       clearSearchBtn.style.display = query ? 'block' : 'none';
-      performSearch(query, contentArea, setActiveSidebarButton, updateTabHeader, loadPage, searchInput, clearSearchBtn);
+      performSearch(query, contentArea, setActiveSidebarButton, updateTabHeader, window.loadPage, searchInput, clearSearchBtn);
     }
   });
 
@@ -298,10 +306,10 @@ document.addEventListener('DOMContentLoaded', () => {
     clearSearchBtn.style.display = 'none';
     setActiveSidebarButton('home');
     updateTabHeader('Главная');
-    loadPage('home');
+    window.loadPage('home');
   });
 
   setActiveSidebarButton('home');
   updateTabHeader('Главная');
-  loadPage('home');
+  window.loadPage('home');
 });
