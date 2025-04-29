@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 let mainWindow;
 const settingsPath = path.join(__dirname, 'assets', 'settings.json');
-const currentVersion = '1.0.5';
+const currentVersion = '1.0.6';
 let previousBounds = null;
 
 function createWindow() {
@@ -55,14 +55,12 @@ function createWindow() {
   });
 
   mainWindow.on('maximize', () => {
-    console.log('Window maximized');
     mainWindow.setBackgroundColor('#00000000');
     mainWindow.webContents.send('window-maximized');
     mainWindow.setResizable(false);
   });
 
   mainWindow.on('unmaximize', () => {
-    console.log('Window unmaximized');
     mainWindow.setBackgroundColor('#00000000');
     mainWindow.webContents.send('window-unmaximized');
     if (previousBounds) {

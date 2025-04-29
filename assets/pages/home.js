@@ -36,7 +36,7 @@ function loadHomeContent(targetArea) {
         <button class="section-btn" data-section="lna-lnd">ЛНА и ЛНД</button>
         <button class="section-btn" data-section="threat-model">Модель угроз</button>
         <button class="section-btn" data-section="certificates">Сертификаты</button>
-        <button class="section-btn" data-section="teams-threat-intel">Команды ИБ и Threat Intelligence</button>
+        <button class="section-btn" data-section="teams-threat-intel">Команды ИБ</button>
       </div>
     </div>
   `;

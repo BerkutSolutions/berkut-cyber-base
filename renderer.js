@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
           loadTeamsThreatIntelContent(targetArea);
         } else {
           console.error('loadTeamsThreatIntelContent is not defined. Check if teamsThreatIntel.js is loaded correctly.');
-          targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Команды ИБ и Threat Intelligence".</p>`;
+          targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Команды ИБ".</p>`;
         }
       } else if (section === 'settings') {
         if (typeof loadSettingsContent === 'function') {
