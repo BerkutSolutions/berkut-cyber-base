@@ -177,7 +177,8 @@ function performSearch(query, contentArea, setActiveSidebarButton, updateTabHead
     'osi', 'vulnerabilities', 'malware-analysis', 'pentesting',
     'social-engineering', 'forensics', 'network-building', 'cryptography',
     'ep-pki', 'ib-tools', 'structure-security', 'legal-regulations',
-    'lna-lnd', 'threat-model', 'training', 'russian-szi', 'osint'
+    'lna-lnd', 'threat-model', 'training', 'russian-szi', 'osint',
+    'certificates', 'teams-threat-intel'
   ];
 
   sections.forEach(section => {
