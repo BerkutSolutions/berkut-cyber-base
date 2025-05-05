@@ -251,6 +251,20 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error('loadTeamsThreatIntelContent is not defined. Check if teamsThreatIntel.js is loaded correctly.');
           targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Команды ИБ".</p>`;
         }
+      } else if (section === 'ai-security') {
+        if (typeof loadAiSecurityContent === 'function') {
+          loadAiSecurityContent(targetArea);
+        } else {
+          console.error('loadAiSecurityContent is not defined. Check if aiSecurity.js is loaded correctly.');
+          targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Искусственный интеллект".</p>`;
+        }
+      } else if (section === 'cyber-wars') {
+        if (typeof loadCyberWarsContent === 'function') {
+          loadCyberWarsContent(targetArea);
+        } else {
+          console.error('loadCyberWarsContent is not defined. Check if cyberWars.js is loaded correctly.');
+          targetArea.innerHTML = `<h1>Ошибка</h1><p>Не удалось загрузить содержимое вкладки "Кибервойны".</p>`;
+        }
       } else if (section === 'settings') {
         if (typeof loadSettingsContent === 'function') {
           loadSettingsContent(targetArea, setActiveSidebarButton, updateTabHeader, window.loadPage);

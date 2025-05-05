@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 let mainWindow;
 const settingsPath = path.join(__dirname, 'assets', 'settings.json');
-const currentVersion = '1.0.6';
+const currentVersion = '1.0.7';
 let previousBounds = null;
 
 function createWindow() {

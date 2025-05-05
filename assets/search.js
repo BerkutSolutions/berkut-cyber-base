@@ -178,7 +178,7 @@ function performSearch(query, contentArea, setActiveSidebarButton, updateTabHead
     'social-engineering', 'forensics', 'network-building', 'cryptography',
     'ep-pki', 'ib-tools', 'structure-security', 'legal-regulations',
     'lna-lnd', 'threat-model', 'training', 'russian-szi', 'osint',
-    'certificates', 'teams-threat-intel'
+    'certificates', 'teams-threat-intel', 'ai-security', 'cyber-wars'
   ];
 
   sections.forEach(section => {

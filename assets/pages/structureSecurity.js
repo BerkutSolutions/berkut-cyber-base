@@ -16,6 +16,10 @@
         <button class="network-btn" id="cloud-security-btn">Безопасность облачных технологий</button>
         <button class="network-btn" id="iot-security-btn">Безопасность IoT</button>
         <button class="network-btn" id="microservices-security-btn">Безопасность микросервисов</button>
+        <button class="network-btn" id="mobile-security-btn">Мобильная безопасность</button>
+        <button class="network-btn" id="api-security-btn">Безопасность API</button>
+        <button class="network-btn" id="container-security-btn">Безопасность контейнеров</button>
+        <button class="network-btn" id="remote-work-security-btn">Безопасность удалённой работы</button>
       </div>
 
       <div class="structure-security-theory">
@@ -287,6 +291,19 @@
 
     document.getElementById('microservices-security-btn').addEventListener('click', () => {
       loadMicroservicesSecurityContent(container);
+    });
+
+    document.getElementById('mobile-security-btn').addEventListener('click', () => {
+      loadMobileSecurityContent(container);
+    });
+    document.getElementById('api-security-btn').addEventListener('click', () => {
+      loadAPISecurityContent(container);
+    });
+    document.getElementById('container-security-btn').addEventListener('click', () => {
+      loadContainersOrchestrationSecurityContent(container);
+    });
+    document.getElementById('remote-work-security-btn').addEventListener('click', () => {
+      loadRemoteWorkSecurityContent(container);
     });
 
     const accordionHeaders = document.querySelectorAll('.accordion-header');
@@ -2662,6 +2679,703 @@
           <li><strong>Утечка данных Capital One (2019):</strong> Злоумышленник использовал неправильно настроенные роли IAM в AWS, чтобы получить доступ к S3-бакету через уязвимость в API микросервиса. Это привело к утечке данных 100 миллионов клиентов.</li>
           <li><strong>Log4Shell (2021):</strong> Уязвимость в Log4j (CVE-2021-44228) затронула множество микросервисов, использующих эту библиотеку. Злоумышленники могли выполнять произвольный код, что подчёркивает важность управления зависимостями.</li>
           <li><strong>Атака на Kubernetes (2020):</strong> Злоумышленники скомпрометировали кластер Kubernetes из-за отсутствия Network Policies, что позволило им получить доступ к другим сервисам и украсть данные.</li>
+        </ul>
+      </div>
+    `;
+  
+    document.querySelector('.back-btn').addEventListener('click', () => {
+      loadStructureSecurityContent(container);
+    });
+  }
+
+  function loadMobileSecurityContent(container) {
+    container.innerHTML = `
+      <div class="structure-security-container">
+        <button class="back-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Назад
+        </button>
+        <h1>Мобильная безопасность</h1>
+        <p>Мобильная безопасность фокусируется на защите смартфонов, планшетов и приложений от уязвимостей, атак и утечек данных. Мобильные устройства — критически важный элемент экосистемы, требующий защиты на уровне ОС, приложений, данных и сети. Этот раздел охватывает теоретические основы, угрозы, инструменты, методы защиты и примеры инцидентов.</p>
+  
+        <h2>Теоретические основы мобильной безопасности</h2>
+        <p>Мобильная безопасность опирается на теории операционных систем, криптографии, управления доступом, анализа сетевых протоколов, человеческого фактора и надежности систем. iOS и Android используют разные архитектуры, но общие принципы безопасности применимы к обоим.</p>
+        <ul>
+          <li><strong>Модель изоляции:</strong> iOS использует App Sandbox, Android — SELinux и UID-based изоляцию. Теория Clark-Wilson (1987) обеспечивает целостность данных, минимизируя несанкционированные изменения. Теория Bell-LaPadula ограничивает доступ приложений к системным ресурсам. Уязвимости, такие как CVE-2021-30807 в iOS, обходят sandboxing через ошибки ядра.</li>
+          <li><strong>Криптография:</strong> iOS использует Secure Enclave (AES-256, ECDSA), Android — Hardware-backed Keystore. Теория стойкости к атакам по сторонним каналам (Meltdown, CVE-2017-5754) требует изоляции ключей на уровне железа. Алгоритмы PBKDF2 и Argon2 защищают пароли. Уязвимости, такие как CVE-2020-9992, связаны с ошибками в шифровании.</li>
+          <li><strong>Моделирование угроз:</strong> OWASP Mobile Top 10 (2023) описывает риски: Improper Platform Usage, Insecure Data Storage, Insecure Communication. STRIDE-модель анализирует атаки (Spoofing через фишинг, Tampering через реверс-инжиниринг). DREAD-модель оценивает критичность уязвимостей, например, Insecure Data Storage имеет высокий рейтинг из-за массовости устройств.</li>
+          <li><strong>Сетевые протоколы:</strong> Мобильные приложения используют HTTPS/TLS 1.3. Теория MitM-атак требует certificate pinning и HSTS. Уязвимости, такие как CVE-2019-8690 в Android, связаны с ошибками в парсинге сертификатов. Протоколы WebRTC и VoIP (например, CVE-2019-3568 в WhatsApp) уязвимы для перехвата.</li>
+          <li><strong>Обнаружение аномалий:</strong> Алгоритмы SVM и Random Forest в EDR (CrowdStrike) анализируют системные вызовы. Байесовские сети выявляют аномалии в поведении приложений (например, несанкционированный доступ к камере). Скрытые марковские модели (HMM) моделируют последовательности событий для обнаружения вредоносного ПО.</li>
+          <li><strong>Человеческий фактор:</strong> Теория HCI показывает, что пользователи игнорируют предупреждения безопасности. Модель MITRE ATT&CK (Tactic: Initial Access) описывает SMS-фишинг и установку вредоносных приложений. Теория когнитивных искажений (optimism bias) объясняет, почему пользователи устанавливают приложения из непроверенных источников.</li>
+          <li><strong>Теория игр:</strong> Моделирует выбор атакующего (zero-day эксплойт, фишинг) и защитника (MDM, патчи). Равновесие Нэша оптимизирует стратегии, минимизируя затраты на защиту. Например, MDM с высоким уровнем ограничений снижает удобство для пользователей.</li>
+          <li><strong>Формальная верификация:</strong> Теория Hoare Logic проверяет корректность кода приложений. Инструменты, такие как Infer, анализируют код на ошибки (null pointer dereference). Уязвимости, такие как CVE-2020-0022 в Android, связаны с ошибками в нативном коде.</li>
+          <li><strong>Теория надежности систем:</strong> Модель отказоустойчивости требует защиты от DoS-атак на уровне приложений. Теория очередей (M/M/c) моделирует производительность под нагрузкой. Уязвимости, такие как CVE-2021-0920 в Android, приводят к сбоям через неэффективную обработку ресурсов.</li>
+          <li><strong>Стандарты и нормативы:</strong> NIST SP 800-124, ISO/IEC 27036, ФСТЭК (приказ № 239) задают требования к управлению устройствами. NIST требует шифрования данных и регулярных обновлений. ФСТЭК регулирует защиту в КИИ, требуя анализа рисков по ГОСТ 57580.</li>
+          <li><strong>Теория информационного потока:</strong> Модель Denning (1976) предотвращает утечки данных через анализ потоков. Например, Insecure Data Storage нарушает принцип наименьшей привилегии. Инструменты Taint Analysis проверяют потоки данных в приложениях.</li>
+          <li><strong>Теория системного анализа:</strong> CVSS оценивает критичность уязвимостей (например, CVSS 9.8 для Pegasus). Теория зависимостей выявляет риски в библиотеках (например, CVE-2019-11932 в WhatsApp). Модель CAP (Consistency, Availability, Partition Tolerance) анализирует компромиссы в мобильных приложениях.</li>
+          <li><strong>Теория управления рисками:</strong> Модель FAIR (Factor Analysis of Information Risk) количественно оценивает риски (например, вероятность фишинга). Теория NIST SP 800-30 требует регулярного анализа рисков для мобильных устройств.</li>
+        </ul>
+        <p>Угрозы возникают из-за:</p>
+        <ul>
+          <li><strong>Неправильной конфигурации:</strong> Отсутствие шифрования или слабые политики MDM.</li>
+          <li><strong>Уязвимостей ОС:</strong> Zero-day эксплойты, такие как Pegasus (2021).</li>
+          <li><strong>Человеческого фактора:</strong> Установка приложений из непроверенных источников.</li>
+          <li><strong>Слабой аутентификации:</strong> Отсутствие MFA или слабые пароли.</li>
+        </ul>
+  
+        <h2>Схема уровней защиты мобильных устройств</h2>
+        <div class="mobile-security-method" style="margin-bottom: 20px;">
+          <div class="mobile-security-method-container" style="display: flex; align-items: stretch; gap: 20px;">
+            <div class="mobile-security-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+              <h3>Уровни защиты</h3>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <div style="background-color: #2e7d32; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  ОС
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Патчи</p>
+                </div>
+                <div style="background-color: #388e3c; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Приложения
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Sandbox</p>
+                </div>
+                <div style="background-color: #66bb6a; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Данные
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Шифрование</p>
+                </div>
+                <div style="background-color: #ffeb3b; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Сеть
+                  <p style="font-size: 12px; margin: 5px 0 0;">VPN</p>
+                </div>
+                <div style="background-color: #fff176; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Устройство
+                  <p style="font-size: 12px; margin: 5px 0 0;">MDM</p>
+                </div>
+                <div style="background-color: #ff9800; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Пользователь
+                  <p style="font-size: 12px; margin: 5px 0 0;">MFA</p>
+                </div>
+                <div style="background-color: #d32f2f; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Мониторинг
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">EDR</p>
+                </div>
+              </div>
+            </div>
+            <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+            <div style="flex: 1; padding: 15px;">
+              <h3>Описание уровней защиты</h3>
+              <p>Многоуровневая защита охватывает все аспекты мобильных устройств:</p>
+              <ul>
+                <li><strong>ОС:</strong> Регулярные обновления и патчи безопасности.</li>
+                <li><strong>Приложения:</strong> Изоляция через sandboxing и SELinux.</li>
+                <li><strong>Данные:</strong> Шифрование с AES-256 (Secure Enclave, Keystore).</li>
+                <li><strong>Сеть:</strong> Защита трафика с VPN, TLS, HSTS.</li>
+                <li><strong>Устройство:</strong> Контроль через MDM (Intune).</li>
+                <li><strong>Пользователь:</strong> Аутентификация с MFA, биометрией.</li>
+                <li><strong>Мониторинг:</strong> Обнаружение угроз с EDR (CrowdStrike).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <h2>Уязвимости мобильных устройств</h2>
+        <p>Уязвимости по OWASP Mobile Top 10 (2023):</p>
+        <ul>
+          <li><strong>Improper Platform Usage:</strong> Неправильное использование API. Пример: хранение ключей в SharedPreferences.</li>
+          <li><strong>Insecure Data Storage:</strong> Отсутствие шифрования. Пример: утечка данных через SQLite.</li>
+          <li><strong>Insecure Communication:</strong> Передача данных без TLS. Пример: CVE-2020-9992 в iOS.</li>
+          <li><strong>Insecure Authentication:</strong> Слабые пароли или отсутствие MFA.</li>
+          <li><strong>Code Tampering:</strong> Модификация кода через реверс-инжиниринг.</li>
+          <li><strong>Reverse Engineering:</strong> Декомпиляция для извлечения секретов.</li>
+          <li><strong>Extraneous Functionality:</strong> Скрытые функции в коде, раскрывающие данные.</li>
+        </ul>
+  
+        <h2>Инструменты</h2>
+        <p>Для анализа и защиты мобильных устройств используются следующие инструменты:</p>
+        <div class="osi-table-container">
+          <table class="osi-table">
+            <thead>
+              <tr>
+                <th>Инструмент</th>
+                <th>Функция</th>
+                <th>Применение</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MobSF</td>
+                <td>Статический анализ</td>
+                <td>Проверка кода приложений</td>
+              </tr>
+              <tr>
+                <td>Drozer</td>
+                <td>Динамический анализ</td>
+                <td>Тестирование Android-приложений</td>
+              </tr>
+              <tr>
+                <td>Frida</td>
+                <td>Реверс-инжиниринг</td>
+                <td>Анализ runtime-поведения</td>
+              </tr>
+              <tr>
+                <td>Intune</td>
+                <td>MDM</td>
+                <td>Управление устройствами</td>
+              </tr>
+              <tr>
+                <td>CrowdStrike</td>
+                <td>EDR</td>
+                <td>Обнаружение угроз</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <h2>Рекомендации</h2>
+        <p>Для обеспечения мобильной безопасности:</p>
+        <ol>
+          <li>Обновляйте ОС и приложения для устранения уязвимостей.</li>
+          <li>Шифруйте данные с AES-256 (Secure Enclave, Keystore).</li>
+          <li>Используйте TLS, HSTS, certificate pinning для сети.</li>
+          <li>Внедрите MDM (Intune) для управления устройствами.</li>
+          <li>Настройте MFA и биометрию для аутентификации.</li>
+          <li>Тестируйте приложения с MobSF, Drozer, Frida.</li>
+          <li>Мониторьте устройства с EDR (CrowdStrike).</li>
+          <li>Проводите аудит кода и зависимостей (Snyk).</li>
+        </ol>
+  
+        <h2>Примеры атак</h2>
+        <p>Реальные инциденты:</p>
+        <ul>
+          <li><strong>Pegasus (2021):</strong> Zero-day эксплойт через iMessage заразил iOS-устройства.</li>
+          <li><strong>WhatsApp (2019):</strong> Уязвимость VoIP (CVE-2019-3568) установила шпионское ПО.</li>
+          <li><strong>Joker Malware (2020):</strong> Вредоносное ПО в Google Play крало данные.</li>
+        </ul>
+      </div>
+    `;
+  
+    document.querySelector('.back-btn').addEventListener('click', () => {
+      loadStructureSecurityContent(container);
+    });
+  }
+
+  function loadAPISecurityContent(container) {
+    container.innerHTML = `
+      <div class="structure-security-container">
+        <button class="back-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Назад
+        </button>
+        <h1>Безопасность API</h1>
+        <p>Безопасность API фокусируется на защите программных интерфейсов, обеспечивающих взаимодействие между сервисами, от уязвимостей, атак и утечек данных. API — критический компонент современных приложений, требующий комплексного подхода к аутентификации, авторизации, валидации и мониторингу. Этот раздел охватывает теоретические основы, угрозы, инструменты, методы защиты и примеры инцидентов.</p>
+
+        <h2>Теоретические основы безопасности API</h2>
+        <p>Безопасность API опирается на фундаментальные теории информационной безопасности, включая управление доступом, криптографию, анализ сетевых протоколов, моделирование угроз и поведенческий анализ. Эти теории формируют подходы к защите API от атак, таких как инъекции, несанкционированный доступ и утечки данных.</p>
+        <ul>
+          <li><strong>Модель управления доступом:</strong> Основана на RBAC (Role-Based Access Control), ABAC (Attribute-Based Access Control) и стандартах OAuth 2.0/OpenID Connect. Теория Bell-LaPadula (1973) регулирует доступ к данным, предотвращая утечки через ограничение scopes. Модель Biba (1977) обеспечивает целостность, минимизируя несанкционированные изменения. Неправильная настройка OAuth (например, слабые scopes) приводит к атакам типа BOLA (Broken Object Level Authorization).</li>
+          <li><strong>Криптография:</strong> API используют TLS 1.3 (RFC 8446) для шифрования трафика и JWT (JSON Web Tokens, RFC 7519) для аутентификации. Алгоритмы HMAC-SHA256 и ECDSA обеспечивают целостность и подлинность токенов. Теория атак по сторонним каналам (например, Timing Attacks, CVE-2016-10555) требует использования constant-time операций. Уязвимости, такие как Heartbleed (CVE-2014-0160), подчеркивают важность проверки сертификатов и ротации ключей.</li>
+          <li><strong>Моделирование угроз:</strong> STRIDE-модель (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege) применяется для анализа рисков. OWASP API Security Top 10 (2023) детализирует угрозы: BOLA, Broken Authentication, Excessive Data Exposure. DREAD-модель (Damage, Reproducibility, Exploitability, Affected Users, Discoverability) оценивает критичность уязвимостей. Например, BOLA имеет высокий DREAD-рейтинг из-за простоты эксплуатации.</li>
+          <li><strong>Сетевые протоколы:</strong> REST, GraphQL и SOAP используют HTTP/2 или WebSocket. Теория конечных автоматов описывает парсинг запросов, но слабые парсеры (например, CVE-2021-22931 в Node.js) уязвимы для инъекций. Протоколы gRPC требуют особого внимания к сериализации (Protobuf), где ошибки приводят к DoS. Теория MitM-атак требует проверки сертификатов (certificate pinning) и HSTS (HTTP Strict Transport Security).</li>
+          <li><strong>Обнаружение аномалий:</strong> Машинное обучение (LSTM, алгоритмы кластеризации k-means) анализирует трафик API. Байесовские сети моделируют вероятность атак (например, SQL-инъекций). Скрытые марковские модели (HMM) выявляют аномалии в последовательности запросов. Инструменты, такие как Wallarm, используют эти подходы для обнаружения brute-force или XSS.</li>
+          <li><strong>Теория игр:</strong> Моделирует взаимодействие атакующих и защитников. Злоумышленник выбирает стратегию (инъекция, утечка токенов), защитник — контрмеры (WAF, rate limiting). Равновесие Нэша оптимизирует политики безопасности, минимизируя затраты. Например, WAF с высоким уровнем ложных срабатываний снижает эффективность защиты.</li>
+          <li><strong>Формальная верификация:</strong> Теория TLA+ (Temporal Logic of Actions) используется для проверки корректности API-контрактов (OpenAPI/Swagger). Модель проверяет инварианты, такие как отсутствие утечек данных при валидации. Уязвимости, такие как CVE-2020-28282 в Swagger, связаны с ошибками парсинга спецификаций.</li>
+          <li><strong>Человеческий фактор:</strong> Теория HCI (Human-Computer Interaction) объясняет утечки API-ключей через GitHub или Postman (hardcoded credentials). Модель MITRE ATT&CK (Tactic: Credential Access) описывает атаки через фишинг для получения токенов. Теория когнитивных искажений (confirmation bias) показывает, почему разработчики игнорируют предупреждения о слабых настройках.</li>
+          <li><strong>Теория надежности систем:</strong> Модель отказоустойчивости (fault tolerance) требует защиты от DoS-атак. Теория очередей (M/M/1) моделирует производительность API под нагрузкой. Уязвимости, такие как CVE-2021-21315 в Express.js, приводят к DoS через неэффективную обработку запросов.</li>
+          <li><strong>Стандарты и нормативы:</strong> OWASP API Security Top 10, NIST SP 800-95, ISO/IEC 27034 (Application Security) и ФСТЭК (приказ № 239) задают требования. Например, NIST требует валидации всех входных данных и ротации ключей каждые 90 дней. ФСТЭК регулирует защиту API в КИИ, требуя анализа рисков по ГОСТ 57580.</li>
+          <li><strong>Теория информационного потока:</strong> Модель Denning (1976) анализирует потоки данных в API, предотвращая утечки. Например, Excessive Data Exposure нарушает принцип наименьшей привилегии (least privilege). Инструменты, такие как Taint Analysis, проверяют потоки данных на уровне кода.</li>
+          <li><strong>Теория системного анализа:</strong> Модель CVSS (Common Vulnerability Scoring System) оценивает критичность уязвимостей (например, CVSS 9.8 для CVE-2018-13379). Теория зависимостей (dependency graph) выявляет риски в библиотеках (например, Log4Shell, CVE-2021-44228).</li>
+        </ul>
+        <p>Угрозы возникают из-за:</p>
+        <ul>
+          <li><strong>Неправильной конфигурации:</strong> Слабые политики CORS, отсутствие rate limiting или HSTS.</li>
+          <li><strong>Недостаточной валидации:</strong> Принятие непроверенных данных, приводящее к инъекциям (SQL, XSS, GraphQL).</li>
+          <li><strong>Утечки секретов:</strong> Хранение ключей в коде, ConfigMap или переменных окружения без шифрования.</li>
+          <li><strong>Слабой аутентификации:</strong> Использование устаревших токенов или отсутствие проверки подписи JWT.</li>
+        </ul>
+
+        <h2>Схема уровней защиты API</h2>
+        <div class="api-security-method" style="margin-bottom: 20px;">
+          <div class="api-security-method-container" style="display: flex; align-items: stretch; gap: 20px;">
+            <div class="api-security-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+              <h3>Уровни защиты</h3>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <div style="background-color: #2e7d32; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Аутентификация
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">OAuth/JWT</p>
+                </div>
+                <div style="background-color: #388e3c; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Авторизация
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">RBAC/ABAC</p>
+                </div>
+                <div style="background-color: #66bb6a; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Валидация
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">OpenAPI</p>
+                </div>
+                <div style="background-color: #ffeb3b; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Шифрование
+                  <p style="font-size: 12px; margin: 5px 0 0;">TLS 1.3</p>
+                </div>
+                <div style="background-color: #fff176; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Ограничение
+                  <p style="font-size: 12px; margin: 5px 0 0;">Rate Limiting</p>
+                </div>
+                <div style="background-color: #ff9800; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  WAF
+                  <p style="font-size: 12px; margin: 5px 0 0;">Фильтрация</p>
+                </div>
+                <div style="background-color: #d32f2f; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Мониторинг
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SIEM</p>
+                </div>
+              </div>
+            </div>
+            <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+            <div style="flex: 1; padding: 15px;">
+              <h3>Описание уровней защиты</h3>
+              <p>Многоуровневая защита API охватывает весь жизненный цикл запросов:</p>
+              <ul>
+                <li><strong>Аутентификация:</strong> Проверка личности через OAuth 2.0, JWT, OpenID Connect.</li>
+                <li><strong>Авторизация:</strong> Ограничение доступа с помощью RBAC, ABAC, scopes.</li>
+                <li><strong>Валидация:</strong> Проверка данных через JSON Schema или OpenAPI.</li>
+                <li><strong>Шифрование:</strong> Защита трафика с TLS 1.3, HSTS, certificate pinning.</li>
+                <li><strong>Ограничение:</strong> Контроль запросов через rate limiting и throttling.</li>
+                <li><strong>WAF:</strong> Фильтрация атак с помощью Cloudflare, Wallarm.</li>
+                <li><strong>Мониторинг:</strong> Анализ логов через Splunk, ELK Stack.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2>Уязвимости API</h2>
+        <p>API подвержены уязвимостям, описанным в OWASP API Security Top 10 (2023):</p>
+        <ul>
+          <li><strong>Broken Object Level Authorization (BOLA):</strong> Доступ к объектам без проверки прав. Пример: изменение ID в запросе <code>/api/users/123</code>.</li>
+          <li><strong>Broken Authentication:</strong> Слабые токены или отсутствие проверки JWT. Пример: CVE-2018-13379 в Fortinet API.</li>
+          <li><strong>Excessive Data Exposure:</strong> Возврат лишних данных. Пример: раскрытие паролей в JSON.</li>
+          <li><strong>Injection Attacks:</strong> SQL, XSS, GraphQL-инъекции через непроверенные данные.</li>
+          <li><strong>Improper Assets Management:</strong> Открытые старые версии API.</li>
+          <li><strong>Mass Assignment:</strong> Обновление непредназначенных полей.</li>
+          <li><strong>Security Misconfiguration:</strong> Слабые CORS или отсутствие HSTS.</li>
+        </ul>
+
+        <h2>Инструменты</h2>
+        <p>Для анализа и защиты API используются следующие инструменты:</p>
+        <div class="osi-table-container">
+          <table class="osi-table">
+            <thead>
+              <tr>
+                <th>Инструмент</th>
+                <th>Функция</th>
+                <th>Применение</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Postman</td>
+                <td>Тестирование API</td>
+                <td>Отправка запросов, проверка ответов</td>
+              </tr>
+              <tr>
+                <td>Burp Suite</td>
+                <td>Анализ уязвимостей</td>
+                <td>Перехват и модификация запросов</td>
+              </tr>
+              <tr>
+                <td>Wallarm</td>
+                <td>WAF и мониторинг</td>
+                <td>Защита от инъекций, аномалий</td>
+              </tr>
+              <tr>
+                <td>OWASP ZAP</td>
+                <td>Сканирование уязвимостей</td>
+                <td>Автоматическое тестирование API</td>
+              </tr>
+              <tr>
+                <td>Apigee</td>
+                <td>Управление API</td>
+                <td>Настройка политик, rate limiting</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Рекомендации</h2>
+        <p>Для обеспечения безопасности API:</p>
+        <ol>
+          <li>Используйте OAuth 2.0/OpenID Connect и JWT с ротацией ключей.</li>
+          <li>Настройте RBAC/ABAC и ограничьте scopes.</li>
+          <li>Валидируйте данные с JSON Schema или OpenAPI.</li>
+          <li>Шифруйте трафик с TLS 1.3, HSTS, certificate pinning.</li>
+          <li>Внедрите rate limiting, throttling и WAF (Cloudflare, Wallarm).</li>
+          <li>Мониторьте трафик с SIEM (Splunk, ELK).</li>
+          <li>Тестируйте API с Burp Suite, OWASP ZAP и Postman.</li>
+          <li>Проводите аудит кода и зависимостей (Snyk, Dependabot).</li>
+        </ol>
+
+        <h2>Примеры атак</h2>
+        <p>Реальные инциденты:</p>
+        <ul>
+          <li><strong>Twitter (2022):</strong> BOLA в API раскрыла данные 5.4 млн пользователей.</li>
+          <li><strong>T-Mobile (2021):</strong> Слабая авторизация API привела к утечке данных 50 млн клиентов.</li>
+          <li><strong>Facebook (2018):</strong> Уязвимость OAuth-токенов раскрыла данные 50 млн пользователей.</li>
+        </ul>
+      </div>
+    `;
+
+    document.querySelector('.back-btn').addEventListener('click', () => {
+      loadStructureSecurityContent(container);
+    });
+  }
+
+  function loadContainersOrchestrationSecurityContent(container) {
+    container.innerHTML = `
+      <div class="structure-security-container">
+        <button class="back-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Назад
+        </button>
+        <h1>Безопасность контейнеров и оркестрации</h1>
+        <p>Безопасность контейнеров и оркестраторов (Docker, Podman, Kubernetes, OpenShift) фокусируется на защите контейнеризованных сред от уязвимостей, неправильных конфигураций и атак. Этот раздел охватывает теоретические основы, ключевые угрозы, инструменты, методы защиты и примеры реальных инцидентов.</p>
+  
+        <h2>Теоретические основы безопасности контейнеров</h2>
+        <p>Безопасность контейнеров опирается на теории операционных систем, виртуализации, криптографии и управления доступом. Контейнеры, в отличие от виртуальных машин, используют общее ядро хоста, что требует особого внимания к изоляции и управлению ресурсами.</p>
+        <ul>
+          <li><strong>Модель изоляции:</strong> Контейнеры используют Linux namespaces (pid, net, mnt) и cgroups для изоляции процессов и ресурсов. Теория разделения пространства имён, разработанная в 2000-х годах, позволяет изолировать процессы, но уязвимости ядра (например, CVE-2022-0492) могут привести к breakout-атакам.</li>
+          <li><strong>Принципы минимальных привилегий:</strong> Основаны на модели Bell-LaPadula и NIST SP 800-190. Контейнеры должны работать с минимальными правами (non-root, read-only filesystem), чтобы снизить риск компрометации.</li>
+          <li><strong>Многоуровневая защита (Defense-in-Depth):</strong> Охватывает образы, runtime, хост и оркестратор. CIS Benchmarks для Docker и Kubernetes задают стандарты защиты (например, отключение privileged-режима).</li>
+          <li><strong>Криптография:</strong> Шифрование секретов (AES-256 в Vault) и сетевого трафика (TLS в Kubernetes Ingress) защищает данные. Теория стойкости к атакам по сторонним каналам (например, Spectre) требует изоляции контейнеров на уровне ядра.</li>
+          <li><strong>Моделирование угроз:</strong> STRIDE-модель (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege) применяется для анализа рисков. Например, breakout-атаки относятся к Elevation of Privilege, а DDoS — к Denial of Service.</li>
+          <li><strong>Обнаружение аномалий:</strong> Используются скрытые марковские модели (HMM) и машинное обучение (ML) для анализа системных вызовов (syscalls). Инструменты, такие как Falco, применяют алгоритмы кластеризации для выявления подозрительных действий.</li>
+          <li><strong>Теория игр:</strong> Моделирует взаимодействие атакующих и защитников. Злоумышленник выбирает стратегию (эксплуатация API Kubernetes или уязвимости образа), а защитник — контрмеры (RBAC, сканирование).</li>
+          <li><strong>Стандарты и нормативы:</strong> NIST SP 800-190 и CIS Benchmarks обеспечивают формальные требования. В России ФСТЭК регулирует защиту контейнеров в КИИ через приказы (например, № 239).</li>
+        </ul>
+        <p>Угрозы возникают из-за нарушения этих принципов:</p>
+        <ul>
+          <li><strong>Неправильная конфигурация:</strong> Теория минимальной функциональности (least privilege) часто игнорируется, что приводит к запуску контейнеров с root-доступом.</li>
+          <li><strong>Уязвимости ядра:</strong> Теория эксплойтов (например, Dirty Pipe, CVE-2022-0847) показывает, как ошибки в системных вызовах позволяют повысить привилегии.</li>
+          <li><strong>Социальная инженерия:</strong> Атаки на DevOps-инженеров через фишинг для получения доступа к CI/CD-пайплайнам.</li>
+        </ul>
+  
+        <h2>Схема уровней защиты контейнеров</h2>
+        <div class="container-security-method" style="margin-bottom: 20px;">
+          <div class="container-security-method-container" style="display: flex; align-items: stretch; gap: 20px;">
+            <div class="container-security-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+              <h3>Уровни защиты</h3>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <div style="background-color: #2e7d32; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Образы
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Сканирование</p>
+                </div>
+                <div style="background-color: #388e3c; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Контейнеры
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Изоляция</p>
+                </div>
+                <div style="background-color: #66bb6a; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Хост
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Ядро</p>
+                </div>
+                <div style="background-color: #ffeb3b; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Оркестратор
+                  <p style="font-size: 12px; margin: 5px 0 0;">RBAC</p>
+                </div>
+                <div style="background-color: #fff176; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Сеть
+                  <p style="font-size: 12px; margin: 5px 0 0;">Network Policies</p>
+                </div>
+                <div style="background-color: #ff9800; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Секреты
+                  <p style="font-size: 12px; margin: 5px 0 0;">Шифрование</p>
+                </div>
+                <div style="background-color: #d32f2f; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Мониторинг
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SIEM/Falco</p>
+                </div>
+              </div>
+            </div>
+            <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+            <div style="flex: 1; padding: 15px;">
+              <h3>Описание уровней защиты</h3>
+              <p>Многоуровневая защита охватывает весь жизненный цикл контейнеров:</p>
+              <ul>
+                <li><strong>Образы:</strong> Сканирование на уязвимости (Trivy).</li>
+                <li><strong>Контейнеры:</strong> Изоляция через namespaces и cgroups.</li>
+                <li><strong>Хост:</strong> Защита ядра (AppArmor, seccomp).</li>
+                <li><strong>Оркестратор:</strong> Ограничение доступа (RBAC, PSP).</li>
+                <li><strong>Сеть:</strong> Контроль трафика (Calico).</li>
+                <li><strong>Секреты:</strong> Шифрование (Vault).</li>
+                <li><strong>Мониторинг:</strong> Обнаружение угроз (Falco, Sysdig).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <h2>Уязвимости контейнеров</h2>
+        <p>Контейнеры и оркестраторы подвержены следующим уязвимостям:</p>
+        <ul>
+          <li><strong>Неправильные конфигурации:</strong> Запуск контейнеров с root-привилегиями или открытыми портами. Пример: Docker с <code>--privileged</code> без ограничений.</li>
+          <li><strong>Уязвимости образов:</strong> Использование устаревших библиотек или вредоносных образов. Пример: Log4Shell (CVE-2021-44228) в образе.</li>
+          <li><strong>Breakout-атаки:</strong> Выход из контейнера в хост через уязвимости ядра. Пример: CVE-2022-0492 в runc позволял получить root-доступ на хосте.</li>
+          <li><strong>Слабая изоляция:</strong> Неправильная настройка namespaces или cgroups позволяет контейнерам взаимодействовать друг с другом.</li>
+          <li><strong>Компрометация оркестратора:</strong> Уязвимости в API Kubernetes (CVE-2020-8554) позволяют захватить кластер.</li>
+          <li><strong>Секреты в коде:</strong> Хранение ключей в Dockerfile или ConfigMap без шифрования.</li>
+        </ul>
+  
+        <h2>Инструменты</h2>
+        <p>Для анализа и защиты контейнеров используются следующие инструменты:</p>
+        <div class="osi-table-container">
+          <table class="osi-table">
+            <thead>
+              <tr>
+                <th>Инструмент</th>
+                <th>Функция</th>
+                <th>Применение</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Trivy</td>
+                <td>Сканирование образов</td>
+                <td>Выявление CVE в Dockerfile и зависимостях</td>
+              </tr>
+              <tr>
+                <td>Clair</td>
+                <td>Статический анализ</td>
+                <td>Проверка образов в CI/CD</td>
+              </tr>
+              <tr>
+                <td>Sysdig</td>
+                <td>Runtime-мониторинг</td>
+                <td>Обнаружение аномалий в контейнерах</td>
+              </tr>
+              <tr>
+                <td>Falco</td>
+                <td>Обнаружение угроз</td>
+                <td>Анализ syscalls для выявления атак</td>
+              </tr>
+              <tr>
+                <td>Aqua Security</td>
+                <td>Комплексная защита</td>
+                <td>Сканирование, runtime, политики</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <h2>Безопасность Kubernetes</h2>
+        <p>Для защиты Kubernetes применяются следующие меры:</p>
+        <ul>
+          <li><strong>RBAC:</strong> Ограничение доступа к API. Пример: запрет анонимного доступа.</li>
+          <li><strong>Pod Security Standards (PSS):</strong> Замена Pod Security Policies, ограничивает привилегии подов.</li>
+          <li><strong>Network Policies:</strong> Контроль трафика (Calico, Cilium).</li>
+          <li><strong>Secrets Management:</strong> Шифрование секретов (Vault, Kubernetes Secrets).</li>
+          <li><strong>API Authentication:</strong> OIDC или сертификаты для доступа к API.</li>
+          <li><strong>Audit Logging:</strong> Мониторинг действий в кластере через kube-audit.</li>
+        </ul>
+  
+        <h2>Рекомендации</h2>
+        <p>Для обеспечения безопасности контейнеров и оркестраторов:</p>
+        <ol>
+          <li>Сканируйте образы с помощью Trivy или Clair перед деплоем.</li>
+          <li>Используйте non-root контейнеры и read-only filesystem.</li>
+          <li>Шифруйте секреты с помощью Vault или Kubernetes Secrets.</li>
+          <li>Настройте RBAC, PSS и Network Policies в Kubernetes.</li>
+          <li>Мониторьте runtime с помощью Sysdig или Falco.</li>
+          <li>Регулярно обновляйте Docker, Kubernetes и зависимости.</li>
+          <li>Проводите тесты на проникновение для кластеров.</li>
+        </ol>
+  
+        <h2>Примеры атак</h2>
+        <p>Реальные инциденты подчеркивают важность безопасности:</p>
+        <ul>
+          <li><strong>Компрометация Kubernetes (2021):</strong> Уязвимость в API позволила злоумышленникам развернуть майнеры в кластере Tesla.</li>
+          <li><strong>Майнеры в контейнерах (2022):</strong> Атака Siloscape использовала уязвимости Windows-контейнеров для майнинга.</li>
+          <li><strong>Breakout-атака (2023):</strong> CVE-2022-0492 в runc позволила получить доступ к хост-системе.</li>
+        </ul>
+      </div>
+    `;
+  
+    document.querySelector('.back-btn').addEventListener('click', () => {
+      loadStructureSecurityContent(container);
+    });
+  }
+
+  function loadRemoteWorkSecurityContent(container) {
+    container.innerHTML = `
+      <div class="structure-security-container">
+        <button class="back-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Назад
+        </button>
+        <h1>Безопасность удалённой работы</h1>
+        <p>Безопасность удалённой работы фокусируется на защите сотрудников и инфраструктуры в условиях распределённых команд. Этот раздел охватывает теоретические основы, уязвимости, инструменты, рекомендации и настройку безопасной инфраструктуры.</p>
+  
+        <h2>Теоретические основы безопасности удалённой работы</h2>
+        <p>Безопасность удалённой работы опирается на модели Zero Trust, криптографию, теорию управления доступом и анализ человеческого фактора. Основная цель — обеспечить конфиденциальность, целостность и доступность в условиях распределённых сетей.</p>
+        <ul>
+          <li><strong>Zero Trust:</strong> Модель, предложенная Джоном Киндервагом (2010), требует проверки каждого запроса, независимо от источника. Основана на принципе «никогда не доверяй, всегда проверяй». Формально описана в NIST SP 800-207, включает идентификацию, аутентификацию и мониторинг.</li>
+          <li><strong>Криптография:</strong> VPN и ZTNA используют протоколы TLS 1.3 и IPsec (AES-256, SHA-256). Теория стойкости к атакам MitM требует проверки сертификатов (certificate pinning) и Диффи-Хеллмана для обмена ключами.</li>
+          <li><strong>Моделирование угроз:</strong> STRIDE-модель применяется для анализа рисков. Например, фишинг относится к Spoofing, а утечка данных через BYOD — к Information Disclosure.</li>
+          <li><strong>Человеческий фактор:</strong> Теория HCI (Human-Computer Interaction) показывает, что пользователи — слабое звено. Модель MITRE ATT&CK (Tactic: Initial Access) описывает фишинг как основной вектор атаки.</li>
+          <li><strong>Обнаружение аномалий:</strong> SIEM-системы используют байесовский анализ и ML (например, алгоритмы SVM) для выявления подозрительных подключений. Пример: обнаружение несанкционированного RDP-доступа.</li>
+          <li><strong>Теория игр:</strong> Моделирует выбор атакующего (фишинг, RDP-атака) и защитника (MFA, ZTNA). Равновесие Нэша помогает определить оптимальную стратегию защиты.</li>
+          <li><strong>Сетевые протоколы:</strong> Теория конечных автоматов лежит в основе протоколов VPN (PPTP, L2TP). Уязвимости, такие как CVE-2020-2021 в Palo Alto VPN, эксплуатируют слабые настройки.</li>
+          <li><strong>Стандарты:</strong> NIST SP 800-46 (Remote Access Security) и ФЗ-187 (для КИИ) задают требования к шифрованию, аутентификации и мониторингу.</li>
+        </ul>
+        <p>Угрозы возникают из-за:</p>
+        <ul>
+          <li><strong>Небезопасные сети:</strong> Теория атак MitM показывает, как открытые Wi-Fi позволяют перехватить трафик.</li>
+          <li><strong>Слабая аутентификация:</strong> Теория перебора паролей эксплуатирует отсутствие MFA.</li>
+          <li><strong>Человеческий фактор:</strong> Теория социальной инженерии объясняет успех фишинга.</li>
+        </ul>
+  
+        <h2>Схема уровней защиты удалённой работы</h2>
+        <div class="remote-work-security-method" style="margin-bottom: 20px;">
+          <div class="remote-work-security-method-container" style="display: flex; align-items: stretch; gap: 20px;">
+            <div class="remote-work-security-diagram" style="flex: 0 0 250px; padding: 15px; border-radius: 8px; text-align: center; background-color: #05060a;">
+              <h3>Уровни защиты</h3>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                <div style="background-color: #2e7d32; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Пользователь
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">Аутентификация</p>
+                </div>
+                <div style="background-color: #388e3c; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  MFA
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">2FA/TOTP</p>
+                </div>
+                <div style="background-color: #66bb6a; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Устройство
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">MDM</p>
+                </div>
+                <div style="background-color: #ffeb3b; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Сеть
+                  <p style="font-size: 12px; margin: 5px 0 0;">VPN/ZTNA</p>
+                </div>
+                <div style="background-color: #fff176; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Данные
+                  <p style="font-size: 12px; margin: 5px 0 0;">Шифрование</p>
+                </div>
+                <div style="background-color: #ff9800; color: #000; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Приложения
+                  <p style="font-size: 12px; margin: 5px 0 0;">ZTNA</p>
+                </div>
+                <div style="background-color: #d32f2f; padding: 8px; border-radius: 5px; width: 200px; white-space: normal; word-wrap: break-word;">
+                  Мониторинг
+                  <p style="font-size: 12px; margin: 5px 0 0; color: #fff;">SIEM</p>
+                </div>
+              </div>
+            </div>
+            <div style="flex: 0 0 1px; background-color: #444; height: auto;"></div>
+            <div style="flex: 1; padding: 15px;">
+              <h3>Описание уровней защиты</h3>
+              <p>Многоуровневая защита охватывает все аспекты удалённой работы:</p>
+              <ul>
+                <li><strong>Пользователь:</strong> Проверка личности (пароль, биометрия).</li>
+                <li><strong>MFA:</strong> Усиление аутентификации (TOTP, SMS).</li>
+                <li><strong>Устройство:</strong> Контроль через MDM (Intune).</li>
+                <li><strong>Сеть:</strong> Шифрование трафика (VPN, ZTNA).</li>
+                <li><strong>Данные:</strong> Защита на уровне хранения (AES-256).</li>
+                <li><strong>Приложения:</strong> Доступ через ZTNA (Zscaler).</li>
+                <li><strong>Мониторинг:</strong> Анализ логов (Splunk).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <h2>Уязвимости</h2>
+        <p>Удалённая работа создаёт следующие риски:</p>
+        <ul>
+          <li><strong>Небезопасные Wi-Fi:</strong> Подключение к общедоступным сетям без VPN увеличивает риск MitM.</li>
+          <li><strong>Утечка данных через BYOD:</strong> Личные устройства без контроля. Пример: копирование данных на незащищённый диск.</li>
+          <li><strong>Слабая защита endpoints:</strong> Устаревшее ПО или отсутствие EDR.</li>
+          <li><strong>Фишинг:</strong> Поддельные письма или звонки, эксплуатирующие удалённый контекст.</li>
+          <li><strong>Социальная инженерия:</strong> Злоумышленники выдают себя за коллег через Zoom/Teams.</li>
+        </ul>
+  
+        <h2>Инструменты</h2>
+        <p>Для защиты используются следующие инструменты:</p>
+        <div class="osi-table-container">
+          <table class="osi-table">
+            <thead>
+              <tr>
+                <th>Инструмент</th>
+                <th>Тип</th>
+                <th>Преимущества</th>
+                <th>Недостатки</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Zscaler</td>
+                <td>ZTNA</td>
+                <td>Гибкий доступ, Zero Trust</td>
+                <td>Сложная настройка</td>
+              </tr>
+              <tr>
+                <td>Cisco AnyConnect</td>
+                <td>VPN</td>
+                <td>Простота, широкая поддержка</td>
+                <td>Уязвимости протоколов</td>
+              </tr>
+              <tr>
+                <td>CrowdStrike</td>
+                <td>Endpoint Security</td>
+                <td>Обнаружение угроз, ML</td>
+                <td>Высокая стоимость</td>
+              </tr>
+              <tr>
+                <td>Intune</td>
+                <td>MDM</td>
+                <td>Интеграция с Microsoft</td>
+                <td>Ограничения для BYOD</td>
+              </tr>
+              <tr>
+                <td>Splunk</td>
+                <td>SIEM</td>
+                <td>Глубокий анализ логов</td>
+                <td>Сложность настройки</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <h2>Рекомендации</h2>
+        <p>Для обеспечения безопасности удалённой работы:</p>
+        <ol>
+          <li>Внедрите BYOD-политики с обязательным MDM.</li>
+          <li>Проводите тренинги по фишингу и социальной инженерии.</li>
+          <li>Используйте MFA для всех сервисов.</li>
+          <li>Настройте VPN или ZTNA с AES-256.</li>
+          <li>Мониторьте подключения через SIEM.</li>
+          <li>Обновляйте ПО и применяйте EDR на endpoints.</li>
+        </ol>
+  
+        <h2>Примеры атак</h2>
+        <p>Реальные инциденты:</p>
+        <ul>
+          <li><strong>Фишинг через Zoom (2020):</strong> Поддельные приглашения устанавливали вредоносное ПО.</li>
+          <li><strong>Компрометация RDP (2021):</strong> Уязвимый RDP-сервер привёл к утечке данных.</li>
+          <li><strong>Утечка через BYOD (2022):</strong> Личный ПК без защиты вызвал компрометацию.</li>
+        </ul>
+  
+        <h2>Гайды по настройке безопасной инфраструктуры</h2>
+        <p>Рекомендации:</p>
+        <ul>
+          <li>Настройте ZTNA (Zscaler) для доступа к ресурсам.</li>
+          <li>Используйте VPN с MFA (Cisco AnyConnect).</li>
+          <li>Внедрите EDR на всех устройствах (CrowdStrike).</li>
+          <li>Настройте SIEM (Splunk) для мониторинга.</li>
+          <li>Проводите симуляции фишинга.</li>
+          <li>Разработайте BYOD-политики с MDM.</li>
         </ul>
       </div>
     `;
