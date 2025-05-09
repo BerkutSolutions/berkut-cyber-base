@@ -1,6 +1,6 @@
 {
     "name": "berkut-cyber-base",
-    "version": "1.0.7",
+    "version": "1.1.0",
     "description": "A cyber security info application",
     "main": "main.js",
     "scripts": {

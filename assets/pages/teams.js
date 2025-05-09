@@ -1038,139 +1038,359 @@ function loadSocContent(contentArea) {
         <p>SOC — это централизованный узел управления безопасностью, обеспечивающий круглосуточный мониторинг, анализ и реагирование на инциденты. SOC делится на три уровня (L1, L2, L3), каждый из которых выполняет специфические функции, взаимодействуя между собой и с другими командами для защиты инфраструктуры.</p>
         
         <h2>Уровни SOC</h2>
-        <h3>Уровень 1 (L1) — Первичный мониторинг и эскалация</h3>
-        <div class="osi-table-container">
-          <table class="osi-table">
-            <thead>
-              <tr>
-                <th>Аспект</th>
-                <th>Описание</th>
-                <th>Инструменты</th>
-                <th>Обязанности</th>
-                <th>Требования и навыки</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Функции</td>
-                <td>Первичный мониторинг событий безопасности, классификация инцидентов, эскалация подозрительных событий на L2. Обработка базовых инцидентов (уровень 4–5).</td>
-                <td>Splunk, Zabbix, Snort, Graylog</td>
-                <td>Мониторинг дашбордов SIEM, проверка алертов, выполнение стандартных процедур (например, сброс пароля), ведение тикетов в ITSM (ServiceNow).</td>
-                <td>Базовые знания сетей (TCP/IP, DNS), понимание логов, работа с SIEM. Опыт в ИТ (0–1 год). Сертификаты: CompTIA Security+, Cisco CyberOps Associate.</td>
-              </tr>
-              <tr>
-                <td>Пример задачи</td>
-                <td>Обнаружение аномального трафика (Splunk: >500 запросов/мин с одного IP). Классификация как уровень 4, эскалация на L2.</td>
-                <td>Splunk, ServiceNow</td>
-                <td>Создание тикета, уведомление L2, документирование события.</td>
-                <td>Навыки работы с ITSM, базовый анализ логов.</td>
-              </tr>
-              <tr>
-                <td>KPI</td>
-                <td>Время обработки алерта: <10 минут. Процент корректной эскалации: >95%. Количество обработанных тикетов: >50 в смену.</td>
-                <td>ServiceNow, Splunk (отчеты)</td>
-                <td>Своевременное выполнение процедур, минимизация ложных срабатываний.</td>
-                <td>Внимательность, скорость реакции.</td>
-              </tr>
-              <tr>
-                <td>Взаимодействие</td>
-                <td>Эскалация инцидентов на L2, получение инструкций от L2/L3, обратная связь от Blue Team.</td>
-                <td>Confluence, Slack, ServiceNow</td>
-                <td>Передача тикетов с полной информацией (логи, временные метки).</td>
-                <td>Коммуникабельность, умение работать в команде.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Уровень 2 (L2) — Анализ и реагирование</h3>
-        <div class="osi-table-container">
-          <table class="osi-table">
-            <thead>
-              <tr>
-                <th>Аспект</th>
-                <th>Описание</th>
-                <th>Инструменты</th>
-                <th>Обязанности</th>
-                <th>Требования и навыки</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Функции</td>
-                <td>Глубокий анализ инцидентов (уровень 2–3), реагирование на угрозы, координация с Blue Team, разработка временных мер защиты.</td>
-                <td>Splunk, Zeek, Wireshark, SOAR (Demisto), MISP</td>
-                <td>Анализ логов, корреляция событий, изоляция угроз (блокировка IP, карантин), разработка новых правил SIEM.</td>
-                <td>Углубленные знания сетей, опыт работы с SIEM/SOAR (1–3 года). Сертификаты: CEH, Cisco CyberOps Professional, HTB CPTS.</td>
-              </tr>
-              <tr>
-                <td>Пример задачи</td>
-                <td>Анализ инцидента уровня 2 (подозрение на SMB-эксплойт). Подтверждение угрозы через Wireshark, блокировка IP через брандмауэр.</td>
-                <td>Wireshark, Splunk, pfSense</td>
-                <td>Проведение RCA, передача данных Blue Team, обновление правил Snort.</td>
-                <td>Навыки анализа трафика, работа с IOC.</td>
-              </tr>
-              <tr>
-                <td>KPI</td>
-                <td>Время реагирования: <30 минут для уровня 2. Процент нейтрализованных угроз: >90%. Частота обновления правил: еженедельно.</td>
-                <td>Splunk, Demisto (отчеты)</td>
-                <td>Эффективное устранение угроз, минимизация эскалаций на L3.</td>
-                <td>Аналитическое мышление, стрессоустойчивость.</td>
-              </tr>
-              <tr>
-                <td>Взаимодействие</td>
-                <td>Получение тикетов от L1, эскалация сложных случаев на L3, координация с Blue Team и Threat Intelligence.</td>
-                <td>MISP, Confluence, Slack</td>
-                <td>Четкое документирование действий, обмен IOC с Threat Intelligence.</td>
-                <td>Навыки координации, техническая коммуникация.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Уровень 3 (L3) — Экспертный анализ и стратегия</h3>
-        <div class="osi-table-container">
-          <table class="osi-table">
-            <thead>
-              <tr>
-                <th>Аспект</th>
-                <th>Описание</th>
-                <th>Инструменты</th>
-                <th>Обязанности</th>
-                <th>Требования и навыки</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Функции</td>
-                <td>Анализ сложных инцидентов (уровень 1), разработка стратегий защиты, управление архитектурой безопасности, обучение L1/L2.</td>
-                <td>Volatility, YARA, Splunk, MISP, Cobalt Strike (анализ)</td>
-                <td>Расследование APT, форензика, разработка долгосрочных мер, аудит инфраструктуры.</td>
-                <td>Экспертные знания ИБ, опыт (5+ лет). Сертификаты: CISSP, OSCP, SANS GIAC (GCFE, GREM).</td>
-              </tr>
-              <tr>
-                <td>Пример задачи</td>
-                <td>Расследование APT (RAT в инфраструктуре). Анализ дампов памяти (Volatility), разработка плана устранения, обучение L2.</td>
-                <td>Volatility, MISP, Splunk</td>
-                <td>Идентификация C2-сервера, разработка новых сигнатур YARA, обновление архитектуры.</td>
-                <td>Навыки форензики, стратегическое мышление.</td>
-              </tr>
-              <tr>
-                <td>KPI</td>
-                <td>Время расследования APT: <72 часа. Процент предотвращённых рецидивов: >98%. Частота обучения: ежеквартально.</td>
-                <td>Splunk, Confluence (отчеты)</td>
-                <td>Разработка эффективных стратегий, минимизация повторных атак.</td>
-                <td>Лидерские качества, глубокая экспертиза.</td>
-              </tr>
-              <tr>
-                <td>Взаимодействие</td>
-                <td>Координация с L2, работа с Threat Hunting/Intelligence, взаимодействие с руководством и Blue Team.</td>
-                <td>MISP, Confluence, Zoom</td>
-                <td>Передача стратегий Blue Team, обучение персонала, отчеты руководству.</td>
-                <td>Навыки управления, презентации.</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="accordion">
+          <!-- L1 Accordion -->
+          <div class="accordion-item">
+            <button class="accordion-header">Уровень 1 (L1) — Первичный мониторинг и эскалация</button>
+            <div class="accordion-content">
+              <div class="osi-table-container">
+                <table class="osi-table">
+                  <thead>
+                    <tr>
+                      <th>Аспект</th>
+                      <th>Описание</th>
+                      <th>Инструменты</th>
+                      <th>Обязанности</th>
+                      <th>Требования и навыки</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Функции</td>
+                      <td>Первичный мониторинг событий безопасности, классификация инцидентов, эскалация подозрительных событий на L2. Обработка базовых инцидентов (уровень 4–5).</td>
+                      <td>Splunk, Zabbix, Snort, Graylog</td>
+                      <td>Мониторинг дашбордов SIEM, проверка алертов, выполнение стандартных процедур (например, сброс пароля), ведение тикетов в ITSM (ServiceNow).</td>
+                      <td>Базовые знания сетей (TCP/IP, DNS), понимание логов, работа с SIEM. Опыт в ИТ (0–1 год). Сертификаты: CompTIA Security+, Cisco CyberOps Associate.</td>
+                    </tr>
+                    <tr>
+                      <td>Пример задачи</td>
+                      <td>Обнаружение аномального трафика (Splunk: >500 запросов/мин с одного IP). Классификация как уровень 4, эскалация на L2.</td>
+                      <td>Splunk, ServiceNow</td>
+                      <td>Создание тикета, уведомление L2, документирование события.</td>
+                      <td>Навыки работы с ITSM, базовый анализ логов.</td>
+                    </tr>
+                    <tr>
+                      <td>KPI</td>
+                      <td>Время обработки алерта: <10 минут. Процент корректной эскалации: >95%. Количество обработанных тикетов: >50 в смену.</td>
+                      <td>ServiceNow, Splunk (отчеты)</td>
+                      <td>Своевременное выполнение процедур, минимизация ложных срабатываний.</td>
+                      <td>Внимательность, скорость реакции.</td>
+                    </tr>
+                    <tr>
+                      <td>Взаимодействие</td>
+                      <td>Эскалация инцидентов на L2, получение инструкций от L2/L3, обратная связь от Blue Team.</td>
+                      <td>Confluence, Slack, ServiceNow</td>
+                      <td>Передача тикетов с полной информацией (логи, временные метки).</td>
+                      <td>Коммуникабельность, умение работать в команде.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h3>Процесс реагирования на алерты в SIEM для L1</h3>
+              <p>Работа SOC-аналитика L1 включает мониторинг событий в SIEM (например, RUSIEM, Splunk) и выполнение базовых действий при обнаружении алертов. Вот пошаговый процесс:</p>
+              <ol>
+                <li><strong>Проверка алерта:</strong>
+                  <ul>
+                    <li>Проверяйте новые алерты в SIEM каждые 10 минут.</li>
+                    <li>Ознакомьтесь с описанием алерта, чтобы понять, что произошло (например, сработало правило корреляции).</li>
+                    <li>Определите тип инцидента: подозрительный вход, запуск вредоносного ПО, фишинг, утечка данных и т.д.</li>
+                  </ul>
+                </li>
+                <li><strong>Анализ контекста:</strong>
+                  <ul>
+                    <li>Кто пользователь? (Имя, роль, тип учетной записи)</li>
+                    <li>С какого IP-адреса произошло событие? (Проверьте геолокацию, репутацию через VirusTotal или AbuseIPDB)</li>
+                    <li>Какой процесс или приложение задействованы? (Например, chrome.exe, powershell.exe)</li>
+                    <li>В какое время произошло событие? (Рабочее/нерабочее время)</li>
+                    <li>Есть ли артефакты? (Логи процессов, файлы, сетевые соединения)</li>
+                    <li>Были ли похожие события ранее? (Проверьте историю в SIEM)</li>
+                  </ul>
+                </li>
+                <li><strong>Проверка индикаторов компрометации (IOC):</strong>
+                  <ul>
+                    <li>IP-адрес: Используйте VirusTotal, AbuseIPDB для проверки репутации.</li>
+                    <li>Хэш файлов: Проверьте через VirusTotal, HybridAnalysis.</li>
+                    <li>Домен: Проверьте через WhoIs, репутационные сервисы.</li>
+                  </ul>
+                </li>
+                <li><strong>Принятие решения:</strong>
+                  <ul>
+                    <li><strong>Ложное срабатывание:</strong> Если событие не представляет угрозы (например, легитимный вход сотрудника), закройте алерт в SIEM (если это разрешено политикой).</li>
+                    <li><strong>Подозрительное событие:</strong> Эскалируйте на L2 через тикет в ITSM (например, ServiceNow), указав все собранные данные (логи, IOC, контекст).</li>
+                    <li><strong>Очевидная угроза:</strong> Немедленно эскалируйте на L2, уведомите по Slack или другим каналам связи, указанным в процедурах. Если политика позволяет, выполните изоляцию (например, блокировка IP через брандмауэр).</li>
+                  </ul>
+                </li>
+                <li><strong>Документирование:</strong>
+                  <ul>
+                    <li>Создайте тикет в ITSM с подробным описанием: что обнаружено, какие проверки проведены, выводы.</li>
+                    <li>Пример записи: “Alert ‘Possible C2 Traffic’ — пользователь user1, процесс chrome.exe, IP 185.125.190.17 (Россия), поведение нехарактерное, эскалировано на L2”.</li>
+                    <li>Убедитесь, что тикет содержит временные метки, логи и IOC.</li>
+                  </ul>
+                </li>
+              </ol>
+              <h3>Красные флаги (немедленная эскалация):</h3>
+              <ul>
+                <li>Успешный вход с IP из TOR, VPN или другой страны.</li>
+                <li>Запуск powershell.exe с командами Invoke-WebRequest или iex.</li>
+                <li>Создание новых учетных записей с правами администратора.</li>
+                <li>Доступ к критическим системам в нерабочее время.</li>
+                <li>Массовая рассылка писем или запуск EXE из папки AppData\\Temp.</li>
+              </ul>
+              <h3>Рекомендации для L1:</h3>
+              <ul>
+                <li>Изучи структуру алертов в SIEM: какие типы событий существуют и как они отображаются.</li>
+                <li>Ознакомьтесь с сетевой топологией компании и критическими системами.</li>
+                <li>Создайте шпаргалку с типичными IOC (IP, хэши, домены) и угрозами.</li>
+                <li>Не бойтесь эскалировать: лучше перестраховаться, чем пропустить угрозу.</li>
+                <li>Узнайте, где хранятся полные логи, так как SIEM может показывать только часть данных.</li>
+                <li>Регулярно проходите тренинги от L2/L3 для повышения навыков.</li>
+              </ul>
+            </div>
+          </div>
+          <!-- L2 Accordion -->
+          <div class="accordion-item">
+            <button class="accordion-header">Уровень 2 (L2) — Анализ и реагирование</button>
+            <div class="accordion-content">
+              <div class="osi-table-container">
+                <table class="osi-table">
+                  <thead>
+                    <tr>
+                      <th>Аспект</th>
+                      <th>Описание</th>
+                      <th>Инструменты</th>
+                      <th>Обязанности</th>
+                      <th>Требования и навыки</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Функции</td>
+                      <td>Глубокий анализ эскалированных инцидентов (уровень 2–3), корреляция событий, первичный форензик, реагирование на угрозы, разработка временных мер защиты.</td>
+                      <td>Splunk, Wireshark, Zeek, SOAR (Demisto), Volatility, MISP, EDR (CrowdStrike, SentinelOne)</td>
+                      <td>Анализ логов и трафика, подтверждение угроз, изоляция (блокировка IP, карантин хоста), разработка правил SIEM, координация с Blue Team.</td>
+                      <td>Углубленные знания сетей (TCP/IP, HTTP, DNS), опыт работы с SIEM/SOAR (1–3 года), понимание MITRE ATT&CK. Сертификаты: CEH, Cisco CyberOps Professional, GIAC GCIH, HTB CPTS.</td>
+                    </tr>
+                    <tr>
+                      <td>Пример задачи</td>
+                      <td>Анализ инцидента уровня 2 (подозрение на PowerShell-атаку). Подтверждение через декодирование Base64, анализ трафика (Wireshark), блокировка C2-сервера, создание правила SIEM.</td>
+                      <td>Wireshark, Splunk, Volatility, MISP, EDR</td>
+                      <td>Проведение RCA, изоляция угрозы, передача данных Blue Team, обновление сигнатур (Snort, YARA).</td>
+                      <td>Навыки анализа трафика, форензики, работы с IOC, автоматизации (Python, Bash).</td>
+                    </tr>
+                    <tr>
+                      <td>KPI</td>
+                      <td>Время реагирования: <30 минут для уровня 2. Процент нейтрализованных угроз: >90%. Частота обновления правил: еженедельно.</td>
+                      <td>Splunk, SOAR (отчеты), ServiceNow</td>
+                      <td>Эффективное устранение угроз, минимизация эскалаций на L3, точность корреляции событий.</td>
+                      <td>Аналитическое мышление, стрессоустойчивость, внимание к деталям.</td>
+                    </tr>
+                    <tr>
+                      <td>Взаимодействие</td>
+                      <td>Получение тикетов от L1, эскалация сложных случаев (уровень 1) на L3, координация с Blue Team, Threat Intelligence и Threat Hunting.</td>
+                      <td>MISP, Confluence, Slack, ServiceNow</td>
+                      <td>Четкое документирование (RCA, IOC), обмен данными с Threat Intelligence, передача рекомендаций Blue Team.</td>
+                      <td>Навыки технической коммуникации, координации, работы в команде.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h3>Процесс анализа и реагирования для L2</h3>
+              <p>Работа SOC-аналитика L2 начинается с анализа тикетов от L1, требующих углубленного расследования. L2 подтверждает угрозы, выполняет первичный форензик и координирует реагирование. Вот пошаговый процесс:</p>
+              <ol>
+                <li><strong>Получение и анализ тикета:</strong>
+                  <ul>
+                    <li>Изучить тикет в ITSM (ServiceNow): тип инцидента, логи, IOC, контекст от L1.</li>
+                    <li>Пример: “Suspicious PowerShell Execution, user1, IP 185.125.190.17, Base64-скрипт”.</li>
+                    <li>Определить: ложное срабатывание, единичный инцидент или часть атаки (kill chain).</li>
+                  </ul>
+                </li>
+                <li><strong>Сбор и корреляция данных:</strong>
+                  <ul>
+                    <li>Логи: Sysmon, Windows Event Logs (Security.evtx, PowerShell), EDR (CrowdStrike).</li>
+                    <li>Сеть: Анализ трафика (Wireshark, Zeek), проверка NetFlow, PCAP.</li>
+                    <li>Артефакты: Извлечение хэшей, файлов, дампов памяти (Volatility).</li>
+                    <li>Корреляция: Связь событий (например, логин → запуск процесса → C2-трафик).</li>
+                  </ul>
+                </li>
+                <li><strong>Проверка IOC и Threat Intelligence:</strong>
+                  <ul>
+                    <li>IP/домены: VirusTotal, AbuseIPDB, Greynoise, OTX AlienVault.</li>
+                    <li>Хэши: VirusTotal, HybridAnalysis, Any.Run.</li>
+                    <li>Запрос TTP/IOC у Threat Intelligence через MISP (например, тактики APT28).</li>
+                    <li>Сопоставление с MITRE ATT&CK (Execution, Command and Control).</li>
+                  </ul>
+                </li>
+                <li><strong>Первичный форензик и триаж:</strong>
+                  <ul>
+                    <li>Анализ памяти: Volatility (psscan, dlllist, cmdline).</li>
+                    <li>Анализ файлов: PEStudio, Ghidra (для подозрительных EXE/DLL).</li>
+                    <li>Timeline: Построение хронологии событий (Sysmon, EDR).</li>
+                    <li>Пример: Декодировать Base64-скрипт, выявить C2-сервер, найти следы lateral movement.</li>
+                  </ul>
+                </li>
+                <li><strong>Реагирование (если разрешено):</strong>
+                  <ul>
+                    <li>Изоляция: Блокировка IP (pfSense), карантин хоста (EDR).</li>
+                    <li>Удаление: Устранение артефактов (через EDR или вручную).</li>
+                    <li>Рекомендации Blue Team: Обновление WAF, патчинг, новые правила Snort.</li>
+                  </ul>
+                </li>
+                <li><strong>Эскалация или закрытие:</strong>
+                  <ul>
+                    <li><strong>Ложное срабатывание:</strong> Закрыть тикет, задокументировать причину.</li>
+                    <li><strong>Подтвержденная угроза:</strong> Реализовать меры, передать Blue Team рекомендации через Confluence.</li>
+                    <li><strong>Сложный инцидент (уровень 1):</strong> Эскалировать на L3 через ServiceNow с RCA, IOC, дампами памяти.</li>
+                  </ul>
+                </li>
+                <li><strong>Документирование и улучшение:</strong>
+                  <ul>
+                    <li>Создать отчет: хронология, MITRE ATT&CK техники, действия, выводы.</li>
+                    <li>Пример: “PowerShell-атака, T1059.001, C2-сервер 185.125.190.17, заблокирован, правило SIEM обновлено”.</li>
+                    <li>Разработать/обновить правило корреляции (Sigma, Splunk query).</li>
+                  </ul>
+                </li>
+              </ol>
+              <h3>Красные флаги (немедленное реагирование/эскалация):</h3>
+              <ul>
+                <li>Запуск процессов из %AppData% или %Temp% (mimikatz.exe, nc.exe).</li>
+                <li>Трафик на C2-серверы (TOR, известные IP из Threat Intel).</li>
+                <li>PowerShell с командами DownloadString, Invoke-WebRequest, -enc.</li>
+                <li>Lateral movement: NetBIOS, RDP, WMI между хостами.</li>
+                <li>Изменение реестра (Run keys, persistence).</li>
+              </ul>
+              <h3>Рекомендации для L2:</h3>
+              <ul>
+                <li>Освой MITRE ATT&CK: понимание техник ускоряет анализ.</li>
+                <li>Автоматизируй рутину: пиши скрипты (Python, Bash) для парсинга логов.</li>
+                <li>Изучи Wireshark фильтры: http.request, dns.query, tcp.stream.</li>
+                <li>Создай шпаргалку: типичные IOC, команды Volatility, Sigma-шаблоны.</li>
+                <li>Участвуй в CTF и Threat Hunting-тренингах (HTB, TryHackMe).</li>
+                <li>Следи за отчётами Mandiant, DFIR Report, SANS для свежих TTP.</li>
+              </ul>
+            </div>
+          </div>
+          <!-- L3 Accordion -->
+          <div class="accordion-item">
+            <button class="accordion-header">Уровень 3 (L3) — Экспертный анализ и стратегия</button>
+            <div class="accordion-content">
+              <div class="osi-table-container">
+                <table class="osi-table">
+                  <thead>
+                    <tr>
+                      <th>Аспект</th>
+                      <th>Описание</th>
+                      <th>Инструменты</th>
+                      <th>Обязанности</th>
+                      <th>Требования и навыки</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Функции</td>
+                      <td>Расследование сложных инцидентов (уровень 1), глубокий форензик, reverse engineering, разработка стратегических мер защиты, руководство IR, обучение L1/L2.</td>
+                      <td>Volatility, Ghidra, IDA Pro, YARA, Splunk, MISP, Zeek, Caldera, EDR (CrowdStrike, SentinelOne)</td>
+                      <td>Анализ APT, форензика (память, диск), разработка правил (YARA, Sigma), координация с Blue Team/Threat Intelligence, отчеты для руководства.</td>
+                      <td>Экспертные знания ИБ, опыт (5+ лет), понимание low-level ОС и сетей, reverse engineering. Сертификаты: CISSP, OSCP, SANS GIAC (GCFE, GREM, GSE).</td>
+                    </tr>
+                    <tr>
+                      <td>Пример задачи</td>
+                      <td>Расследование APT (Cobalt Strike Beacon). Анализ дампов памяти (Volatility), декодирование C2-трафика, разработка плана устранения, обучение L2.</td>
+                      <td>Volatility, Ghidra, Wireshark, MISP, Splunk</td>
+                      <td>Идентификация TTP, разработка сигнатур YARA/Sigma, обновление архитектуры IDS, презентация для CISO.</td>
+                      <td>Навыки форензики, reverse engineering, стратегическое мышление, лидерство.</td>
+                    </tr>
+                    <tr>
+                      <td>KPI</td>
+                      <td>Время расследования APT: <72 часа. Процент предотвращённых рецидивов: >98%. Частота обучения: ежеквартально.</td>
+                      <td>Splunk, Confluence, MISP (отчеты)</td>
+                      <td>Разработка эффективных стратегий, минимизация повторных атак, повышение зрелости SOC.</td>
+                      <td>Лидерские качества, глубокая экспертиза, умение работать под давлением.</td>
+                    </tr>
+                    <tr>
+                      <td>Взаимодействие</td>
+                      <td>Координация с L2, работа с Threat Hunting/Intelligence, взаимодействие с Blue Team, CISO и руководством.</td>
+                      <td>MISP, Confluence, Zoom, Slack</td>
+                      <td>Передача стратегий Blue Team, обучение персонала, отчеты для руководства, обмен TTP с Threat Intelligence.</td>
+                      <td>Навыки управления, презентации, технической и бизнес-коммуникации.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h3>Процесс расследования и стратегического реагирования для L3</h3>
+              <p>L3 берет на себя самые сложные инциденты (уровень 1), требующие глубокого анализа, форензики и стратегических решений. L3 выступает лидером IR, координируя команды и разрабатывая долгосрочные меры защиты. Вот пошаговый процесс:</p>
+              <ol>
+                <li><strong>Получение и приоритизация инцидента:</strong>
+                  <ul>
+                    <li>Получить тикет от L2 через ServiceNow с данными анализа (логи, IOC, RCA).</li>
+                    <li>Пример: “Подозрение на Cobalt Strike, user1, C2-трафик, дампы памяти приложены”.</li>
+                    <li>Оценить критичность: APT, ransomware, data breach, insider threat.</li>
+                  </ul>
+                </li>
+                <li><strong>Глубокий форензик и анализ:</strong>
+                  <ul>
+                    <li>Память: Volatility (psscan, dlllist, malfind, cmdline) для выявления инъекций, shellcode.</li>
+                    <li>Диск: Анализ файловой системы (Autopsy, FTK Imager), восстановление удаленных артефактов.</li>
+                    <li>Сеть: Декодирование C2-трафика (Wireshark, Zeek), анализ DNS-туннелирования.</li>
+                    <li>Reverse engineering: Разбор вредоноса (Ghidra, IDA Pro), изучение PE-структуры, shellcode.</li>
+                    <li>Timeline: Построение полной хронологии атаки (Sysmon, EDR, Zeek).</li>
+                  </ul>
+                </li>
+                <li><strong>Определение root cause и TTP:</strong>
+                  <ul>
+                    <li>Выявить initial access: фишинг, RCE, stolen credentials.</li>
+                    <li>Карта атаки: Lateral movement, privilege escalation, persistence (MITRE ATT&CK).</li>
+                    <li>Атрибуция: Сопоставление TTP с группами (APT29, Lazarus) через MISP/Threat Intelligence.</li>
+                  </ul>
+                </li>
+                <li><strong>Реагирование и containment:</strong>
+                  <ul>
+                    <li>Координация с Blue Team: Изоляция сетей, патчинг, сброс учетных записей.</li>
+                    <li>Удаление persistence: Устранение backdoors, Run keys, scheduled tasks.</li>
+                    <li>Рекомендации: Усиление GPO, MFA, сегментация сети.</li>
+                  </ul>
+                </li>
+                <li><strong>Разработка detection и prevention:</strong>
+                  <ul>
+                    <li>Создание правил: YARA (для вредоносов), Sigma (SIEM), Suricata (IDS).</li>
+                    <li>Тестирование: Atomic Red Team, Caldera для проверки детекторов.</li>
+                    <li>Обновление архитектуры: Новая IDS/IPS, улучшение EDR-политик.</li>
+                  </ul>
+                </li>
+                <li><strong>Документирование и отчетность:</strong>
+                  <ul>
+                    <li>Отчет: Хронология, TTP, ущерб, MITRE ATT&CK, рекомендации.</li>
+                    <li>Пример: “APT41, T1071.004, C2 через DNS, устранено, YARA/Sigma внедрены”.</li>
+                    <li>Презентация для CISO/руководства: Ущерб, меры, бюджет на улучшения.</li>
+                  </ul>
+                </li>
+                <li><strong>Обучение и улучшение:</strong>
+                  <ul>
+                    <li>Проведение тренингов для L1/L2: Новые TTP, уроки из инцидента.</li>
+                    <li>Обновление playbook: Уточнение процедур IR, Threat Hunting.</li>
+                    <li>Post-mortem: Lessons learned, улучшение SOC-зрелости.</li>
+                  </ul>
+                </li>
+              </ol>
+              <h3>Красные флаги (немедленное реагирование):</h3>
+              <ul>
+                <li>Обнаружение Beacon (Cobalt Strike), Meterpreter, или кастомного malware.</li>
+                <li>DNS-туннелирование, DGA (domain generation algorithm) трафик.</li>
+                <li>Инъекции в lsass.exe, explorer.exe, или svchost.exe.</li>
+                <li>Необъяснимые учетные записи с правами администратора.</li>
+                <li>Шифрование файлов или запуск wiper (ransomware-like поведение).</li>
+              </ul>
+              <h3>Рекомендации для L3:</h3>
+              <ul>
+                <li>Изучи MITRE ATT&CK и PRE-ATT&CK на уровне эксперта.</li>
+                <li>Освой reverse engineering: Ghidra, IDA Pro, x64dbg.</li>
+                <li>Автоматизируй анализ: Python (pefile, volatility), Bash, PowerShell.</li>
+                <li>Создай личный TI-репозиторий: IOC, TTP, скрипты для парсинга.</li>
+                <li>Участвуй в Red Team/Blue Team симуляциях (Caldera, Cobalt Strike).</li>
+                <li>Читай отчёты: Mandiant M-Trends, CrowdStrike Global Threat Report, SANS.</li>
+                <li>Развивай лидерские навыки: IR-координация, работа с C-level.</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <h2>Схема взаимодействия уровней SOC</h2>
@@ -1412,9 +1632,48 @@ function loadSocContent(contentArea) {
         .soc-interaction-diagram {
           min-height: 300px;
         }
+        .accordion {
+          margin: 20px 0;
+        }
+        .accordion-item {
+          border-bottom: 1px solid #444;
+        }
+        .accordion-header {
+          width: 100%;
+          padding: 15px;
+          background-color: #2a2f3b;
+          color: #ffffff;
+          text-align: left;
+          font-size: 16px;
+          cursor: pointer;
+          border: none;
+          outline: none;
+        }
+        .accordion-content {
+          display: none;
+          padding: 15px;
+          background-color: #05060a;
+          color: #ffffff;
+        }
+        .accordion-content.show {
+          display: block;
+        }
       </style>
     </div>
   `;
   contentArea.innerHTML = socContent;
+
+  // Add accordion functionality
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const content = header.nextElementSibling;
+      const isOpen = content.style.display === 'block';
+      document.querySelectorAll('.accordion-content').forEach(item => {
+        item.style.display = 'none';
+      });
+      content.style.display = isOpen ? 'none' : 'block';
+    });
+  });
+
   document.querySelector('.back-btn').addEventListener('click', () => loadTeamsThreatIntelContent(contentArea));
 }
